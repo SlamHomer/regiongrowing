@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/textfield_login_name" >
+        android:hint="@string/textfield_login_name" >
 
         <requestFocus />
     </EditText>
@@ -36,7 +36,7 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="@string/textfield_login_email" />
+        android:hint="@string/textfield_login_email" />
 
     <EditText
         android:id="@+id/password"
@@ -45,7 +45,7 @@
         android:layout_centerHorizontal="true"
         android:inputType="textPassword"
         android:layout_below="@+id/email"
-        android:text="@string/textfield_login_password" />
+        android:hint="@string/textfield_login_password" />
 
     <Button
         android:id="@+id/button1"
