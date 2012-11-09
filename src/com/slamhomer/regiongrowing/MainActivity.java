@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 			EditText name  = (EditText)findViewById(R.id.editText1);		
 			EditText password  = (EditText)findViewById(R.id.editText2);
 			
-			String res = "OK"; //Network.postDataLogin(name, password); //die richtige Anfrage
+			String res = Network.postDataLogin(name, password); //die richtige Anfrage
 			
 			if (res == "OK") {
 				Intent intent = new Intent(this, DisplayMenuActivity.class);
@@ -29,6 +29,7 @@ public class MainActivity extends Activity {
 				 * TODO: Alert "Falscher Benutzername oder Password"
 				 */
 			}else{
+				System.out.println("RES: "+res);
 				/*
 				 * TODO: Alert "Kritischer Fehler"
 				 */
@@ -48,7 +49,7 @@ public class MainActivity extends Activity {
 			EditText password = (EditText)findViewById(R.id.password);
 			EditText email = (EditText)findViewById(R.id.email);
 			
-			String res = "OK"; //Network.postDataReg(name, password, email); //die richtige Anfrage
+			String res = Network.postDataReg(name, password, email); 
 			
 			if (res == "OK") {
 				Intent intent = new Intent(this, DisplayRegActivity.class);
