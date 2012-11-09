@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 
 public class DisplayRegActivity extends Activity {
 
@@ -22,7 +23,28 @@ public class DisplayRegActivity extends Activity {
     
     /** Called when the user clicks the Registrieren button */
     public void goReg(View view) {
-		Intent intent = new Intent(this, MainActivity.class);
-		startActivity(intent);
+
+		
+		EditText name = (EditText)findViewById(R.id.loginname);
+		EditText password = (EditText)findViewById(R.id.password);
+		EditText email = (EditText)findViewById(R.id.email);
+		
+		String res = Network.postDataReg(name, password, email); 
+		
+		System.out.println("RES: "+res);
+		
+		if (res == "OK") {
+			Intent intent = new Intent(this, MainActivity.class);
+			startActivity(intent);
+		}else if(res == "FAIL"){
+			/*
+			 * TODO: Alert "Bitte Ueberpruefen Sie Ihre Eingaben"
+			 */
+		}else{
+			/*
+			 * TODO: Alert "Kritischer Fehler"
+			 */
+		}
+		
 	}
 }

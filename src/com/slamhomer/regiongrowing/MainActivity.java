@@ -44,25 +44,9 @@ public class MainActivity extends Activity {
 	/** Called when the user clicks the Registrieren button */
 	public void goReg(View view) {
 		if(gotInternet()==true){
+			Intent intent = new Intent(this, DisplayRegActivity.class);
+			startActivity(intent);
 			
-			EditText name = (EditText)findViewById(R.id.loginname);
-			EditText password = (EditText)findViewById(R.id.password);
-			EditText email = (EditText)findViewById(R.id.email);
-			
-			String res = Network.postDataReg(name, password, email); 
-			
-			if (res == "OK") {
-				Intent intent = new Intent(this, DisplayRegActivity.class);
-				startActivity(intent);
-			}else if(res == "FAIL"){
-				/*
-				 * TODO: Alert "Bitte Ueberpruefen Sie Ihre Eingaben"
-				 */
-			}else{
-				/*
-				 * TODO: Alert "Kritischer Fehler"
-				 */
-			}
 		}else{
 			/*
 			 * TODO: Alert "Keine Internet Verbindung"

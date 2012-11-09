@@ -93,10 +93,14 @@ public class Network{
 	        nameValuePairs.add(new BasicNameValuePair("email", email.getText().toString())); 
 	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-
 	        // Execute HTTP Post Request
 	        HttpResponse response = httpclient.execute(httppost);
-	        res = response.toString();
+	        
+	        HttpEntity entity = response.getEntity();
+	        InputStream is = entity.getContent();
+	        
+	        res = convertStreamToString(is);
+	        
 	    } catch (ClientProtocolException e) {
 	        // TODO Auto-generated catch block
 	    } catch (IOException e) {
