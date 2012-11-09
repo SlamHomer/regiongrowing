@@ -18,6 +18,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import android.widget.EditText;
 
+//////// FUCKCKCKCZCZKKCZCZCZCHJSHSHSHSHHS FICKEN
 
 public class Network{
 	
