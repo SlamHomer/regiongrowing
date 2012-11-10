@@ -1,8 +1,12 @@
 package com.slamhomer.regiongrowing;
 
+import com.slamhomer.regiongrowing.R;
+import com.slamhomer.regiongrowing_network.Network;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -29,21 +33,25 @@ public class DisplayRegActivity extends Activity {
 		EditText password = (EditText)findViewById(R.id.password);
 		EditText email = (EditText)findViewById(R.id.email);
 		
-		String res = Network.postDataReg(name, password, email); 
+		Editable tmp = email.getText();
+		String val_email = tmp.toString();
+		System.out.println("Email: " + val_email);
 		
-		System.out.println("RES: "+res);
-		
-		if (res == "OK") {
-			Intent intent = new Intent(this, MainActivity.class);
-			startActivity(intent);
-		}else if(res == "FAIL"){
-			/*
-			 * TODO: Alert "Bitte Ueberpruefen Sie Ihre Eingaben"
-			 */
-		}else{
-			/*
-			 * TODO: Alert "Kritischer Fehler"
-			 */
+		if (FormValidation.isEmailValid(val_email) == true) {
+			String res = Network.postDataReg(name, password, email);
+			System.out.println("RES: " + res);
+			if (res == "OK") {
+				Intent intent = new Intent(this, MainActivity.class);
+				startActivity(intent);
+			} else if (res == "FAIL") {
+				/*
+				 * TODO: Alert "Bitte Ueberpruefen Sie Ihre Eingaben"
+				 */
+			} else {
+				/*
+				 * TODO: Alert "Kritischer Fehler"
+				 */
+			}
 		}
 		
 	}

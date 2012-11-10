@@ -1,5 +1,7 @@
 package com.slamhomer.regiongrowing;
 
+import com.slamhomer.regiongrowing.R;
+
 import android.os.Bundle;
 import android.app.Activity;
 

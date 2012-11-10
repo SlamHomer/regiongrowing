@@ -1,5 +1,8 @@
 package com.slamhomer.regiongrowing;
 
+import com.slamhomer.regiongrowing.R;
+import com.slamhomer.regiongrowing_network.Network;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
