@@ -57,7 +57,6 @@ public class DisplayRegActivity extends Activity {
 				 });
 				 //alertDialog.setIcon(R.drawable.icon);
 				 alertDialog.show();
-				
 			} else {
 				/*
 				 * TODO: Alert "Kritischer Fehler"
