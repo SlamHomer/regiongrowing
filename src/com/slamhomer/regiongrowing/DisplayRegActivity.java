@@ -5,6 +5,8 @@ import com.slamhomer.regiongrowing_network.Network;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Editable;
 import android.view.Menu;
@@ -26,7 +28,8 @@ public class DisplayRegActivity extends Activity {
     }
     
     /** Called when the user clicks the Registrieren button */
-    public void goReg(View view) {
+    @SuppressWarnings("deprecation")
+	public void goReg(View view) {
 
 		
 		EditText name = (EditText)findViewById(R.id.loginname);
@@ -44,9 +47,17 @@ public class DisplayRegActivity extends Activity {
 				Intent intent = new Intent(this, MainActivity.class);
 				startActivity(intent);
 			} else if (res == "FAIL") {
-				/*
-				 * TODO: Alert "Bitte Ueberpruefen Sie Ihre Eingaben"
-				 */
+				AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+				alertDialog.setTitle("Login fehlgeschlagen");
+				alertDialog.setMessage("Benutzername/Passwort falsch");
+				alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+					 public void onClick(DialogInterface dialog, int which) {
+						 return;
+					   }
+				 });
+				 //alertDialog.setIcon(R.drawable.icon);
+				 alertDialog.show();
+				
 			} else {
 				/*
 				 * TODO: Alert "Kritischer Fehler"
