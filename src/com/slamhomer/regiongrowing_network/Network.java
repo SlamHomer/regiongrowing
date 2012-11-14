@@ -20,6 +20,9 @@ import android.widget.EditText;
 
 
 public class Network{
+	static String GLOBAL_LOGIN = null; //OMFG DIRTY !!!!
+	static String GLOBAL_REG = null; //OMFG DIRTY !!!!
+	
 	
 	private static String convertStreamToString(InputStream is) {
 
@@ -45,65 +48,80 @@ public class Network{
 	
 	
 	
-	public static String postDataLogin(EditText name, EditText password) {
-	    // Create a new HttpClient and Post Header
-	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/test.php");
-	    String res = null;
+	public static String postDataLogin(final EditText name, final EditText password) {
 	    
-	    try {
-	        // Add data
-	    	
-	    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-	        nameValuePairs.add(new BasicNameValuePair("name", name.getText().toString()));
-	        nameValuePairs.add(new BasicNameValuePair("pw", password.getText().toString()));    
-	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		new Thread(new Runnable() {
+			public void run() {
+				System.out.println("THREAD!!!!!");
+				HttpClient httpclient = new DefaultHttpClient();
+			    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/test.php");
+			    //String res = null;
+			    
+			    try {
+			        // Add data
+			    	
+			    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			        nameValuePairs.add(new BasicNameValuePair("name", name.getText().toString()));
+			        nameValuePairs.add(new BasicNameValuePair("pw", password.getText().toString()));    
+			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 
-	        // Execute HTTP Post Request
-	        HttpResponse response = httpclient.execute(httppost);
-	        
-	        HttpEntity entity = response.getEntity();
-	        InputStream is = entity.getContent();
-	        
-	        res = convertStreamToString(is);
-	       
-	        
-	    } catch (ClientProtocolException e) {
-	        // TODO Auto-generated catch block
-	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
-	    }
+			        // Execute HTTP Post Request
+			        HttpResponse response = httpclient.execute(httppost);
+			        
+			        HttpEntity entity = response.getEntity();
+			        InputStream is = entity.getContent();
+			        
+			        GLOBAL_LOGIN = convertStreamToString(is);
+			       
+			        
+			    } catch (ClientProtocolException e) {
+			        // TODO Auto-generated catch block
+			    } catch (IOException e) {
+			        // TODO Auto-generated catch block
+			    }
+			}
+		}).start();
+		// Create a new HttpClient and Post Header
 	    
-	    return res;
+	    
+	    return GLOBAL_LOGIN;
 	} 
 	
-	public static String postDataReg(EditText name,EditText password, EditText email) {
-	    // Create a new HttpClient and Post Header
-	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/register.php");
-	    String res = null;
+	public static String postDataReg(final EditText name,final EditText password, final EditText email) {
 	    
-	    try {
-	        // Add data
-	    	
-	    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-	        nameValuePairs.add(new BasicNameValuePair("name", name.getText().toString()));
-	        nameValuePairs.add(new BasicNameValuePair("pw", password.getText().toString()));
-	        nameValuePairs.add(new BasicNameValuePair("email", email.getText().toString())); 
-	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		new Thread(new Runnable() {
+			public void run() {
+				System.out.println("THREAD!!!!!");
+				// Create a new HttpClient and Post Header
+			    HttpClient httpclient = new DefaultHttpClient();
+			    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/register.php");
+			    //String res = null;
+			    
+			    try {
+			        // Add data
+			    	
+			    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			        nameValuePairs.add(new BasicNameValuePair("name", name.getText().toString()));
+			        nameValuePairs.add(new BasicNameValuePair("pw", password.getText().toString()));
+			        nameValuePairs.add(new BasicNameValuePair("email", email.getText().toString())); 
+			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 
-	        // Execute HTTP Post Request
-	        HttpResponse response = httpclient.execute(httppost);
-	        res = response.toString();
-	    } catch (ClientProtocolException e) {
-	        // TODO Auto-generated catch block
-	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
-	    }
+			        // Execute HTTP Post Request
+			        HttpResponse response = httpclient.execute(httppost);
+			        GLOBAL_REG = response.toString();
+			    } catch (ClientProtocolException e) {
+			        // TODO Auto-generated catch block
+			    } catch (IOException e) {
+			        // TODO Auto-generated catch block
+			    }
+			}
+				
+			}).start();
+		
 	    
-	    return res;
+	    return GLOBAL_REG;
 	}
 
 }
