@@ -36,6 +36,7 @@ public class DisplayRegActivity extends Activity {
 		if (res == "OK") {
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
+			// Frage hier nicht nach FAIL sondern mach einfach else... Ich werde versuchen den Fehler zuruckzugeben und der kann dann in der Alertbox ausgegeben werden!
 		}else if(res == "FAIL"){
 			/*
 			 * TODO: Alert "Bitte Ueberpruefen Sie Ihre Eingaben"

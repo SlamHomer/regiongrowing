@@ -49,7 +49,7 @@ public class Network{
 	protected static String postDataLogin(EditText name, EditText password) {
 	    // Create a new HttpClient and Post Header
 	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/test.php");
+	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/login.php");
 	    String res = null;
 	    
 	    try {
