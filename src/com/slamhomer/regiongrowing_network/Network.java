@@ -54,7 +54,7 @@ public class Network{
 			public void run() {
 				System.out.println("THREAD!!!!!");
 				HttpClient httpclient = new DefaultHttpClient();
-			    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/test.php");
+			    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/login.php");
 			    //String res = null;
 			    
 			    try {
