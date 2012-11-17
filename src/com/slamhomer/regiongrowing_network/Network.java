@@ -20,9 +20,7 @@ import org.apache.http.message.BasicNameValuePair;
 import com.slamhomer.regiongrowing.DisplayMenuActivity;
 import com.slamhomer.regiongrowing.MainActivity;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.EditText;
 
@@ -97,9 +95,6 @@ final static String FAILCODE = "FAIL";
 					context.startActivity(intent);
 				}else if(res.equals(FAILCODE)){
 					System.out.println("FAILRES: "+res);
-					
-					 // TODO: Alert "Falscher Benutzername oder Passwort"
-					 
 				}else{
 					System.out.println("KRITRES: "+res);
 					
@@ -108,7 +103,6 @@ final static String FAILCODE = "FAIL";
 				}
 			}
 		}).start();
-		   	    
 	} 
 	
 	// Mit context kann auf die UI Elemente zugegriffen werden
