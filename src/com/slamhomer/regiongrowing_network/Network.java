@@ -39,7 +39,8 @@ final static String FAILCODE = "FAIL";
 	    String line = null;
 	    try {
 	        while ((line = reader.readLine()) != null) {
-	            sb.append((line + "\n"));
+	            //sb.append((line + "\n"));
+	        	sb.append(line);
 	        }
 	    } catch (IOException e) {
 	        e.printStackTrace();
@@ -80,7 +81,9 @@ final static String FAILCODE = "FAIL";
 			        InputStream is = entity.getContent();
 			        
 			        res = convertStreamToString(is);
+
 			        System.out.println("PREIF__RES: "+res);
+			        System.out.println("PREIF__EQUALS: "+res.equals(FAILCODE));
 			        
 			    } catch (ClientProtocolException e) {
 			        // TODO Auto-generated catch block
@@ -88,7 +91,7 @@ final static String FAILCODE = "FAIL";
 			        // TODO Auto-generated catch block
 			    }
 			    
-				if (res.equals(OKAYCODE)) {  // BUG Warum zu Teufel geht er hier immer in KRITRES !?!?!??!?
+				if (res.equals(OKAYCODE)) {  
 					System.out.println("OK__RES: "+res);
 					Intent intent = new Intent(context, DisplayMenuActivity.class);
 					context.startActivity(intent);
