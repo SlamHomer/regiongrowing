@@ -6,6 +6,7 @@ import com.slamhomer.regiongrowing_network.Network;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Editable;
@@ -28,7 +29,6 @@ public class DisplayRegActivity extends Activity {
     }
     
     /** Called when the user clicks the Registrieren button */
-    @SuppressWarnings("deprecation")
 	public void goReg(View view) {
 
 		
@@ -41,27 +41,8 @@ public class DisplayRegActivity extends Activity {
 		System.out.println("Email: " + val_email);
 		
 		if (FormValidation.isEmailValid(val_email) == true) {
-			String res = Network.postDataReg(name, password, email);
-			System.out.println("RES: " + res);
-			if (res == "OK") {
-				Intent intent = new Intent(this, MainActivity.class);
-				startActivity(intent);
-			} else if (res == "FAIL") {
-				AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-				alertDialog.setTitle("Login fehlgeschlagen");
-				alertDialog.setMessage("Benutzername/Passwort falsch");
-				alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-					 public void onClick(DialogInterface dialog, int which) {
-						 return;
-					   }
-				 });
-				 //alertDialog.setIcon(R.drawable.icon);
-				 alertDialog.show();
-			} else {
-				/*
-				 * TODO: Alert "Kritischer Fehler"
-				 */
-			}
+			Context context = this;
+			Network.postDataReg(name, password, email, context);
 		}
 		
 	}

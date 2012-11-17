@@ -23,27 +23,10 @@ public class MainActivity extends Activity {
 			
 			EditText name  = (EditText)findViewById(R.id.editText1);		
 			EditText password  = (EditText)findViewById(R.id.editText2);
+			Context context = this;
 			
-			String res = Network.postDataLogin(name, password); //die richtige Anfrage
-			
-			if (res == "OK") {
-				Intent intent = new Intent(this, DisplayMenuActivity.class);
-				startActivity(intent);
-			}else if(res == "FAIL"){
-				/*
-				 * TODO: Alert "Falscher Benutzername oder Password"
-				 */
-			}else{
-				System.out.println("RES: "+res);
-				/*
-				 * TODO: Alert "Kritischer Fehler"
-				 */
-			}
-		}else{
-			/*
-			 * TODO: Alert "Keine Internet Verbindung"
-			 */
-		}
+			Network.postDataLogin(name, password,context);
+		}			
 	}
 	
 	/** Called when the user clicks the Registrieren button */
@@ -51,11 +34,6 @@ public class MainActivity extends Activity {
 		if(gotInternet()==true){
 			Intent intent = new Intent(this, DisplayRegActivity.class);
 			startActivity(intent);
-			
-		}else{
-			/*
-			 * TODO: Alert "Keine Internet Verbindung"
-			 */
 		}
 	}
 	

@@ -16,14 +16,21 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+
+import com.slamhomer.regiongrowing.DisplayMenuActivity;
+import com.slamhomer.regiongrowing.MainActivity;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.widget.EditText;
 
 
 public class Network{
-	static String GLOBAL_LOGIN = null; //OMFG DIRTY !!!!
-	static String GLOBAL_REG = null; //OMFG DIRTY !!!!
-	
-	
+final static String OKAYCODE = "OK";
+final static String FAILCODE = "FAIL";
+
 	private static String convertStreamToString(InputStream is) {
 
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -47,15 +54,15 @@ public class Network{
 	}
 	
 	
+	// Mit context kann auf die UI Elemente zugegriffen werden
+	public static void postDataLogin(final EditText name, final EditText password, final Context context) {
 	
-	public static String postDataLogin(final EditText name, final EditText password) {
-	    
 		new Thread(new Runnable() {
 			public void run() {
 				System.out.println("THREAD!!!!!");
 				HttpClient httpclient = new DefaultHttpClient();
 			    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/login.php");
-			    //String res = null;
+				String res = null;
 			    
 			    try {
 			        // Add data
@@ -72,23 +79,37 @@ public class Network{
 			        HttpEntity entity = response.getEntity();
 			        InputStream is = entity.getContent();
 			        
-			        GLOBAL_LOGIN = convertStreamToString(is);
-			       
+			        res = convertStreamToString(is);
+			        System.out.println("PREIF__RES: "+res);
 			        
 			    } catch (ClientProtocolException e) {
 			        // TODO Auto-generated catch block
 			    } catch (IOException e) {
 			        // TODO Auto-generated catch block
 			    }
+			    
+				if (res.equals(OKAYCODE)) {  // BUG Warum zu Teufel geht er hier immer in KRITRES !?!?!??!?
+					System.out.println("OK__RES: "+res);
+					Intent intent = new Intent(context, DisplayMenuActivity.class);
+					context.startActivity(intent);
+				}else if(res.equals(FAILCODE)){
+					System.out.println("FAILRES: "+res);
+					
+					 // TODO: Alert "Falscher Benutzername oder Passwort"
+					 
+				}else{
+					System.out.println("KRITRES: "+res);
+					
+					 // TODO: Alert "Kritischer Fehler"
+					 
+				}
 			}
 		}).start();
-		// Create a new HttpClient and Post Header
-	    
-	    
-	    return GLOBAL_LOGIN;
+		   	    
 	} 
 	
-	public static String postDataReg(final EditText name,final EditText password, final EditText email) {
+	// Mit context kann auf die UI Elemente zugegriffen werden
+	public static void postDataReg(final EditText name,final EditText password, final EditText email, final Context context) {
 	    
 		new Thread(new Runnable() {
 			public void run() {
@@ -96,7 +117,7 @@ public class Network{
 				// Create a new HttpClient and Post Header
 			    HttpClient httpclient = new DefaultHttpClient();
 			    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/register.php");
-			    //String res = null;
+			    String res = null;
 			    
 			    try {
 			        // Add data
@@ -110,18 +131,35 @@ public class Network{
 
 			        // Execute HTTP Post Request
 			        HttpResponse response = httpclient.execute(httppost);
-			        GLOBAL_REG = response.toString();
+			        
+			        HttpEntity entity = response.getEntity();
+			        InputStream is = entity.getContent();
+			        
+			        res = convertStreamToString(is);
+			        System.out.println("RES: "+res);
+			        
 			    } catch (ClientProtocolException e) {
 			        // TODO Auto-generated catch block
 			    } catch (IOException e) {
 			        // TODO Auto-generated catch block
 			    }
+			    
+				if (res.equals(OKAYCODE)) {
+					Intent intent = new Intent(context, MainActivity.class);
+					context.startActivity(intent);
+				} else if (res.equals(FAILCODE)) {
+					/*
+					 * TODO: Alert
+					 */
+				} else {
+					/*
+					 * TODO: Alert "Kritischer Fehler"
+					 */
+				}
 			}
 				
 			}).start();
 		
-	    
-	    return GLOBAL_REG;
 	}
 
 }
