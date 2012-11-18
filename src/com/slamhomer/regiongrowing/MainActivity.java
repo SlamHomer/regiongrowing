@@ -26,7 +26,20 @@ public class MainActivity extends Activity {
 			Context context = this;
 			
 			Network.postDataLogin(name, password,context);
-		}			
+			
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+			alertDialogBuilder.setTitle("Fehler");
+			alertDialogBuilder
+				.setMessage("Anmelden fehlgeschlagen")
+				.setCancelable(false)
+				.setNeutralButton("OK",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						return;
+					}
+				  });
+				AlertDialog alertDialog = alertDialogBuilder.create();
+				alertDialog.show();
+		}
 	}
 	
 	/** Called when the user clicks the Registrieren button */
