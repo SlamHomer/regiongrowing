@@ -26,8 +26,8 @@ import android.widget.EditText;
 
 
 public class Network{
-final static String OKAYCODE = "OK";
-final static String FAILCODE = "FAIL";
+private final static String OKAYCODE = "OK";
+private final static String FAILCODE = "FAIL";
 
 	private static String convertStreamToString(InputStream is) {
 
@@ -79,7 +79,7 @@ final static String FAILCODE = "FAIL";
 			        InputStream is = entity.getContent();
 			        
 			        res = convertStreamToString(is);
-
+			        
 			        System.out.println("PREIF__RES: "+res);
 			        System.out.println("PREIF__EQUALS: "+res.equals(FAILCODE));
 			        
@@ -133,6 +133,7 @@ final static String FAILCODE = "FAIL";
 			        InputStream is = entity.getContent();
 			        
 			        res = convertStreamToString(is);
+			        
 			        System.out.println("RES: "+res);
 			        
 			    } catch (ClientProtocolException e) {

@@ -36,11 +36,9 @@ public class DisplayRegActivity extends Activity {
 		EditText password = (EditText)findViewById(R.id.password);
 		EditText email = (EditText)findViewById(R.id.email);
 		
-		Editable tmp = email.getText();
-		String val_email = tmp.toString();
-		System.out.println("Email: " + val_email);
-		
-		if (FormValidation.isEmailValid(val_email) == true) {
+		if (FormValidation.isEmailValid(email) == true &&
+				FormValidation.isLoginDataValid(name) == true &&
+				FormValidation.isLoginDataValid(password) == true) {
 			Context context = this;
 			Network.postDataReg(name, password, email, context);
 		}

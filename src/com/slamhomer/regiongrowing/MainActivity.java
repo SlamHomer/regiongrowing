@@ -21,24 +21,30 @@ public class MainActivity extends Activity {
 	public void goLogin(View view) {
 		if(gotInternet()==true){
 			
-			EditText name  = (EditText)findViewById(R.id.editText1);		
-			EditText password  = (EditText)findViewById(R.id.editText2);
-			Context context = this;
+			EditText name = (EditText) findViewById(R.id.editText1);
+			EditText password = (EditText) findViewById(R.id.editText2);
 			
-			Network.postDataLogin(name, password,context);
-			
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-			alertDialogBuilder.setTitle("Fehler");
-			alertDialogBuilder
-				.setMessage("Anmelden fehlgeschlagen")
-				.setCancelable(false)
-				.setNeutralButton("OK",new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog,int id) {
-						return;
-					}
-				  });
+			if (FormValidation.isLoginDataValid(name) == true &&
+					FormValidation.isLoginDataValid(password) == true) {
+
+				Context context = this;
+				Network.postDataLogin(name, password, context);
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+						context);
+				alertDialogBuilder.setTitle("Fehler");
+				alertDialogBuilder
+						.setMessage("Anmelden fehlgeschlagen")
+						.setCancelable(false)
+						.setNeutralButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										return;
+									}
+								});
 				AlertDialog alertDialog = alertDialogBuilder.create();
 				alertDialog.show();
+			}
 		}
 	}
 	
