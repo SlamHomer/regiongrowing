@@ -42,6 +42,21 @@ public class DisplayRegActivity extends Activity {
 			Context context = this;
 			Network.postDataReg(name, password, email, context);
 		}
+		/*if(res=0){ //bis wir eine rueckgabe haben
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DisplayRegActivity.this);
+			alertDialogBuilder.setTitle("Fehler");
+			alertDialogBuilder
+					.setMessage("Registrierung fehlgeschlagen")
+					.setCancelable(false)
+					.setNeutralButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									return;
+								}
+							});
+			AlertDialog alertDialog = alertDialogBuilder.create();
+			alertDialog.show();
+		}*/
 		
 	}
 }
