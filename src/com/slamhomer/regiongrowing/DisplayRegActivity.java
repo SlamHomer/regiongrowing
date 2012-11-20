@@ -2,6 +2,7 @@ package com.slamhomer.regiongrowing;
 
 import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_network.Network;
+import com.slamhomer.regiongrowing_network.RegThread;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -39,9 +40,26 @@ public class DisplayRegActivity extends Activity {
 		if (FormValidation.isEmailValid(email) == true &&
 				FormValidation.isLoginDataValid(name) == true &&
 				FormValidation.isLoginDataValid(password) == true) {
-			Context context = this;
-			Network.postDataReg(name, password, email, context);
+			//Context context = this;
+			//Network.postDataReg(name, password, email, context);
+			
+			Thread regthread = new RegThread(name, password, email);
+			regthread.start();
+			try {
+				regthread.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
+		System.out.println("AFTER TRHEAD RES: "+Network.getLastCode());
+		
+		// DIES MUSS IN EINE IF ANFRAGE EINGEBAUT WERDEN
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
+		
+		
 		/*if(res=0){ //bis wir eine rueckgabe haben
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DisplayRegActivity.this);
 			alertDialogBuilder.setTitle("Fehler");

@@ -1,7 +1,9 @@
 package com.slamhomer.regiongrowing;
 
 import com.slamhomer.regiongrowing.R;
+import com.slamhomer.regiongrowing_network.LoginThread;
 import com.slamhomer.regiongrowing_network.Network;
+import com.slamhomer.regiongrowing_network.RegThread;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -27,10 +29,24 @@ public class MainActivity extends Activity {
 			if (FormValidation.isLoginDataValid(name) == true &&
 					FormValidation.isLoginDataValid(password) == true) {
 
-				Context context = this;
-				Network.postDataLogin(name, password, context);
+				//Context context = this;
+				//Network.postDataLogin(name, password, context);
+							
+				Thread loginthread = new LoginThread(name, password);
+				loginthread.start();
+				try {
+					loginthread.join();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		
+			
+			// IN IF ANFRAGE PACKEN
+			Intent intent = new Intent(this,DisplayMenuActivity.class);
+			startActivity(intent);
+			
+			
 			/*if(res=0){ //bis wir eine rueckgabe haben
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
 				alertDialogBuilder.setTitle("Fehler");

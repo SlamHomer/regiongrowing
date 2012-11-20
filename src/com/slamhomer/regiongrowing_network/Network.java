@@ -26,10 +26,25 @@ import android.widget.EditText;
 
 
 public class Network{
-private final static String OKAYCODE = "OK";
-private final static String FAILCODE = "FAIL";
+//private final static String OKAYCODE = "OK";
+//private final static String FAILCODE = "FAIL";
+private static String LastCode = null;
 
-	private static String convertStreamToString(InputStream is) {
+	public static String getLastCode() {
+		return LastCode;
+	}
+
+
+	protected static void setLastCode(String lastCode) {
+		LastCode = lastCode;
+	}
+	
+	public static void deleteLastCode(){
+		LastCode = null;
+	}
+
+
+	protected static String convertStreamToString(InputStream is) {
 
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 	    StringBuilder sb = new StringBuilder();
@@ -51,8 +66,12 @@ private final static String FAILCODE = "FAIL";
 	    }
 	    return sb.toString();
 	}
+}
+
 	
 	
+	//OLD CODE
+/*	
 	// Mit context kann auf die UI Elemente zugegriffen werden
 	public static void postDataLogin(final EditText name, final EditText password, final Context context) {
 	
@@ -146,13 +165,13 @@ private final static String FAILCODE = "FAIL";
 					Intent intent = new Intent(context, MainActivity.class);
 					context.startActivity(intent);
 				} else if (res.equals(FAILCODE)) {
-					/*
+					
 					 * TODO: Alert
-					 */
+					 
 				} else {
-					/*
+					
 					 * TODO: Alert "Kritischer Fehler"
-					 */
+					 
 				}
 			}
 				
@@ -161,3 +180,4 @@ private final static String FAILCODE = "FAIL";
 	}
 
 }
+*/
