@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">RegionGrowing</string>
@@ -21,5 +22,8 @@
     <string name="title_activity_display_new_game">Neues Spiel</string>
     <string name="title_activity_display_enter_game">DisplayEnterGame</string>
     <string name="text_enter_code">Code eingeben:</string>
+    <string name="button_options">Optionen</string>
+    <string name="title_activity_display_options">DisplayOptionsActivity</string>
+    <string name="text_homelocation">Home Location</string>
 
 </resources>

@@ -77,6 +77,11 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	public void goOptions(View view) {
+		Intent intent = new Intent(this, DisplayOptionsActivity.class);
+		startActivity(intent);
+	}
+	
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
