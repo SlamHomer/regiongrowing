@@ -69,14 +69,7 @@ public class MainActivity extends Activity {
 		}
 	}
 	
-	/** Called when the user clicks the Options button */
-	public void goOpt(View view) {
-		if(gotInternet()==true){
-			Intent intent = new Intent(this, ShowLocationActivity.class);
-			startActivity(intent);
-		}
-	}
-	
+
 	public void goOptions(View view) {
 		Intent intent = new Intent(this, DisplayOptionsActivity.class);
 		startActivity(intent);

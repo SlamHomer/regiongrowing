@@ -8,8 +8,7 @@ import java.io.InputStreamReader;
 
 
 public class Network{
-//private final static String OKAYCODE = "OK";
-//private final static String FAILCODE = "FAIL";
+
 private static String LastCode = null;
 
 	public static String getLastCode() {
@@ -34,7 +33,6 @@ private static String LastCode = null;
 	    String line = null;
 	    try {
 	        while ((line = reader.readLine()) != null) {
-	            //sb.append((line + "\n"));
 	        	sb.append(line);
 	        }
 	    } catch (IOException e) {
@@ -49,117 +47,3 @@ private static String LastCode = null;
 	    return sb.toString();
 	}
 }
-
-	
-	
-	//OLD CODE
-/*	
-	// Mit context kann auf die UI Elemente zugegriffen werden
-	public static void postDataLogin(final EditText name, final EditText password, final Context context) {
-	
-		new Thread(new Runnable() {
-			public void run() {
-				System.out.println("THREAD!!!!!");
-				HttpClient httpclient = new DefaultHttpClient();
-			    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/login.php");
-				String res = null;
-			    
-			    try {
-			        // Add data
-			    	
-			    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			        nameValuePairs.add(new BasicNameValuePair("name", name.getText().toString()));
-			        nameValuePairs.add(new BasicNameValuePair("pw", password.getText().toString()));    
-			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-
-			        // Execute HTTP Post Request
-			        HttpResponse response = httpclient.execute(httppost);
-			        
-			        HttpEntity entity = response.getEntity();
-			        InputStream is = entity.getContent();
-			        
-			        res = convertStreamToString(is);
-			        
-			        System.out.println("PREIF__RES: "+res);
-			        System.out.println("PREIF__EQUALS: "+res.equals(FAILCODE));
-			        
-			    } catch (ClientProtocolException e) {
-			        // TODO Auto-generated catch block
-			    } catch (IOException e) {
-			        // TODO Auto-generated catch block
-			    }
-			    
-				if (res.equals(OKAYCODE)) {  
-					System.out.println("OK__RES: "+res);
-					Intent intent = new Intent(context, DisplayMenuActivity.class);
-					context.startActivity(intent);
-				}else if(res.equals(FAILCODE)){
-					System.out.println("FAILRES: "+res);
-				}else{
-					System.out.println("KRITRES: "+res);
-					
-					 // TODO: Alert "Kritischer Fehler"
-					 
-				}
-			}
-		}).start();
-	} 
-	
-	// Mit context kann auf die UI Elemente zugegriffen werden
-	public static void postDataReg(final EditText name,final EditText password, final EditText email, final Context context) {
-	    
-		new Thread(new Runnable() {
-			public void run() {
-				System.out.println("THREAD!!!!!");
-				// Create a new HttpClient and Post Header
-			    HttpClient httpclient = new DefaultHttpClient();
-			    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/register.php");
-			    String res = null;
-			    
-			    try {
-			        // Add data
-			    	
-			    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			        nameValuePairs.add(new BasicNameValuePair("name", name.getText().toString()));
-			        nameValuePairs.add(new BasicNameValuePair("pw", password.getText().toString()));
-			        nameValuePairs.add(new BasicNameValuePair("email", email.getText().toString())); 
-			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-
-			        // Execute HTTP Post Request
-			        HttpResponse response = httpclient.execute(httppost);
-			        
-			        HttpEntity entity = response.getEntity();
-			        InputStream is = entity.getContent();
-			        
-			        res = convertStreamToString(is);
-			        
-			        System.out.println("RES: "+res);
-			        
-			    } catch (ClientProtocolException e) {
-			        // TODO Auto-generated catch block
-			    } catch (IOException e) {
-			        // TODO Auto-generated catch block
-			    }
-			    
-				if (res.equals(OKAYCODE)) {
-					Intent intent = new Intent(context, MainActivity.class);
-					context.startActivity(intent);
-				} else if (res.equals(FAILCODE)) {
-					
-					 * TODO: Alert
-					 
-				} else {
-					
-					 * TODO: Alert "Kritischer Fehler"
-					 
-				}
-			}
-				
-			}).start();
-		
-	}
-
-}
-*/
