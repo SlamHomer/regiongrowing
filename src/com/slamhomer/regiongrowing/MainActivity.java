@@ -2,13 +2,9 @@ package com.slamhomer.regiongrowing;
 
 import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_network.LoginThread;
-import com.slamhomer.regiongrowing_network.Network;
-import com.slamhomer.regiongrowing_network.RegThread;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -72,6 +68,15 @@ public class MainActivity extends Activity {
 			startActivity(intent);
 		}
 	}
+	
+	/** Called when the user clicks the Options button */
+	public void goOpt(View view) {
+		if(gotInternet()==true){
+			Intent intent = new Intent(this, ShowLocationActivity.class);
+			startActivity(intent);
+		}
+	}
+	
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {

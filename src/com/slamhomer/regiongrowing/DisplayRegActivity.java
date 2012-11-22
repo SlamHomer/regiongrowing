@@ -6,11 +6,7 @@ import com.slamhomer.regiongrowing_network.RegThread;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;

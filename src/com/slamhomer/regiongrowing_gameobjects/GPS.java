@@ -1,7 +1,6 @@
 package com.slamhomer.regiongrowing_gameobjects;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -9,13 +8,17 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
 
 public class GPS{
 	final static String FILENAME_HOMELOC = "homeLoc";
-	
+
 	//Methode die die Home Location und den akt.
 	//Context als Parameter bekommt und diese local -privat- speichert
-	public int saveHomeLoc(final String location, final Context context){
+	public static int saveHomeLoc(final String location, final Context context){
 		
 		FileOutputStream fos;
 		try {
@@ -37,7 +40,7 @@ public class GPS{
 	}
 	
 	//Methode die die Home Location zurückliefert
-	public String getHomeLoc(final Context context){
+	public static String getHomeLoc(){
 		FileReader fr = null;
 		BufferedReader br = null;
 		String returnString = null;
@@ -62,4 +65,6 @@ public class GPS{
 		
 		return returnString;
 	}
+
+
 }

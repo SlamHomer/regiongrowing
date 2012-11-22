@@ -15,10 +15,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import com.slamhomer.regiongrowing.MainActivity;
-
-import android.content.Context;
-import android.content.Intent;
 import android.widget.EditText;
 
 public class RegThread extends Thread{
