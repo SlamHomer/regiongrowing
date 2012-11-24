@@ -21,6 +21,7 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 	  private TextView longitudeField;
 	  private LocationManager locationManager;
 	  private String provider;
+	  private String lalo = null;
 	  
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,8 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 	    // default
 	    Criteria criteria = new Criteria();
 	    provider = locationManager.getBestProvider(criteria, false);
-	    Location location = locationManager.getLastKnownLocation(provider);
+
+	    /*	Location location = locationManager.getLastKnownLocation(provider);
 
 	    // Initialize the location fields
 	    if (location != null) {
@@ -45,7 +47,11 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 	    } else {
 	      latituteField.setText("Location not available");
 	      longitudeField.setText("Location not available");
-	    }
+	    }*/
+	    GPS.loadHomeLoc(this);
+	    latituteField.setText(GPS.getLatitude());
+	    longitudeField.setText(GPS.getLongitude());
+	    
 	}
 
 	@Override
@@ -87,30 +93,18 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 
 
 	  public void onLocationChanged(Location location) {
-	    int lat = (int) (location.getLatitude());
+		int lat = (int) (location.getLatitude());
 	    int lng = (int) (location.getLongitude());
-	    latituteField.setText(String.valueOf(lat));
-	    longitudeField.setText(String.valueOf(lng));
+	    	    
+	    this.lalo = String.valueOf(lat)+"\n"+String.valueOf(lng);
+	    
 	  }
 	  
-	  public void setLocation(View view){
-		  if(latituteField != null && longitudeField != null){  
-			  Editable tmp1 = latituteField.getEditableText();
-			  Editable tmp2 = longitudeField.getEditableText();
-			  
-			  String latitute = tmp1.toString();
-			  String longitude = tmp2.toString();
-			  
-			  System.out.println("Latitute: "+latitute);
-			  System.out.println("Longitude: "+longitude);
-			  
-			  String lalo = latitute+longitude;
-			  
-			  System.out.println("Lalo: "+lalo);
-			  
-			  GPS.saveHomeLoc(lalo, this);
-		  }else{
-			  //TODO Alert
-		  }
+
+	  public void setLocation(View view){  
+		  GPS.saveHomeLoc(this.lalo, this);
+		  GPS.loadHomeLoc(this);
+		  latituteField.setText(GPS.getLatitude());
+		  longitudeField.setText(GPS.getLongitude());
 	  }
 }
