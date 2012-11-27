@@ -1,35 +1,14 @@
 package com.slamhomer.regiongrowing_gameobjects;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import android.app.Activity;
 import android.content.Context;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.view.View;
 
-import java.io.File;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
- 
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 public class GPS{
 	final static String FILENAME_HOMELOC = "homeLoc";
@@ -42,9 +21,7 @@ public class GPS{
 
 
 	protected static void setLatitude(String latitude) {
-		System.out.println("OLD LATITUDE: "+GPS.latitude);
 		GPS.latitude = latitude;
-		System.out.println("NEW LATITUDE: "+GPS.latitude);
 	}
 
 
@@ -54,14 +31,13 @@ public class GPS{
 
 
 	protected static void setLongitude(String longitude) {
-		System.out.println("OLD LONGITUDE: "+GPS.longitude);
 		GPS.longitude = longitude;
-		System.out.println("NEW LONGITUDE: "+GPS.longitude);
 	}
 
-
-	//Methode die die Home Location und den akt.
-	//Context als Parameter bekommt und diese local -privat- speichert
+	/*
+	 * Methode speichert die Home Location auf dem Handy in einer Datei
+	 * TODO: Verschlüsselt speichern
+	 */
 	public static int saveHomeLoc(final String location, final Context context){
 		
 		FileOutputStream fos;
@@ -83,7 +59,11 @@ public class GPS{
 
 	}
 	
-
+	/*
+	 * Methode welche aus der Home Location Datei, die Home Location ausliest und 
+	 * jeweils Latitude und Longitude für andere Methoden zugänglich macht. Beide
+	 * Variablen können mit get***() aufgerufen werden. 
+	 */
 	public static void loadHomeLoc(Context context){
 		  try {
 			  InputStream instream = context.openFileInput(FILENAME_HOMELOC);

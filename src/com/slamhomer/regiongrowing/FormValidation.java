@@ -32,6 +32,14 @@ public class FormValidation {
         return false;
     }
 	
+	/*
+	 * Methode die Benutzername und Passwort auf Korrektheit prüft.
+	 * Korrekte Benutzernamen und Passwörter sind:
+	 * nur a-z, A-Z, 0-9 sind erlaubt
+	 * muss zwischen 5 und 20 Zeichen haben
+	 * 
+	 * TODO: Ausführlich testen
+	 */
 	protected static boolean isLoginDataValid(EditText input){
 		Editable tmp = input.getText();
 		String val_input = tmp.toString();

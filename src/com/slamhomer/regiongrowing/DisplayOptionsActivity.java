@@ -9,8 +9,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -48,6 +46,7 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 	      latituteField.setText("Location not available");
 	      longitudeField.setText("Location not available");
 	    }*/
+	    
 	    GPS.loadHomeLoc(this);
 	    latituteField.setText(GPS.getLatitude());
 	    longitudeField.setText(GPS.getLongitude());
@@ -77,7 +76,6 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 
 	  public void onStatusChanged(String provider, int status, Bundle extras) {
 	    // TODO Auto-generated method stub
-
 	  }
 
 	  public void onProviderEnabled(String provider) {
@@ -96,8 +94,7 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 		int lat = (int) (location.getLatitude());
 	    int lng = (int) (location.getLongitude());
 	    	    
-	    this.lalo = String.valueOf(lat)+"\n"+String.valueOf(lng);
-	    
+	    this.lalo = String.valueOf(lat)+"\n"+String.valueOf(lng);    
 	  }
 	  
 

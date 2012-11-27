@@ -24,9 +24,6 @@ public class MainActivity extends Activity {
 			
 			if (FormValidation.isLoginDataValid(name) == true &&
 					FormValidation.isLoginDataValid(password) == true) {
-
-				//Context context = this;
-				//Network.postDataLogin(name, password, context);
 							
 				Thread loginthread = new LoginThread(name, password);
 				loginthread.start();
@@ -88,6 +85,9 @@ public class MainActivity extends Activity {
         return true;
     }
     
+    /*
+     * TODO: In die Network Klasse
+     */
 	public boolean gotInternet() {
 	    ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
