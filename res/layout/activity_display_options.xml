@@ -33,6 +33,7 @@
         android:layout_alignLeft="@+id/editText1"
         android:layout_marginBottom="18dp"
         android:ems="9"
+        android:digits="0123456789.,"
         android:inputType="numberDecimal" >
 
         <requestFocus />
@@ -45,6 +46,7 @@
         android:layout_above="@+id/editText3"
         android:layout_alignParentRight="true"
         android:ems="9"
+        android:digits="0123456789.,"
         android:inputType="numberDecimal" />
 
     <TextView
@@ -78,6 +80,7 @@
         android:layout_above="@+id/textView1"
         android:layout_alignParentRight="true"
         android:ems="9" 
+        android:digits="0123456789.,"
         android:inputType="numberDecimal" />
 
 </RelativeLayout>

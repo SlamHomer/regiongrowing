@@ -6,6 +6,8 @@ import com.slamhomer.regiongrowing_network.RegThread;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -47,20 +49,30 @@ public class DisplayRegActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		
-		System.out.println("AFTER TRHEAD RES: "+Network.getLastCode());
-		
-		// DIES MUSS IN EINE IF ANFRAGE EINGEBAUT WERDEN
-		Intent intent = new Intent(this, MainActivity.class);
-		startActivity(intent);
-		
-		
-		/*if(res=0){ //bis wir eine rueckgabe haben
+			String resultat = Network.getLastCode();
+			if(!(resultat.equals("OK"))){
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DisplayRegActivity.this);
+				alertDialogBuilder.setTitle("Fehler");
+				alertDialogBuilder
+						.setMessage(resultat)
+						.setCancelable(false)
+						.setNeutralButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int id) {
+										return;
+									}
+								});
+				AlertDialog alertDialog = alertDialogBuilder.create();
+				alertDialog.show();
+			}else{
+				Intent intent = new Intent(this, MainActivity.class);
+				startActivity(intent);
+			}
+		}else{
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DisplayRegActivity.this);
 			alertDialogBuilder.setTitle("Fehler");
 			alertDialogBuilder
-					.setMessage("Registrierung fehlgeschlagen")
+					.setMessage("Ungueltige Daten")
 					.setCancelable(false)
 					.setNeutralButton("OK",
 							new DialogInterface.OnClickListener() {
@@ -70,7 +82,6 @@ public class DisplayRegActivity extends Activity {
 							});
 			AlertDialog alertDialog = alertDialogBuilder.create();
 			alertDialog.show();
-		}*/
-		
+		}
 	}
 }

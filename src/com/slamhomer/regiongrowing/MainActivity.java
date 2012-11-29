@@ -70,7 +70,7 @@ public class MainActivity extends Activity {
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
 				alertDialogBuilder.setTitle("Fehler");
 				alertDialogBuilder
-						.setMessage("Ungültiger Benutzername oder Passwort")
+						.setMessage("Ungueltiger Benutzername oder Passwort")
 						.setCancelable(false)
 						.setNeutralButton("OK",
 								new DialogInterface.OnClickListener() {
