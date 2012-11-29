@@ -4,6 +4,7 @@ import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_network.LoginThread;
 import com.slamhomer.regiongrowing_network.Network;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -52,6 +53,16 @@ public class MainActivity extends Activity {
 					AlertDialog alertDialog = alertDialogBuilder.create();
 					alertDialog.show();
 				}else{
+				/*	// Erstes Update
+					Thread updateThread = new UpdateThread(name.getText().toString());
+					updateThread.start();
+					try{
+						updateThread.join();
+					}catch (InterruptedException e){
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}*/
+					
 					Intent intent = new Intent(this,DisplayMenuActivity.class);
 					startActivity(intent);
 				}

@@ -2,18 +2,16 @@ package com.slamhomer.regiongrowing_gameobjects;
 
 public class Player {
 	private String name = null;
-	private String email = null;
-	private String password = null;
-	private String homeLocation = null;
+	private String pLatitude = null;
+	private String pLongitude = null;
 	private int influence = -1;
 	
 
-	public Player(String name, String email, String password, String home, int influence){
-		this.email = email;
+	public Player(String name, String lat, String lon, int influence){
 		this.name = name;
-		this.password = password;
-		this.homeLocation = home;
 		this.influence = influence;
+		this.pLatitude = lat;
+		this.pLongitude = lon;
 	}
 
 
@@ -27,33 +25,23 @@ public class Player {
 	}
 
 
-	public String getEmail() {
-		return email;
+	public String getpLatitude() {
+		return pLatitude;
 	}
 
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setpLatitude(String pLatitude) {
+		this.pLatitude = pLatitude;
 	}
 
 
-	public String getPassword() {
-		return password;
+	public String getpLongitude() {
+		return pLongitude;
 	}
 
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-
-	public String getHomeLocation() {
-		return homeLocation;
-	}
-
-
-	public void setHomeLocation(String homeLocation) {
-		this.homeLocation = homeLocation;
+	public void setpLongitude(String pLongitude) {
+		this.pLongitude = pLongitude;
 	}
 
 

@@ -1,4 +1,4 @@
-package com.slamhomer.regiongrowing_gameobjects;
+package com.slamhomer.regiongrowing_network;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

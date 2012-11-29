@@ -1,6 +1,6 @@
 package com.slamhomer.regiongrowing;
 
-import com.slamhomer.regiongrowing_gameobjects.GPS;
+import com.slamhomer.regiongrowing_network.GPS;
 
 import android.location.Criteria;
 import android.location.Location;
