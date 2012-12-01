@@ -10,9 +10,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -94,8 +96,18 @@ public class MainActivity extends Activity {
 	
 
 	public void goOptions(View view) {
-		Intent intent = new Intent(this, DisplayOptionsActivity.class);
-		startActivity(intent);
+		LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+		boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		
+		//überprüfe ob GPS an ist, falls nicht wird der user zu den GPS options geleitet
+		//TODO: Alert Dialog "GPS ist ausgeschaltet. Wollen Sie GPS einschalten?"
+		if(!enabled){
+			  Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+			  startActivity(intent);
+		}else{
+			Intent intent = new Intent(this, DisplayOptionsActivity.class);
+			startActivity(intent);
+		}
 	}
 	
 	

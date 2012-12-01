@@ -91,10 +91,10 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 
 
 	  public void onLocationChanged(Location location) {
-		int lat = (int) (location.getLatitude());
-	    int lng = (int) (location.getLongitude());
+		double lat = (double) (location.getLatitude());
+	    double lng = (double) (location.getLongitude());
 	    	    
-	    this.lalo = String.valueOf(lat)+"\n"+String.valueOf(lng);    
+	    this.lalo = String.valueOf(lat) +"\n"+String.valueOf(lng);    
 	  }
 	  
 

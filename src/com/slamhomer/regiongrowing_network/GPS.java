@@ -16,7 +16,11 @@ public class GPS{
 	private static String longitude = null;
 
 	public static String getLatitude() {
-		return latitude;
+		if(latitude != null){
+			return latitude;
+		}else{
+			return "Nicht gesetzt";
+		}
 	}
 
 
@@ -26,7 +30,11 @@ public class GPS{
 
 
 	public static String getLongitude() {
-		return longitude;
+		if(longitude != null){
+			return longitude;
+		}else{
+			return "Nicht gesetzt";
+		}
 	}
 
 

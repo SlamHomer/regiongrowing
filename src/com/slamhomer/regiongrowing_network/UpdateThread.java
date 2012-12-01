@@ -53,6 +53,7 @@ public class UpdateThread extends Thread{
 	        // TODO Auto-generated catch block
 	    }
 	   
+	    //wenn update erfolglos dann setzte fehler code
 	    if(convertUpdate(res) == false){ 
 		   Network.setLastCode(res);
 	   }
