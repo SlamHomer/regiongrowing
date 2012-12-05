@@ -1,8 +1,10 @@
 package com.slamhomer.regiongrowing;
 
 import com.slamhomer.regiongrowing.R;
+import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_network.LoginThread;
 import com.slamhomer.regiongrowing_network.Network;
+import com.slamhomer.regiongrowing_network.UpdateThread;
 
 
 import android.app.Activity;
@@ -55,7 +57,7 @@ public class MainActivity extends Activity {
 					AlertDialog alertDialog = alertDialogBuilder.create();
 					alertDialog.show();
 				}else{
-				/*	// Erstes Update
+					// Erstes Update
 					Thread updateThread = new UpdateThread(name.getText().toString());
 					updateThread.start();
 					try{
@@ -63,7 +65,9 @@ public class MainActivity extends Activity {
 					}catch (InterruptedException e){
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}*/
+					}
+					
+					Gamemanager.printAllPlayer();
 					
 					Intent intent = new Intent(this,DisplayMenuActivity.class);
 					startActivity(intent);
@@ -132,6 +136,9 @@ public class MainActivity extends Activity {
 	    if (networkInfo != null && networkInfo.isConnected()) {
 	        return true;
 	    } else {
+	    	/*
+	    	 * TODO: Alert " Kein Internet"
+	    	 */
 	        return false;
 	    }
 	}

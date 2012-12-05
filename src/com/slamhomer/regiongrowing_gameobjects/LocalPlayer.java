@@ -8,6 +8,14 @@ public class LocalPlayer extends Player{
 		super(name, lat, lon, influence);
 		this.isInGame = isInGame;
 	}
+
+	public boolean isInGame() {
+		return isInGame;
+	}
+
+	public void setInGame(boolean isInGame) {
+		this.isInGame = isInGame;
+	}
 	
 
 }

@@ -15,6 +15,10 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
+import com.slamhomer.regiongrowing_gameobjects.LocalPlayer;
+import com.slamhomer.regiongrowing_gameobjects.Player;
+
 public class UpdateThread extends Thread{
 	private String name = null;
 
@@ -55,7 +59,7 @@ public class UpdateThread extends Thread{
 	   
 	    //wenn update erfolglos dann setzte fehler code
 	    if(convertUpdate(res) == false){ 
-		   Network.setLastCode(res);
+		   Network.setLastCode("Fehler beim Update");
 	   }
 	    
 	}
@@ -66,8 +70,162 @@ public class UpdateThread extends Thread{
 	 * TODO: impl.
 	 */
 	private static boolean convertUpdate(String res){
-		if(res != null){
-			//do shit
+		if(res != null && res.length() > 0){
+			LocalPlayer tmp_local = new LocalPlayer(null, null, null, 0, null, false);
+			Player tmp_player = new Player(null, null, null, 0);
+			
+			int index = 0;
+			int lastIndex = 0;
+			String tmp ="";
+			int varCase = 1;
+			int pos = 0;
+			
+			// Local Player
+			while(varCase <= 5){
+				index = res.indexOf(":", index+1);
+				for(int i = 1;res.charAt(index+i) != ';';i++){
+					tmp = tmp + res.charAt(index+i);
+				}
+				//TODO: richtige fehlerbehandlung
+				switch(varCase){
+					case 1:
+						//name
+						if(tmp != ""){
+							tmp_local.setName(tmp);
+						}else{
+							tmp_local.setName("LEER");
+						}
+						break;
+					case 2:
+						//inf
+						if(tmp != ""){
+							tmp_local.setInfluence(Integer.valueOf(tmp));
+						}else{
+							tmp_local.setInfluence(-1);
+						}
+						break;
+					case 3:
+						//lat
+						if(tmp != ""){
+							tmp_local.setpLatitude(tmp);
+						}else{
+							tmp_local.setpLatitude("LEER");
+						}
+						break;
+					case 4: 
+						//long
+						if(tmp != ""){
+							tmp_local.setpLongitude(tmp);
+						}else{
+							tmp_local.setpLongitude("LEER");
+						}
+						break;
+					case 5:
+						//ingame
+						if(tmp != ""){
+							tmp_local.setInGame(Boolean.valueOf(tmp));
+						}else{
+							tmp_local.setInGame(false);
+						}
+						break;
+				}
+				tmp = "";
+				varCase++;
+			}
+			
+			Gamemanager.setLocalPlayer(tmp_local);
+			
+			tmp ="";
+			varCase = 1;
+			
+			if(Gamemanager.getLocalPlayer().isInGame() == true){
+				while (index != -1 && pos < 6) {
+					// Enemy Player
+					tmp_player = new Player(null, null, null, 0);
+					System.out.println("### while (index != -1 && pos < 6)###");
+					System.out.println("index: "+index);
+					System.out.println("pos: "+pos);
+					System.out.println("varCase: "+varCase);
+					System.out.println("tmp: "+tmp);
+					System.out.println("#####################################");
+					
+					while (varCase <= 4 && index >= lastIndex) {
+						index = res.indexOf(":", index + 1);
+						
+						if (index != -1 && index >= lastIndex) {
+							for (int i = 1; res.charAt(index + i) != ';'; i++) {
+								tmp = tmp + res.charAt(index + i);
+							}
+							
+							System.out.println("### AFTER GET CHAR###");
+							System.out.println("index: "+index);
+							System.out.println("pos: "+pos);
+							System.out.println("varCase: "+varCase);
+							System.out.println("tmp: "+tmp);
+							System.out.println("#####################################");
+							
+							//TODO: richtige fehlerbehandlung
+							switch (varCase) {
+							case 1:
+								//name
+								if (tmp != "") {
+									tmp_player.setName(tmp);
+								} else {
+									tmp_player.setName("LEER");
+								}
+								break;
+							case 2:
+								//inf
+								if (tmp != "") {
+									tmp_player.setInfluence(Integer
+											.valueOf(tmp));
+								} else {
+									tmp_player.setInfluence(-1);
+								}
+								break;
+							case 3:
+								//lat
+								if (tmp != "") {
+									tmp_player.setpLatitude(tmp);
+								} else {
+									tmp_player.setpLatitude("LEER");
+								}
+								break;
+							case 4:
+								//long
+								if (tmp != "") {
+									tmp_player.setpLongitude(tmp);
+								} else {
+									tmp_player.setpLongitude("LEER");
+								}
+								break;
+							}
+							tmp = "";
+							varCase++;
+							
+							System.out.println("### AFTER SWITCH###");
+							System.out.println("index: "+index);
+							System.out.println("pos: "+pos);
+							System.out.println("varCase: "+varCase);
+							System.out.println("tmp: "+tmp);
+							System.out.println("#####################################");
+						}
+					}
+					
+					System.out.println("### AFTER ADD PLAYER ###");
+					System.out.println("index: "+index);
+					System.out.println("pos: "+pos);
+					System.out.println("varCase: "+varCase);
+					System.out.println("tmp: "+tmp);
+					System.out.println("#####################################");
+					
+					Gamemanager.addEnemyPlayer(tmp_player, pos);
+					tmp = "";
+					varCase = 1;
+					pos++;
+					lastIndex = index;
+				}
+			}
 			
 			return true;
 		}else{

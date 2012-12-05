@@ -27,7 +27,6 @@ public class LoginThread extends Thread{
 	}
 	
 	public void run(){
-		System.out.println("THREAD!!!!!");
 		// Create a new HttpClient and Post Header
 	    HttpClient httpclient = new DefaultHttpClient();
 	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/login.php");
@@ -49,8 +48,6 @@ public class LoginThread extends Thread{
 	        InputStream is = entity.getContent();
 	        
 	        res = Network.convertStreamToString(is);
-	        
-	        System.out.println("RES: "+res);
 	        
 	    } catch (ClientProtocolException e) {
 	        // TODO Auto-generated catch block
