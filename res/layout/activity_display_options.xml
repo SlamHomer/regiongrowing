@@ -11,7 +11,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginBottom="53dp"
-        android:text="Home Location neu setzten"
+        android:text="@string/options_update"
         android:onClick="setLocation"
         android:textSize="20sp" />
 
@@ -24,20 +24,6 @@
         android:ems="6"
         android:text="@string/text_homelocation"
         android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_marginBottom="18dp"
-        android:ems="9"
-        android:digits="0123456789.,"
-        android:inputType="numberDecimal" >
-
-        <requestFocus />
-    </EditText>
 
     <EditText
         android:id="@+id/editText1"
@@ -55,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/editText3"
         android:layout_alignParentLeft="true"
-        android:text="Latitute:" />
+        android:text="@string/gps_latit" />
 
     <TextView
         android:id="@+id/textView2"
@@ -63,24 +49,25 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText3"
         android:layout_alignParentLeft="true"
-        android:text="Longitude:" />
+        android:text="@string/gps_longt" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="19dp"
+        android:digits="0123456789.,"
+        android:ems="9"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/editText4"
-        android:text="Aktuelle\nHome Koordinaten:" />
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView1"
-        android:layout_alignParentRight="true"
-        android:ems="9" 
-        android:digits="0123456789.,"
-        android:inputType="numberDecimal" />
+        android:layout_above="@+id/editText1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/gps_home" />
 
 </RelativeLayout>

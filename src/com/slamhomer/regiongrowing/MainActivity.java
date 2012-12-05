@@ -103,11 +103,28 @@ public class MainActivity extends Activity {
 		LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
 		boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
 		
-		//überprüfe ob GPS an ist, falls nicht wird der user zu den GPS options geleitet
 		//TODO: Alert Dialog "GPS ist ausgeschaltet. Wollen Sie GPS einschalten?"
 		if(!enabled){
-			  Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			  startActivity(intent);
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+			alertDialogBuilder.setTitle("Fehler");
+			alertDialogBuilder
+					.setMessage("Ungueltiger Benutzername oder Passwort")
+					.setCancelable(false)
+					.setPositiveButton("Ja",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+									startActivity(intent);
+								}
+							})
+					.setNegativeButton("Nein",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								return;
+							}
+						});
+			AlertDialog alertDialog = alertDialogBuilder.create();
+			alertDialog.show();
 		}else{
 			Intent intent = new Intent(this, DisplayOptionsActivity.class);
 			startActivity(intent);

@@ -25,5 +25,11 @@
     <string name="button_options">Optionen</string>
     <string name="title_activity_display_options">DisplayOptionsActivity</string>
     <string name="text_homelocation">Home Location</string>
+    <string name="gps_longt">Longitude:</string>
+    <string name="gps_latit">Latitute:</string>
+    <string name="gps_home">Aktuelle Home Koordinaten:</string>
+    <string name="newgame_number">Anzahl der Spieler auswählen (2&#8211;6):</string>
+    <string name="options_update">Aktualisieren</string>
+    <string name="newgame_search">Spieler suchen</string>
 
 </resources>

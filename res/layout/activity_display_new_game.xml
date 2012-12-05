@@ -9,8 +9,40 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_centerHorizontal="true"
-	    android:ems="10"
+	    android:ems="5"
 	    android:gravity="center"
-	    android:text="@string/text_newgame" />
+	    android:text="@string/text_newgame"
+	    android:textSize="25sp" />
+
+	<TextView
+	    android:id="@+id/textView1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/plain"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="92dp"
+	    android:text="@string/newgame_number" />
+
+	<EditText
+	    android:id="@+id/editText1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/textView1"
+	    android:layout_centerHorizontal="true"
+	    android:digits="0123456789"
+	    android:ems="10"
+	    android:inputType="number"
+	    android:width="50dp" >
+
+	    <requestFocus />
+	</EditText>
+
+	<Button
+	    android:id="@+id/button1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/editText1"
+	    android:layout_centerHorizontal="true"
+	    android:text="@string/newgame_search" />
 
 </RelativeLayout>
