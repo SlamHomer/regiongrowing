@@ -99,7 +99,11 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 	  
 
 	  public void setLocation(View view){  
-		  GPS.saveHomeLoc(this.lalo, this);
+		  String fehler = GPS.saveHomeLoc(this.lalo, this);
+		  
+		  if(!fehler.equals("OK")){
+			  //TODO: Alert "Fehler beim Speichern der GPS Koordinaten"+fehler
+		  }
 		  GPS.loadHomeLoc(this);
 		  latituteField.setText(GPS.getLatitude());
 		  longitudeField.setText(GPS.getLongitude());

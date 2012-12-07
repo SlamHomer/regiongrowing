@@ -26,6 +26,7 @@ public class UpdateThread extends Thread{
 		this.name = name;
 	}
 	
+	
 	public void run(){
 		System.out.println("THREAD!!!!!");
 		// Create a new HttpClient and Post Header
@@ -67,14 +68,15 @@ public class UpdateThread extends Thread{
 	/*
 	 * Methode um den übergebenen String in die Gamedaten umzuwandeln und zu setzen.
 	 * Gibt true zurück, wenn res != null ist und die Daten gesetzt werden können.
-	 * TODO: impl.
+	 * TODO: DailyTasks auswerten
 	 */
 	private static boolean convertUpdate(String res){
 		if(res != null && res.length() > 0){
-			LocalPlayer tmp_local = new LocalPlayer(null, null, null, 0, null, false);
-			Player tmp_player = new Player(null, null, null, 0);
+			LocalPlayer tmp_local = new LocalPlayer(null, 0, 0, 0, null, false);
+			Player tmp_player = new Player(null, 0, 0, 0);
 			
 			int index = 0;
+			int task_index = res.indexOf("taskname");
 			int lastIndex = 0;
 			String tmp ="";
 			int varCase = 1;
@@ -107,17 +109,17 @@ public class UpdateThread extends Thread{
 					case 3:
 						//lat
 						if(tmp != ""){
-							tmp_local.setpLatitude(tmp);
+							tmp_local.setpLatitude(Double.valueOf(tmp));
 						}else{
-							tmp_local.setpLatitude("LEER");
+							tmp_local.setpLatitude(0);
 						}
 						break;
 					case 4: 
 						//long
 						if(tmp != ""){
-							tmp_local.setpLongitude(tmp);
+							tmp_local.setpLongitude(Double.valueOf(tmp));
 						}else{
-							tmp_local.setpLongitude("LEER");
+							tmp_local.setpLongitude(0);
 						}
 						break;
 					case 5:
@@ -139,9 +141,9 @@ public class UpdateThread extends Thread{
 			varCase = 1;
 			
 			if(Gamemanager.getLocalPlayer().isInGame() == true){
-				while (index != -1 && pos < 6) {
+				while (index != -1 && pos < 6 && index < task_index) {
 					// Enemy Player
-					tmp_player = new Player(null, null, null, 0);
+					tmp_player = new Player(null, 0, 0, 0);
 					System.out.println("### while (index != -1 && pos < 6)###");
 					System.out.println("index: "+index);
 					System.out.println("pos: "+pos);
@@ -149,10 +151,10 @@ public class UpdateThread extends Thread{
 					System.out.println("tmp: "+tmp);
 					System.out.println("#####################################");
 					
-					while (varCase <= 4 && index >= lastIndex) {
+					while (varCase <= 4 && index >= lastIndex && index < task_index) {
 						index = res.indexOf(":", index + 1);
 						
-						if (index != -1 && index >= lastIndex) {
+						if (index != -1 && index >= lastIndex && index < task_index) {
 							for (int i = 1; res.charAt(index + i) != ';'; i++) {
 								tmp = tmp + res.charAt(index + i);
 							}
@@ -186,17 +188,17 @@ public class UpdateThread extends Thread{
 							case 3:
 								//lat
 								if (tmp != "") {
-									tmp_player.setpLatitude(tmp);
+									tmp_player.setpLatitude(Double.valueOf(tmp));
 								} else {
-									tmp_player.setpLatitude("LEER");
+									tmp_player.setpLatitude(0);
 								}
 								break;
 							case 4:
 								//long
 								if (tmp != "") {
-									tmp_player.setpLongitude(tmp);
+									tmp_player.setpLongitude(Double.valueOf(tmp));
 								} else {
-									tmp_player.setpLongitude("LEER");
+									tmp_player.setpLongitude(0);
 								}
 								break;
 							}

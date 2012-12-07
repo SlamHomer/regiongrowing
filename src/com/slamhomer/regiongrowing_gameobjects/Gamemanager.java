@@ -3,12 +3,12 @@ package com.slamhomer.regiongrowing_gameobjects;
 public class Gamemanager {
 	private static LocalPlayer LocalPlayer;
 	private static Player[] EnemyPlayerArray = 
-		{new Player(null, null, null, 0),
-		new Player(null, null, null, 0),
-		new Player(null, null, null, 0),
-		new Player(null, null, null, 0),
-		new Player(null, null, null, 0),
-		new Player(null, null, null, 0)}; //maximal 6 Spieler
+		{new Player(null, 0, 0, 0),
+		new Player(null, 0, 0, 0),
+		new Player(null, 0, 0, 0),
+		new Player(null, 0, 0, 0),
+		new Player(null, 0, 0, 0),
+		new Player(null, 0, 0, 0)}; //maximal 6 Spieler
 	
 	public static LocalPlayer getLocalPlayer() {
 		return LocalPlayer;

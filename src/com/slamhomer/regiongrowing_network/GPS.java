@@ -46,7 +46,7 @@ public class GPS{
 	 * Methode speichert die Home Location auf dem Handy in einer Datei
 	 * TODO: Verschlüsselt speichern
 	 */
-	public static int saveHomeLoc(final String location, final Context context){
+	public static String saveHomeLoc(final String location, final Context context){
 		
 		FileOutputStream fos;
 		try {
@@ -56,14 +56,16 @@ public class GPS{
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 0;
+			return "FileNotFoundException";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 0;
+			return "IOException";
+		} catch (Exception e) {
+			return "Exception";
 		}
 		
-		return 1;
+		return "OK";
 
 	}
 	

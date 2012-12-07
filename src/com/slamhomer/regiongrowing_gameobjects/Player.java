@@ -2,12 +2,12 @@ package com.slamhomer.regiongrowing_gameobjects;
 
 public class Player {
 	private String name = null;
-	private String pLatitude = null;
-	private String pLongitude = null;
+	private double pLatitude = 0.0;
+	private double pLongitude = 0.0;
 	private int influence = -1;
 	
 
-	public Player(String name, String lat, String lon, int influence){
+	public Player(String name, double lat, double lon, int influence){
 		this.name = name;
 		this.influence = influence;
 		this.pLatitude = lat;
@@ -25,22 +25,22 @@ public class Player {
 	}
 
 
-	public String getpLatitude() {
+	public double getpLatitude() {
 		return pLatitude;
 	}
 
 
-	public void setpLatitude(String pLatitude) {
+	public void setpLatitude(double pLatitude) {
 		this.pLatitude = pLatitude;
 	}
 
 
-	public String getpLongitude() {
+	public double getpLongitude() {
 		return pLongitude;
 	}
 
 
-	public void setpLongitude(String pLongitude) {
+	public void setpLongitude(double pLongitude) {
 		this.pLongitude = pLongitude;
 	}
 

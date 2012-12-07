@@ -67,6 +67,12 @@ public class MainActivity extends Activity {
 						e.printStackTrace();
 					}
 					
+					/*warte auf richards impl.
+					 * 
+					 * Thread home = new SetHomeThread();
+					 * home.start();
+					 */
+					
 					Gamemanager.printAllPlayer();
 					
 					Intent intent = new Intent(this,DisplayMenuActivity.class);
@@ -108,7 +114,7 @@ public class MainActivity extends Activity {
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
 			alertDialogBuilder.setTitle("Fehler");
 			alertDialogBuilder
-					.setMessage("Ungueltiger Benutzername oder Passwort")
+					.setMessage("GPS ist ausgeschaltet. GPS anschalten?")
 					.setCancelable(false)
 					.setPositiveButton("Ja",
 							new DialogInterface.OnClickListener() {

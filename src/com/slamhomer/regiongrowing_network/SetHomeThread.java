@@ -15,30 +15,32 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import android.widget.EditText;
+import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 
-public class LoginThread extends Thread{
-	private EditText name = null;
-	private EditText password = null;
-
-	public LoginThread(final EditText name,final EditText password){
-		this.name = name;
-		this.password = password;
-	}
+public class SetHomeThread extends Thread{
+	private double lat = 0.0;
+	private double lon = 0.0;
+	private String name = null;
 	
+	public SetHomeThread(){
+		this.lat = Gamemanager.getLocalPlayer().getpLatitude();
+		this.lon = Gamemanager.getLocalPlayer().getpLongitude();
+		this.name = Gamemanager.getLocalPlayer().getName();
+	}
 	
 	public void run(){
 		// Create a new HttpClient and Post Header
 	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/login.php");
+	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/setHome.php");
 	    String res = null;
 	    
 	    try {
 	        // Add data
 	    	
 	    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-	        nameValuePairs.add(new BasicNameValuePair("name", this.name.getText().toString()));
-	        nameValuePairs.add(new BasicNameValuePair("pw", this.password.getText().toString()));
+	    	nameValuePairs.add(new BasicNameValuePair("name", this.name));
+	        nameValuePairs.add(new BasicNameValuePair("lat", String.valueOf(lat)));
+	        nameValuePairs.add(new BasicNameValuePair("lon", String.valueOf(lon)));
 	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 
@@ -60,3 +62,5 @@ public class LoginThread extends Thread{
 	}
 
 }
+
+
