@@ -4,11 +4,13 @@ public class Task {
 	private String taskName = null;
 	private String taskDesc = null;
 	private String taskErf = null;
+	private int taskInf = 0;
 	
-	public Task(String name, String desc, String erf){
+	public Task(String name, String desc, String erf, int inf){
 		this.taskDesc = desc;
 		this.taskErf = erf;
 		this.taskName = name;
+		this.taskInf = inf;
 	}
 
 	public String getTaskName() {
@@ -33,5 +35,13 @@ public class Task {
 
 	public void setTaskErf(String taskErf) {
 		this.taskErf = taskErf;
+	}
+
+	public int getTaskInf() {
+		return taskInf;
+	}
+
+	public void setTaskInf(int taskInf) {
+		this.taskInf = taskInf;
 	}
 }

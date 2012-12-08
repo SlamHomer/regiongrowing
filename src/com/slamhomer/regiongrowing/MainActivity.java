@@ -2,8 +2,10 @@ package com.slamhomer.regiongrowing;
 
 import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
+import com.slamhomer.regiongrowing_network.GPS;
 import com.slamhomer.regiongrowing_network.LoginThread;
 import com.slamhomer.regiongrowing_network.Network;
+import com.slamhomer.regiongrowing_network.SetHomeThread;
 import com.slamhomer.regiongrowing_network.UpdateThread;
 
 
@@ -25,7 +27,8 @@ public class MainActivity extends Activity {
 
 	/** Called when the user clicks the Login button */
 	public void goLogin(View view) {
-		if(gotInternet()==true){
+
+		if(gotInternet()==true && GPS.loadHomeLoc(this) == true){
 			
 			EditText name = (EditText) findViewById(R.id.editText1);
 			EditText password = (EditText) findViewById(R.id.editText2);
@@ -57,7 +60,10 @@ public class MainActivity extends Activity {
 					AlertDialog alertDialog = alertDialogBuilder.create();
 					alertDialog.show();
 				}else{
+					
 					// Erstes Update
+					// TODO: Besser lösen
+					//#################################
 					Thread updateThread = new UpdateThread(name.getText().toString());
 					updateThread.start();
 					try{
@@ -67,13 +73,28 @@ public class MainActivity extends Activity {
 						e.printStackTrace();
 					}
 					
-					/*warte auf richards impl.
-					 * 
-					 * Thread home = new SetHomeThread();
-					 * home.start();
-					 */
+					 Thread home = new SetHomeThread();
+					 home.start();
+					 
+					try{
+						home.join();
+					}catch (InterruptedException e){
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					 
+					Thread updateThread2 = new UpdateThread(name.getText().toString());
+					updateThread2.start();
+					try{
+						updateThread2.join();
+					}catch (InterruptedException e){
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					
-					Gamemanager.printAllPlayer();
+					// ##############################
+					
+					Gamemanager.printAll();
 					
 					Intent intent = new Intent(this,DisplayMenuActivity.class);
 					startActivity(intent);
@@ -93,6 +114,8 @@ public class MainActivity extends Activity {
 				AlertDialog alertDialog = alertDialogBuilder.create();
 				alertDialog.show();
 			}
+		}else{
+			//TODO: Alert "Sie haben Ihre Home Location noch nicht gesetzt"
 		}
 	}
 	
@@ -109,7 +132,6 @@ public class MainActivity extends Activity {
 		LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
 		boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
 		
-		//TODO: Alert Dialog "GPS ist ausgeschaltet. Wollen Sie GPS einschalten?"
 		if(!enabled){
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
 			alertDialogBuilder.setTitle("Fehler");

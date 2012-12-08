@@ -1,6 +1,7 @@
 package com.slamhomer.regiongrowing_gameobjects;
 
 public class Gamemanager {
+	
 	private static LocalPlayer LocalPlayer;
 	private static Player[] EnemyPlayerArray = 
 		{new Player(null, 0, 0, 0),
@@ -9,6 +10,13 @@ public class Gamemanager {
 		new Player(null, 0, 0, 0),
 		new Player(null, 0, 0, 0),
 		new Player(null, 0, 0, 0)}; //maximal 6 Spieler
+	private static Task[] DailyTasks =
+		{new Task(null, null, null, 0),
+		new Task(null, null, null, 0),
+		new Task(null, null, null, 0),
+		new Task(null, null, null, 0),
+		new Task(null, null, null, 0),
+		};
 	
 	public static LocalPlayer getLocalPlayer() {
 		return LocalPlayer;
@@ -29,6 +37,28 @@ public class Gamemanager {
 	
 	public static Player getEnemyPlayer(int pos){
 		return EnemyPlayerArray[pos];
+	}
+	
+	public static Task[] getDailyTasks() {
+		return DailyTasks;
+	}
+	public static Task getTask(int pos){
+		return DailyTasks[pos];
+	}
+	
+	public static void setDailyTasks(Task[] dailyTasks) {
+		Gamemanager.DailyTasks = dailyTasks;
+	}
+	public static void addDailyTasks(int pos, Task task){
+		DailyTasks[pos] = task;
+	}
+	public static void rmDailyTasks(int pos){
+		DailyTasks[pos] = null;
+	}
+	public static void rmAllDailyTasks(){
+		for(int i = 0; i < 6; i++){
+			DailyTasks[i] = null;
+		}
 	}
 	
 	public static void printAllPlayer(){
@@ -52,5 +82,25 @@ public class Gamemanager {
 					+ Gamemanager.getEnemyPlayer(pos).getpLongitude());
 			System.out.println("##########################################");
 		}
+	}
+	
+	public static void printAllTasks(){
+		for (int pos = 0; pos < DailyTasks.length; pos++) {
+			System.out.println("##########################################");
+			System.out.println("Task " + pos + " NAME: "
+					+ Gamemanager.getTask(pos).getTaskName());
+			System.out.println("Task " + pos + " DESC: "
+					+ Gamemanager.getTask(pos).getTaskDesc());
+			System.out.println("Task " + pos + " INF: "
+					+ Gamemanager.getTask(pos).getTaskInf());
+			System.out.println("Task " + pos + " ERFÜLLT: "
+					+ Gamemanager.getTask(pos).getTaskErf());
+			System.out.println("##########################################");
+		}
+	}
+	
+	public static void printAll(){
+		printAllPlayer();
+		printAllTasks();
 	}
 }

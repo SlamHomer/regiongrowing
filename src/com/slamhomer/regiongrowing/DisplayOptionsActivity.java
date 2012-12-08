@@ -48,8 +48,8 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 	    }*/
 	    
 	    GPS.loadHomeLoc(this);
-	    latituteField.setText(GPS.getLatitude());
-	    longitudeField.setText(GPS.getLongitude());
+	    latituteField.setText(String.valueOf(GPS.getLatitude()));
+	    longitudeField.setText(String.valueOf(GPS.getLongitude()));
 	    
 	}
 
@@ -105,7 +105,7 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 			  //TODO: Alert "Fehler beim Speichern der GPS Koordinaten"+fehler
 		  }
 		  GPS.loadHomeLoc(this);
-		  latituteField.setText(GPS.getLatitude());
-		  longitudeField.setText(GPS.getLongitude());
+		  latituteField.setText(String.valueOf(GPS.getLatitude()));
+		  longitudeField.setText(String.valueOf(GPS.getLongitude()));
 	  }
 }

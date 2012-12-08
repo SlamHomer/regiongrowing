@@ -12,33 +12,25 @@ import android.content.Context;
 
 public class GPS{
 	final static String FILENAME_HOMELOC = "homeLoc";
-	private static String latitude = null;
-	private static String longitude = null;
+	private static double latitude = 0.0;
+	private static double longitude = 0.0;
 
-	public static String getLatitude() {
-		if(latitude != null){
-			return latitude;
-		}else{
-			return "Nicht gesetzt";
-		}
+	public static double getLatitude() {
+		return latitude;
 	}
 
 
-	protected static void setLatitude(String latitude) {
+	protected static void setLatitude(double latitude) {
 		GPS.latitude = latitude;
 	}
 
 
-	public static String getLongitude() {
-		if(longitude != null){
+	public static double getLongitude() {
 			return longitude;
-		}else{
-			return "Nicht gesetzt";
-		}
 	}
 
 
-	protected static void setLongitude(String longitude) {
+	protected static void setLongitude(double longitude) {
 		GPS.longitude = longitude;
 	}
 
@@ -74,23 +66,26 @@ public class GPS{
 	 * jeweils Latitude und Longitude für andere Methoden zugänglich macht. Beide
 	 * Variablen können mit get***() aufgerufen werden. 
 	 */
-	public static void loadHomeLoc(Context context){
+	public static boolean loadHomeLoc(Context context){
 		  try {
 			  InputStream instream = context.openFileInput(FILENAME_HOMELOC);
 		 
 		      InputStreamReader inputreader = new InputStreamReader(instream);
 		      BufferedReader buffreader = new BufferedReader(inputreader);
 		                 
-		      setLatitude(buffreader.readLine());
-		      setLongitude(buffreader.readLine());
+		      setLatitude(Double.valueOf(buffreader.readLine()));
+		      setLongitude(Double.valueOf(buffreader.readLine()));
 		        
 		    instream.close();
 		  } catch (java.io.FileNotFoundException e) {
 			  System.out.println("FileNotFoundException");
+			  return false;
 		  } catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("IOException");
+			return false;
 		}
+		  return true;
 	}
 
 }

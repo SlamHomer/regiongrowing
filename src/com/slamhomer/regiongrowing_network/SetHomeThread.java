@@ -31,7 +31,7 @@ public class SetHomeThread extends Thread{
 	public void run(){
 		// Create a new HttpClient and Post Header
 	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/setHome.php");
+	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/standort.php");
 	    String res = null;
 	    
 	    try {
@@ -51,6 +51,11 @@ public class SetHomeThread extends Thread{
 	        InputStream is = entity.getContent();
 	        
 	        res = Network.convertStreamToString(is);
+	        
+	        System.out.println("RES: "+res);
+	        System.out.println("Name: "+this.name);
+	        System.out.println("LAT: "+this.lat);
+	        System.out.println("LONG: "+this.lon);
 	        
 	    } catch (ClientProtocolException e) {
 	        // TODO Auto-generated catch block
