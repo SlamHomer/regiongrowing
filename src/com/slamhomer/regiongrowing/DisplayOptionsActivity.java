@@ -8,7 +8,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -102,7 +104,20 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 		  String fehler = GPS.saveHomeLoc(this.lalo, this);
 		  
 		  if(!fehler.equals("OK")){
-			  //TODO: Alert "Fehler beim Speichern der GPS Koordinaten"+fehler
+			  //Alert "Fehler beim Speichern der GPS Koordinaten"+fehler
+			  AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DisplayOptionsActivity.this);
+				alertDialogBuilder.setTitle("Fehler");
+				alertDialogBuilder
+						.setMessage("Fehler beim Speichern der GPS Koordinaten:"+fehler)
+						.setCancelable(false)
+						.setNeutralButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int id) {
+										return;
+									}
+								});
+				AlertDialog alertDialog = alertDialogBuilder.create();
+				alertDialog.show();
 		  }
 		  GPS.loadHomeLoc(this);
 		  latituteField.setText(String.valueOf(GPS.getLatitude()));

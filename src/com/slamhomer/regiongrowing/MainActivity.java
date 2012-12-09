@@ -115,7 +115,20 @@ public class MainActivity extends Activity {
 				alertDialog.show();
 			}
 		}else{
-			//TODO: Alert "Sie haben Ihre Home Location noch nicht gesetzt"
+			//Alert "Sie haben Ihre Home Location noch nicht gesetzt"
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+			alertDialogBuilder.setTitle("Fehler");
+			alertDialogBuilder
+					.setMessage("Sie haben Ihre Home Location noch nicht gesetzt")
+					.setCancelable(false)
+					.setNeutralButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									return;
+								}
+							});
+			AlertDialog alertDialog = alertDialogBuilder.create();
+			alertDialog.show();
 		}
 	}
 	
