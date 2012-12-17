@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -27,42 +28,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.slamhomer.regiongrowing.DisplayMenuActivity"
-            android:label="@string/title_activity_display_reg" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.slamhomer.regiongrowing" />
+            android:name="com.slamhomer.regiongrowing.DisplayMenuActivity" >
         </activity>
         <activity
-            android:name="com.slamhomer.regiongrowing.DisplayRegActivity"
-            android:label="@string/title_activity_display_reg" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name="com.slamhomer.regiongrowing.DisplayRegActivity" >
         </activity>
         <activity
-            android:name="com.slamhomer.regiongrowing.DisplayEnterGame"
-            android:label="@string/title_activity_display_enter_game" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name="com.slamhomer.regiongrowing.DisplayEnterGame" >
         </activity>
         <activity
-            android:name="com.slamhomer.regiongrowing.DisplayNewGameActivity"
-            android:label="@string/title_activity_display_new_game" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name="com.slamhomer.regiongrowing.DisplayNewGameActivity" >
         </activity>
         <activity
-            android:name="com.slamhomer.regiongrowing.DisplayOptionsActivity"
-            android:label="@string/title_activity_display_options" >
+            android:name="com.slamhomer.regiongrowing.DisplayOptionsActivity" >
         </activity>
     </application>
 
