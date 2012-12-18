@@ -49,9 +49,10 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 	      longitudeField.setText("Location not available");
 	    }*/
 	    
-	    GPS.loadHomeLoc(this);
-	    latituteField.setText(String.valueOf(GPS.getLatitude()));
-	    longitudeField.setText(String.valueOf(GPS.getLongitude()));
+	    if(GPS.loadHomeLoc(this) == true){
+		    latituteField.setText(String.valueOf(GPS.getLatitude()));
+		    longitudeField.setText(String.valueOf(GPS.getLongitude()));
+	    }
 	    
 	}
 
@@ -119,8 +120,9 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 				AlertDialog alertDialog = alertDialogBuilder.create();
 				alertDialog.show();
 		  }
-		  GPS.loadHomeLoc(this);
-		  latituteField.setText(String.valueOf(GPS.getLatitude()));
-		  longitudeField.setText(String.valueOf(GPS.getLongitude()));
+		  if(GPS.loadHomeLoc(this) == true){
+			    latituteField.setText(String.valueOf(GPS.getLatitude()));
+			    longitudeField.setText(String.valueOf(GPS.getLongitude()));
+		  }
 	  }
 }

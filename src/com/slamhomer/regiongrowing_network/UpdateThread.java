@@ -54,9 +54,9 @@ public class UpdateThread extends Thread{
 	        System.out.println("RES: "+res);
 	        
 	    } catch (ClientProtocolException e) {
-	        // TODO Auto-generated catch block
+	        System.out.println("ClientProtocolException");
 	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
+	    	System.out.println("IOException");
 	    }
 	   
 	    //wenn update erfolglos dann setzte fehler code
@@ -69,219 +69,225 @@ public class UpdateThread extends Thread{
 	/*
 	 * Methode um den übergebenen String in die Gamedaten umzuwandeln und zu setzen.
 	 * Gibt true zurück, wenn res != null ist und die Daten gesetzt werden können.
-	 * TODO: DailyTasks auswerten
 	 */
 	private static boolean convertUpdate(String res){
 		if(res != null && res.length() > 0){
 			
-			LocalPlayer tmp_local = new LocalPlayer(null, GPS.getLatitude(), GPS.getLongitude(), 
-					0, null, false);
-			Player tmp_player = new Player(null, 0, 0, 0);
-			Task tmp_task = new Task(null, null, null, 0);
-			
-			int index = 0;
+			//setzten der update indizes
 			int task_index = res.indexOf("taskname");
-			int lastIndex = 0;
-			String tmp ="";
-			int varCase = 1;
-			int pos = 0;
+			int enemy_index = res.indexOf("enemy");
 			
-			// Local Player
-			while(varCase <= 5){
-				index = res.indexOf(":", index+1);
-				for(int i = 1;res.charAt(index+i) != ';';i++){
-					tmp = tmp + res.charAt(index+i);
-				}
-				//TODO: richtige fehlerbehandlung
-				switch(varCase){
-					case 1:
-						//name
-						if(tmp != ""){
-							tmp_local.setName(tmp);
-						}else{
-							tmp_local.setName("LEER");
-						}
-						break;
-					case 2:
-						//inf
-						if(tmp != ""){
-							tmp_local.setInfluence(Integer.valueOf(tmp));
-						}else{
-							tmp_local.setInfluence(-1);
-						}
-						break;
-					case 3:
-						//lat
-						
-						break;
-					case 4: 
-						//long
-						
-						break;
-					case 5:
-						//ingame
-						if(tmp != ""){
-							tmp_local.setInGame(Boolean.valueOf(tmp));
-						}else{
-							tmp_local.setInGame(false);
-						}
-						break;
-				}
-				tmp = "";
-				varCase++;
-			}
-			
-			Gamemanager.setLocalPlayer(tmp_local);
-			
-			tmp ="";
-			varCase = 1;
+			//hilfs-fkt um den localen spieler auszulesen
+			convLocal(res);
 			
 			if(Gamemanager.getLocalPlayer().isInGame() == true){
-				while (index != -1 && pos < 6 && index < task_index) {
-					// Enemy Player
-					tmp_player = new Player(null, 0, 0, 0);
-				
-					while (varCase <= 4 && index >= lastIndex && index < task_index) {
-						index = res.indexOf(":", index + 1);
-						
-						if (index != -1 && index >= lastIndex && index < task_index) {
-							for (int i = 1; res.charAt(index + i) != ';'; i++) {
-								tmp = tmp + res.charAt(index + i);
-							}							
-							
-							//TODO: richtige fehlerbehandlung
-							switch (varCase) {
-							case 1:
-								//name
-								if (tmp != "") {
-									tmp_player.setName(tmp);
-								} else {
-									tmp_player.setName("LEER");
-								}
-								break;
-							case 2:
-								//inf
-								if (tmp != "") {
-									tmp_player.setInfluence(Integer
-											.valueOf(tmp));
-								} else {
-									tmp_player.setInfluence(-1);
-								}
-								break;
-							case 3:
-								//lat
-								if (tmp != "") {
-									tmp_player.setpLatitude(Double.valueOf(tmp));
-								} else {
-									tmp_player.setpLatitude(0);
-								}
-								break;
-							case 4:
-								//long
-								if (tmp != "") {
-									tmp_player.setpLongitude(Double.valueOf(tmp));
-								} else {
-									tmp_player.setpLongitude(0);
-								}
-								break;
-							}
-							tmp = "";
-							varCase++;
-
-						}
+				if (task_index != -1) {
+					//hilfs-fkt um tasks auszulesen
+					convTasks(task_index, res);
+					if (enemy_index != -1) {
+						//hilfs-fkt um die gegner auszulesen
+						convEnemy(enemy_index, task_index, res);
 					}
-					
-					
-					Gamemanager.addEnemyPlayer(tmp_player, pos);
-					tmp = "";
-					varCase = 1;
-					pos++;
-					lastIndex = index;
 				}
 			}
-			
-			tmp = "";
-			varCase = 1;
-			pos = 0;
-			
-			// Daily Tasks
-			lastIndex = task_index;
-			index = task_index;
-			if(Gamemanager.getLocalPlayer().isInGame() == true){
-				while (index != -1 && pos < 5) {
-					// Enemy Player
-					tmp_task = new Task(null, null, null, 0);
-				
-					while (varCase <= 4 && index >= lastIndex) {
-						index = res.indexOf(":", index + 1);
-						
-						//System.out.println("HALLO WHILE NR."+pos+"."+varCase);
-						
-						if (index != -1 && index >= lastIndex) {
-							for (int i = 1; res.charAt(index + i) != ';'; i++) {
-								tmp = tmp + res.charAt(index + i);
-							}
-							
-							/*System.out.println("varCase: "+varCase+" TMP: "+tmp);
-							System.out.println("Index: "+index+" POS: "+pos);*/
-							
-							//TODO: richtige fehlerbehandlung
-							switch (varCase) {
-							case 1:
-								//taskName
-								if (tmp != "") {
-									tmp_task.setTaskName(tmp);
-								} else {
-									tmp_task.setTaskName("LEER");
-								}
-								break;
-							case 2:
-								//taskDesc
-								if (tmp != "") {
-									tmp_task.setTaskDesc(tmp);
-								} else {
-									tmp_task.setTaskDesc("LEER");
-								}
-								break;
-							case 3:
-								//taskInf
-								if (tmp != "") {
-									tmp_task.setTaskInf(Integer.valueOf(tmp));
-								} else {
-									tmp_task.setTaskInf(0);
-								}
-								break;
-							case 4:
-								//taskErf
-								if (tmp != "") {
-									tmp_task.setTaskErf(tmp);
-								} else {
-									tmp_task.setTaskErf(tmp);
-								}
-								break;
-							}
-							tmp = "";
-							varCase++;
-
-						}else{
-							System.out.println("KEIEN IF!!!!!!!!!");
-							System.out.println("INDEX: "+index);
-							System.out.println("LAST_INDEX: "+lastIndex);
-						}
-
-					}
-					Gamemanager.addDailyTasks(pos, tmp_task);
-					tmp = "";
-					varCase = 1;
-					pos++;
-					lastIndex = index;
-				}
-			}
-			
 			return true;
 		}else{
 			return false;
 		}
 	}
+	
+	private static void convLocal(String res){
+		//init variablen
+		int index = 0;
+		int lastIndex = index;
+		int varCase = 1;
+		String tmp = "";
+		LocalPlayer tmp_local = new LocalPlayer(null, GPS.getLatitude(), GPS.getLongitude(), 
+				0, null, false);
+		
+		//hier werden die einzelnen attribute durchgegangen
+		while(varCase <= 5){
+			if (index != -1) {
+				index = res.indexOf(":", index + 1);
+				/*
+				 * .indexOf durchläuft den string unendlich oft, deswegen muss überprüft werden ob man 
+				 * das ende schon erreicht hat
+				 */
+				if (index >= lastIndex) {
+					//lesen der einzelnen zeichen, bis ein trennzeichen kommt
+					for (int i = 1; res.charAt(index + i) != ';'; i++) {
+						tmp = tmp + res.charAt(index + i);
+					}
+					//welches attr. ist es?
+					switch (varCase) {
+					case 1:
+						//name
+						if (tmp != "") {
+							tmp_local.setName(tmp);
+						} else {
+							tmp_local.setName("LEER");
+						}
+						break;
+					case 2:
+						//inf
+						if (tmp != "") {
+							tmp_local.setInfluence(Integer.valueOf(tmp));
+						} else {
+							tmp_local.setInfluence(-1);
+						}
+						break;
+					case 5:
+						//ingame
+						if (tmp != "") {
+							tmp_local.setInGame(Boolean.valueOf(tmp));
+						} else {
+							tmp_local.setInGame(false);
+						}
+						break;
+					}
+				}
+			}
+			tmp = "";
+			varCase++;
+		}
+		Gamemanager.setLocalPlayer(tmp_local);
+	}
+	
+	private static void convEnemy(int enemy_index,int task_index, String res){
+		//init variablen
+		int index = enemy_index;
+		int lastIndex = index;
+		int pos = 0;
+		int varCase = 1;
+		String tmp = "";
+		Player tmp_player = new Player(null, 0, 0, 0);
+		
+		//maximal 6 spieler = 6 mal gegnerspieler auslesen
+		while(pos < 6 && index < task_index){
+			tmp_player = new Player(null, 0, 0, 0);
+			//hier werden die einzelnen attribute durchgegangen
+			while (varCase <= 4 && index < task_index) {
+				index = res.indexOf(":", index + 1);
+				if (index >= lastIndex && index < task_index) {
+					for (int i = 1; res.charAt(index + i) != ';'; i++) {
+						tmp = tmp + res.charAt(index + i);
+					}							
+					
+					switch (varCase) {
+					case 1:
+						//name
+						if (tmp != "") {
+							tmp_player.setName(tmp);
+						} else {
+							tmp_player.setName("LEER");
+						}
+						break;
+					case 2:
+						//inf
+						if (tmp != "") {
+							tmp_player.setInfluence(Integer
+									.valueOf(tmp));
+						} else {
+							tmp_player.setInfluence(-1);
+						}
+						break;
+					case 3:
+						//lat
+						if (tmp != "") {
+							tmp_player.setpLatitude(Double.valueOf(tmp));
+						} else {
+							tmp_player.setpLatitude(0);
+						}
+						break;
+					case 4:
+						//long
+						if (tmp != "") {
+							tmp_player.setpLongitude(Double.valueOf(tmp));
+						} else {
+							tmp_player.setpLongitude(0);
+						}
+						break;
+					}
+					tmp = "";
+					varCase++;
 
+				}
+			}
+						
+			Gamemanager.addEnemyPlayer(tmp_player, pos);
+			
+			tmp = "";
+			varCase = 1;
+			pos++;
+			lastIndex = index;
+		}
+	}
+
+	private static void convTasks(int task_index, String res){
+		//init variablen
+		int index = task_index;
+		int pos = 0;
+		int varCase = 1;
+		String tmp = "";
+		int lastIndex = task_index;
+		Task tmp_task = new Task(null, null, null, 0);
+		
+		//maximal 5 tasks = 5 mal auslesen
+		while (index != -1 && pos < 5) {
+			tmp_task = new Task(null, null, null, 0);
+			//hier werden die einzelnen attribute durchgegangen
+			while (varCase <= 4 && index >= lastIndex) {
+				index = res.indexOf(":", index + 1);
+				
+				if (index != -1 && index >= lastIndex) {
+					for (int i = 1; res.charAt(index + i) != ';'; i++) {
+						tmp = tmp + res.charAt(index + i);
+					}
+					switch (varCase) {
+					case 1:
+						//taskName
+						if (tmp != "") {
+							tmp_task.setTaskName(tmp);
+						} else {
+							tmp_task.setTaskName("LEER");
+						}
+						break;
+					case 2:
+						//taskDesc
+						if (tmp != "") {
+							tmp_task.setTaskDesc(tmp);
+						} else {
+							tmp_task.setTaskDesc("LEER");
+						}
+						break;
+					case 3:
+						//taskInf
+						if (tmp != "") {
+							tmp_task.setTaskInf(Integer.valueOf(tmp));
+						} else {
+							tmp_task.setTaskInf(0);
+						}
+						break;
+					case 4:
+						//taskErf
+						if (tmp != "") {
+							tmp_task.setTaskErf(tmp);
+						} else {
+							tmp_task.setTaskErf(tmp);
+						}
+						break;
+					}
+					tmp = "";
+					varCase++;
+
+				}
+			}
+			Gamemanager.addDailyTasks(pos, tmp_task);
+			
+			tmp = "";
+			varCase = 1;
+			pos++;
+			lastIndex = index;
+		}
+	}
 }

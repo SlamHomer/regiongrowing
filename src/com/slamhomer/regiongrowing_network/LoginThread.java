@@ -51,9 +51,9 @@ public class LoginThread extends Thread{
 	        res = Network.convertStreamToString(is);
 	        
 	    } catch (ClientProtocolException e) {
-	        // TODO Auto-generated catch block
+	    	System.out.println("ClientProtocolException");
 	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
+	    	System.out.println("IOException");
 	    }
 	    
 	    Network.setLastCode(res);

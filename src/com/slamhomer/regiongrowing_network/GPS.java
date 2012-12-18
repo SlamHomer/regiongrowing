@@ -46,11 +46,9 @@ public class GPS{
 			fos.write(location.getBytes());
 			fos.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "FileNotFoundException";
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "IOException";
 		} catch (Exception e) {
@@ -81,8 +79,10 @@ public class GPS{
 			  System.out.println("FileNotFoundException");
 			  return false;
 		  } catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("IOException");
+			return false;
+		} catch (NullPointerException e){
+			System.out.println("NullPointerException");
 			return false;
 		}
 		  return true;

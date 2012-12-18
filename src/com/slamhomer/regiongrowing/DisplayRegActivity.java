@@ -46,7 +46,6 @@ public class DisplayRegActivity extends Activity {
 			try {
 				regthread.join();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			String resultat = Network.getLastCode();

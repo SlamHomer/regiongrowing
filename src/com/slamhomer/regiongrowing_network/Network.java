@@ -5,6 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 
 
 public class Network{
@@ -45,5 +51,31 @@ private static String LastCode = null;
 	        }
 	    }
 	    return sb.toString();
+	}
+	
+	public static boolean gotInternet(Context context) {
+	    ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+	    if (networkInfo != null && networkInfo.isConnected()) {
+	        return true;
+	    } else {
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					context);
+			alertDialogBuilder.setTitle("Fehler");
+			alertDialogBuilder
+					.setMessage(
+							"Keine Internet Verbindung")
+					.setCancelable(false)
+					.setNeutralButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									return;
+								}
+							});
+			AlertDialog alertDialog = alertDialogBuilder.create();
+			alertDialog.show();
+	        return false;
+	    }
 	}
 }

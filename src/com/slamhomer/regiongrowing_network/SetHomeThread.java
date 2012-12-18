@@ -58,9 +58,9 @@ public class SetHomeThread extends Thread{
 	        System.out.println("LONG: "+this.lon);
 	        
 	    } catch (ClientProtocolException e) {
-	        // TODO Auto-generated catch block
+	    	System.out.println("ClientProtocolException");
 	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
+	        System.out.println("IOException");
 	    }
 	    
 	    Network.setLastCode(res);
