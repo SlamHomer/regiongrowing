@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText1"
         android:layout_centerHorizontal="true"
+        android:onClick="goStart"
         android:text="@string/button_continue" />
 
 </RelativeLayout>

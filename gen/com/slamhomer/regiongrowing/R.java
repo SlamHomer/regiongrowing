@@ -36,18 +36,20 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_display_enter_game=0x7f030000;
-        public static final int activity_display_menu=0x7f030001;
-        public static final int activity_display_new_game=0x7f030002;
-        public static final int activity_display_options=0x7f030003;
-        public static final int activity_display_reg=0x7f030004;
-        public static final int activity_main=0x7f030005;
+        public static final int activity_display_game=0x7f030001;
+        public static final int activity_display_menu=0x7f030002;
+        public static final int activity_display_new_game=0x7f030003;
+        public static final int activity_display_options=0x7f030004;
+        public static final int activity_display_reg=0x7f030005;
+        public static final int activity_main=0x7f030006;
     }
     public static final class menu {
         public static final int activity_display_enter_game=0x7f060000;
-        public static final int activity_display_new_game=0x7f060001;
-        public static final int activity_display_options=0x7f060002;
-        public static final int activity_display_reg=0x7f060003;
-        public static final int activity_main=0x7f060004;
+        public static final int activity_display_game=0x7f060001;
+        public static final int activity_display_new_game=0x7f060002;
+        public static final int activity_display_options=0x7f060003;
+        public static final int activity_display_reg=0x7f060004;
+        public static final int activity_main=0x7f060005;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
@@ -75,6 +77,7 @@ public final class R {
         public static final int textfield_login_name=0x7f040010;
         public static final int textfield_login_password=0x7f04000a;
         public static final int title_activity_display_enter_game=0x7f040013;
+        public static final int title_activity_display_game=0x7f04001e;
         public static final int title_activity_display_login=0x7f040007;
         public static final int title_activity_display_new_game=0x7f040012;
         public static final int title_activity_display_options=0x7f040016;

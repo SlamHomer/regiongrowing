@@ -31,5 +31,6 @@
     <string name="newgame_number">Anzahl der Spieler auswählen (2&#8211;6):</string>
     <string name="options_update">Aktualisieren</string>
     <string name="newgame_search">Spieler suchen</string>
+    <string name="title_activity_display_game">DisplayGame</string>
 
 </resources>
