@@ -38,8 +38,10 @@
         </activity>
         <activity
             android:name="com.slamhomer.regiongrowing.DisplayGame"
-            android:label="@string/title_activity_display_game" >
+            android:label="@string/title_activity_display_game" 
+             android:theme="@android:style/Theme.NoTitleBar">
         </activity>
+        <uses-library android:name="com.google.android.maps"/>
     </application>
 
 </manifest>
