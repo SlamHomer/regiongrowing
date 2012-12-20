@@ -25,37 +25,47 @@ public class UpdateMap {
 	public static void update(MapView mapView, Context context){
 	    
 		// Local Player
-		List<Overlay> mapOverlays = mapView.getOverlays();
-	    Drawable drawable = context.getResources().getDrawable(R.drawable.local);
-	    RegionItemizedOverlay itemizedoverlay = new RegionItemizedOverlay(drawable, context);
+		List<Overlay> mapOverlays;
+	    Drawable drawable;
+	    RegionItemizedOverlay itemizedoverlay;
 	    
-	    //Local Player GeoPoint
-	    GeoPoint local_point = new GeoPoint(Gamemanager.getLocalPlayer().convLatitude(),
-	    		Gamemanager.getLocalPlayer().convLongitude());
-	    OverlayItem overlayitem = new OverlayItem(local_point, 
-	    		("Name: "+Gamemanager.getLocalPlayer().getName()), 
-	    		("Einfluss: "+String.valueOf(Gamemanager.getLocalPlayer().getInfluence())));
+	    OverlayItem overlayitem;
 	    
-	    //Add Item to collection and then to mapview
-	    itemizedoverlay.addOverlay(overlayitem);
-	    mapOverlays.add(itemizedoverlay);
-	    
-	    for(int i = 0; i < Gamemanager.getEnemyPlayerArray().length; i++){
-			// Local Player
+	    if (Gamemanager.getLocalPlayer().getName() != null) {
 			mapOverlays = mapView.getOverlays();
-		    drawable = context.getResources().getDrawable(R.drawable.enemy);
-		    itemizedoverlay = new RegionItemizedOverlay(drawable, context);
-		    
-		    //Local Player GeoPoint
-		    GeoPoint enemy_point = new GeoPoint(Gamemanager.getEnemyPlayer(i).convLatitude(),
-		    		Gamemanager.getEnemyPlayer(i).convLongitude());
-		    overlayitem = new OverlayItem(enemy_point, 
-		    		("Gegner-Name: "+Gamemanager.getEnemyPlayer(i).getName()), 
-		    		("Einfluss: "+String.valueOf(Gamemanager.getEnemyPlayer(i).getInfluence())));
-		    
-		    //Add Item to collection and then to mapview
-		    itemizedoverlay.addOverlay(overlayitem);
-		    mapOverlays.add(itemizedoverlay);
+			drawable = context.getResources().getDrawable(R.drawable.local);
+			itemizedoverlay = new RegionItemizedOverlay(drawable, context);
+			//Local Player GeoPoint
+			GeoPoint local_point = new GeoPoint(Gamemanager.getLocalPlayer()
+					.convLatitude(), Gamemanager.getLocalPlayer()
+					.convLongitude());
+			overlayitem = new OverlayItem(local_point, ("Name: " + Gamemanager
+					.getLocalPlayer().getName()),
+					("Einfluss: " + String.valueOf(Gamemanager.getLocalPlayer()
+							.getInfluence())));
+			//Add Item to collection and then to mapview
+			itemizedoverlay.addOverlay(overlayitem);
+			mapOverlays.add(itemizedoverlay);
+		}
+		for(int i = 0; i < Gamemanager.getEnemyPlayerArray().length; i++){
+			if (Gamemanager.getEnemyPlayer(i).getName() != null) {
+				// Local Player
+				mapOverlays = mapView.getOverlays();
+				drawable = context.getResources().getDrawable(R.drawable.enemy);
+				itemizedoverlay = new RegionItemizedOverlay(drawable, context);
+				//Local Player GeoPoint
+				GeoPoint enemy_point = new GeoPoint(Gamemanager.getEnemyPlayer(
+						i).convLatitude(), Gamemanager.getEnemyPlayer(i)
+						.convLongitude());
+				overlayitem = new OverlayItem(enemy_point,
+						("Gegner-Name: " + Gamemanager.getEnemyPlayer(i)
+								.getName()),
+						("Einfluss: " + String.valueOf(Gamemanager
+								.getEnemyPlayer(i).getInfluence())));
+				//Add Item to collection and then to mapview
+				itemizedoverlay.addOverlay(overlayitem);
+				mapOverlays.add(itemizedoverlay);
+			}
 	    }
 	}
 }
