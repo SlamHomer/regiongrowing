@@ -1,6 +1,7 @@
 package com.slamhomer.regiongrowing;
 
 import com.slamhomer.regiongrowing.R;
+import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -24,8 +25,12 @@ public class DisplayMenuActivity extends Activity {
 	
 	/** Called when the user clicks the Weiter button */
     public void goContinue(View view) {
-		Intent intent = new Intent(this, DisplayEnterGame.class);
-		startActivity(intent);
+		if (Gamemanager.getLocalPlayer().isInGame() == true) {
+			Intent intent = new Intent(this, DisplayEnterGame.class);
+			startActivity(intent);
+		}else{
+			//TODO: Alert: "Sie haben kein Spiel gestartet"
+		}
 	}
     
     /** Called when the user clicks the Neues Spiel button */
