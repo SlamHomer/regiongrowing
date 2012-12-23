@@ -29,7 +29,7 @@ public class DisplayMenuActivity extends Activity {
 			Intent intent = new Intent(this, DisplayEnterGame.class);
 			startActivity(intent);
 		}else{
-			//TODO: Alert: "Sie haben kein Spiel gestartet"
+			ErrorMsg.alert("Sie haben kein Spiel gestartet", this);
 		}
 	}
     

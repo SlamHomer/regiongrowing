@@ -6,8 +6,6 @@ import com.slamhomer.regiongrowing_network.RegThread;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -38,8 +36,6 @@ public class DisplayRegActivity extends Activity {
 		if (FormValidation.isEmailValid(email) == true &&
 				FormValidation.isLoginDataValid(name) == true &&
 				FormValidation.isLoginDataValid(password) == true) {
-			//Context context = this;
-			//Network.postDataReg(name, password, email, context);
 			
 			Thread regthread = new RegThread(name, password, email);
 			regthread.start();
@@ -50,37 +46,13 @@ public class DisplayRegActivity extends Activity {
 			}
 			String resultat = Network.getLastCode();
 			if(!(resultat.equals("OK"))){
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DisplayRegActivity.this);
-				alertDialogBuilder.setTitle("Fehler");
-				alertDialogBuilder
-						.setMessage(resultat)
-						.setCancelable(false)
-						.setNeutralButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog, int id) {
-										return;
-									}
-								});
-				AlertDialog alertDialog = alertDialogBuilder.create();
-				alertDialog.show();
+				ErrorMsg.alert(resultat, this);
 			}else{
 				Intent intent = new Intent(this, MainActivity.class);
 				startActivity(intent);
 			}
 		}else{
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DisplayRegActivity.this);
-			alertDialogBuilder.setTitle("Fehler");
-			alertDialogBuilder
-					.setMessage("Ungueltige Daten")
-					.setCancelable(false)
-					.setNeutralButton("OK",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-									return;
-								}
-							});
-			AlertDialog alertDialog = alertDialogBuilder.create();
-			alertDialog.show();
+			ErrorMsg.alert("Ungueltige Daten", this);
 		}
 	}
 }

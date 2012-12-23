@@ -39,7 +39,6 @@ public class FormValidation {
 	 * muss zwischen 5 und 20 Zeichen haben
 	 * 
 	 * TODO: Ausführlich testen
-	 * TODO: 'null' als namen abfangen
 	 */
 	protected static boolean isLoginDataValid(EditText input){
 		Editable tmp = input.getText();

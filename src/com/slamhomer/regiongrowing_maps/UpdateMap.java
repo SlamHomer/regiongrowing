@@ -13,7 +13,22 @@ import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 
 public class UpdateMap {
+	private List<Overlay> mapOverlays;
+    private Drawable drawable;
+    private RegionItemizedOverlay itemizedoverlay;
+    
+    private Circle local_circle;
+    private Circle enemy_circle;
+    
+    private OverlayItem overlayitem;
+    
+    private MapView mapView;
+    private Context context;
 	
+	public UpdateMap(MapView mapView, Context context){
+		this.mapView = mapView;
+		this.context = context;
+	}
     /*
      * All overlay elements on a map are held by the MapView, 
      * so when you want to add some, you have to get a list from the getOverlays() method. 
@@ -22,19 +37,17 @@ public class UpdateMap {
      * (your custom ItemizedOverlay) takes the Drawable in order to set the 
      * default marker for all overlay items. 
      */
-	public static void update(MapView mapView, Context context){
+	public void update(){
 	    
-		// Local Player
-		List<Overlay> mapOverlays;
-	    Drawable drawable;
-	    RegionItemizedOverlay itemizedoverlay;
-	    
-	    OverlayItem overlayitem;
-	    
-	    if (Gamemanager.getLocalPlayer().getName() != null) {
+		// Local Player	    
+	    if (Gamemanager.getLocalPlayer().getName() != null) {    	
 			mapOverlays = mapView.getOverlays();
 			drawable = context.getResources().getDrawable(R.drawable.local);
 			itemizedoverlay = new RegionItemizedOverlay(drawable, context);
+			
+	    	//clear map overlays
+			mapOverlays.clear();
+			
 			//Local Player GeoPoint
 			GeoPoint local_point = new GeoPoint(Gamemanager.getLocalPlayer()
 					.convLatitude(), Gamemanager.getLocalPlayer()
@@ -46,7 +59,10 @@ public class UpdateMap {
 			//Add Item to collection and then to mapview
 			itemizedoverlay.addOverlay(overlayitem);
 			mapOverlays.add(itemizedoverlay);
-		}
+			
+			//add circle
+			local_circle = new Circle(local_point, Gamemanager.getLocalPlayer().getInfluence());
+			mapOverlays.add(local_circle);
 		for(int i = 0; i < Gamemanager.getEnemyPlayerArray().length; i++){
 			if (Gamemanager.getEnemyPlayer(i).getName() != null) {
 				// Local Player
@@ -65,7 +81,12 @@ public class UpdateMap {
 				//Add Item to collection and then to mapview
 				itemizedoverlay.addOverlay(overlayitem);
 				mapOverlays.add(itemizedoverlay);
+				
+				//add circle
+				enemy_circle = new Circle(enemy_point, Gamemanager.getEnemyPlayer(i).getInfluence());
+				mapOverlays.add(enemy_circle);
 			}
 	    }
+	}
 	}
 }

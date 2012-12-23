@@ -43,22 +43,7 @@ public class MainActivity extends Activity {
 					}
 					String resultat = Network.getLastCode();
 					if (!(resultat.equals("OK"))) {
-						AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-								MainActivity.this);
-						alertDialogBuilder.setTitle("Fehler");
-						alertDialogBuilder
-								.setMessage(resultat)
-								.setCancelable(false)
-								.setNeutralButton("OK",
-										new DialogInterface.OnClickListener() {
-											public void onClick(
-													DialogInterface dialog,
-													int id) {
-												return;
-											}
-										});
-						AlertDialog alertDialog = alertDialogBuilder.create();
-						alertDialog.show();
+						ErrorMsg.alert(resultat, this);
 					} else {
 
 						// Erstes Update
@@ -100,41 +85,10 @@ public class MainActivity extends Activity {
 						startActivity(intent);
 					}
 				} else {
-					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-							MainActivity.this);
-					alertDialogBuilder.setTitle("Fehler");
-					alertDialogBuilder
-							.setMessage(
-									"Ungueltiger Benutzername oder Passwort")
-							.setCancelable(false)
-							.setNeutralButton("OK",
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
-											return;
-										}
-									});
-					AlertDialog alertDialog = alertDialogBuilder.create();
-					alertDialog.show();
+					ErrorMsg.alert("Ungueltiger Benutzername oder Passwort", this);
 				}
 			} else {
-				//Alert "Sie haben Ihre Home Location noch nicht gesetzt"
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-						MainActivity.this);
-				alertDialogBuilder.setTitle("Fehler");
-				alertDialogBuilder
-						.setMessage(
-								"Sie haben Ihre Home Location noch nicht gesetzt")
-						.setCancelable(false)
-						.setNeutralButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int id) {
-										return;
-									}
-								});
-				AlertDialog alertDialog = alertDialogBuilder.create();
-				alertDialog.show();
+				ErrorMsg.alert("Sie haben Ihre Home Location noch nicht gesetzt", this);
 			}
 		}
 	}

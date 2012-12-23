@@ -3,6 +3,7 @@ package com.slamhomer.regiongrowing;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.slamhomer.regiongrowing_maps.UpdateMap;
+import com.slamhomer.regiongrowing_network.BackgroundUpdateThread;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,8 +17,15 @@ public class DisplayGame extends MapActivity {
 		MapView mapView = (MapView) findViewById(R.id.mapview);
 	    mapView.setBuiltInZoomControls(true);
 	    
-	    UpdateMap.update(mapView, this);
+	    UpdateMap updateMap = new UpdateMap(mapView, this);
+	    updateMap.update();
 	    
+	    BackgroundUpdateThread background = new BackgroundUpdateThread(
+				updateMap);
+	    
+	    if (background.isAlive() == false) {
+			background.start();
+		}
 	}
 
 	@Override

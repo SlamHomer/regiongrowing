@@ -27,43 +27,40 @@ public class UpdateThread extends Thread{
 		this.name = name;
 	}
 	
-	
 	public void run(){
-		System.out.println("THREAD!!!!!");
-		// Create a new HttpClient and Post Header
-	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/update.php");
-	    String res = null;
-	    
-	    try {
-	        // Add data
-	    	
-	    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-	        nameValuePairs.add(new BasicNameValuePair("name", this.name));
-	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			System.out.println("THREAD!!!!!");
+			// Create a new HttpClient and Post Header
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost(
+					"http://www.slamhomer.com/region/update.php");
+			String res = null;
+			try {
+				// Add data
 
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+						2);
+				nameValuePairs.add(new BasicNameValuePair("name", this.name));
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-	        // Execute HTTP Post Request
-	        HttpResponse response = httpclient.execute(httppost);
-	        
-	        HttpEntity entity = response.getEntity();
-	        InputStream is = entity.getContent();
-	        
-	        res = Network.convertStreamToString(is);
-	        
-	        System.out.println("RES: "+res);
-	        
-	    } catch (ClientProtocolException e) {
-	        System.out.println("ClientProtocolException");
-	    } catch (IOException e) {
-	    	System.out.println("IOException");
-	    }
-	   
-	    //wenn update erfolglos dann setzte fehler code
-	    if(convertUpdate(res) == false){ 
-		   Network.setLastCode("Fehler beim Update");
-	   }
-	    
+				// Execute HTTP Post Request
+				HttpResponse response = httpclient.execute(httppost);
+
+				HttpEntity entity = response.getEntity();
+				InputStream is = entity.getContent();
+
+				res = Network.convertStreamToString(is);
+
+				System.out.println("RES: " + res);
+
+			} catch (ClientProtocolException e) {
+				System.out.println("ClientProtocolException");
+			} catch (IOException e) {
+				System.out.println("IOException");
+			}
+			//wenn update erfolglos dann setzte fehler code
+			if (convertUpdate(res) == false) {
+				Network.setLastCode("Fehler beim Update");
+			}
 	}
 	
 	/*
