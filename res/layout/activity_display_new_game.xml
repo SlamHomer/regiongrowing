@@ -43,6 +43,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_below="@+id/editText1"
 	    android:layout_centerHorizontal="true"
-	    android:text="@string/newgame_search" />
+	    android:text="@string/newgame_search" 
+	    android:onClick="goNewGame"/>
 
 </RelativeLayout>
