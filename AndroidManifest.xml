@@ -10,18 +10,20 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
 
     <application
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" 
-        android:allowBackup="true">
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.slamhomer.regiongrowing.MainActivity"
             android:label="@string/title_activity_main" >
@@ -35,18 +37,22 @@
         </activity>
         <activity android:name="com.slamhomer.regiongrowing.DisplayRegActivity" >
         </activity>
-        <activity android:name="com.slamhomer.regiongrowing.DisplayEnterGame" >
-        </activity>
         <activity android:name="com.slamhomer.regiongrowing.DisplayNewGameActivity" >
         </activity>
         <activity android:name="com.slamhomer.regiongrowing.DisplayOptionsActivity" >
         </activity>
         <activity
             android:name="com.slamhomer.regiongrowing.DisplayGame"
-            android:label="@string/title_activity_display_game" 
-             android:theme="@android:style/Theme.NoTitleBar">
+            android:label="@string/title_activity_display_game"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-        <uses-library android:name="com.google.android.maps"/>
+
+        <uses-library android:name="com.google.android.maps" />
+
+        <activity
+            android:name="com.slamhomer.regiongrowing.DisplayDailyTask"
+            android:label="@string/title_activity_display_daily_task" >
+        </activity>
     </application>
 
 </manifest>

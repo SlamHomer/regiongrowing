@@ -11,4 +11,14 @@
     android:clickable="true"
     android:apiKey="0PRIVMJLvW66MYorGVZzU7bqhO9tlyOVu2KSStg"
 	/>
+
+	<Button
+	    android:id="@+id/button1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_centerHorizontal="true"
+	    android:text="@string/game_task"
+	    android:onClick="goDailyTask"/>
+
 </RelativeLayout>

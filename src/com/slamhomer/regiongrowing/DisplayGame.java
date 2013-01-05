@@ -5,8 +5,10 @@ import com.google.android.maps.MapView;
 import com.slamhomer.regiongrowing_maps.UpdateMap;
 import com.slamhomer.regiongrowing_network.BackgroundUpdateThread;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 
 public class DisplayGame extends MapActivity {
 
@@ -38,6 +40,12 @@ public class DisplayGame extends MapActivity {
 	@Override
 	protected boolean isRouteDisplayed() {
 		return false;
+	}
+	
+	/** Called when the user clicks the Neues Spiel button */
+    public void goDailyTask(View view) {
+		Intent intent = new Intent(this, DisplayDailyTask.class);
+		startActivity(intent);
 	}
 	
 }

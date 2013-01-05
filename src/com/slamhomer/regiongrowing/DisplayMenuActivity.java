@@ -26,7 +26,7 @@ public class DisplayMenuActivity extends Activity {
 	/** Called when the user clicks the Weiter button */
     public void goContinue(View view) {
 		if (Gamemanager.getLocalPlayer().isInGame() == true) {
-			Intent intent = new Intent(this, DisplayEnterGame.class);
+			Intent intent = new Intent(this, DisplayGame.class);
 			startActivity(intent);
 		}else{
 			ErrorMsg.alert("Sie haben kein Spiel gestartet", this);

@@ -32,5 +32,7 @@
     <string name="options_update">Aktualisieren</string>
     <string name="newgame_search">Spieler suchen</string>
     <string name="title_activity_display_game">DisplayGame</string>
+    <string name="game_task">Daily Tasks</string>
+    <string name="title_activity_display_daily_task">DisplayDailyTask</string>
 
 </resources>
