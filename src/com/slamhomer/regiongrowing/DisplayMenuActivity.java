@@ -38,5 +38,9 @@ public class DisplayMenuActivity extends Activity {
 		Intent intent = new Intent(this, DisplayNewGameActivity.class);
 		startActivity(intent);
 	}
-
+    
+    /** Called when the user clicks the Verlassen button */
+    public void goLeave(View view) {
+		
+	}
 }
