@@ -58,15 +58,15 @@ public class MainActivity extends Activity {
 							e.printStackTrace();
 						}
 
-						Thread home = new SetHomeThread();
-						home.start();
-
-						try {
-							home.join();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+						if (Gamemanager.getLocalPlayer().isInGame() == false) {
+							Thread home = new SetHomeThread();
+							home.start();
+							try {
+								home.join();
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
-
 						Thread updateThread2 = new UpdateThread(name.getText()
 								.toString());
 						updateThread2.start();

@@ -17,22 +17,17 @@ import org.apache.http.message.BasicNameValuePair;
 
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 
-public class SetHomeThread extends Thread{
-	private double lat = 0.0;
-	private double lon = 0.0;
+public class LeaveGameThread extends Thread{
 	private String name = null;
 	
-	public SetHomeThread(){
-		this.lat = Gamemanager.getLocalPlayer().getpLatitude();
-		this.lon = Gamemanager.getLocalPlayer().getpLongitude();
-		this.name = Gamemanager.getLocalPlayer().getName();
+	public LeaveGameThread(){
+		this.name = Gamemanager.getLocalPlayer().getName();	
 	}
 	
 	public void run(){
-		System.out.println("SETHOME THREAD!!!!");
 		// Create a new HttpClient and Post Header
 	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/standort.php");
+	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/leavegame.php");
 	    String res = null;
 	    
 	    try {
@@ -40,8 +35,6 @@ public class SetHomeThread extends Thread{
 	    	
 	    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 	    	nameValuePairs.add(new BasicNameValuePair("name", this.name));
-	        nameValuePairs.add(new BasicNameValuePair("lat", String.valueOf(lat)));
-	        nameValuePairs.add(new BasicNameValuePair("lon", String.valueOf(lon)));
 	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 
@@ -52,12 +45,7 @@ public class SetHomeThread extends Thread{
 	        InputStream is = entity.getContent();
 	        
 	        res = Network.convertStreamToString(is);
-	        
-	        System.out.println("RES: "+res);
-	        System.out.println("Name: "+this.name);
-	        System.out.println("LAT: "+this.lat);
-	        System.out.println("LONG: "+this.lon);
-	        
+
 	    } catch (ClientProtocolException e) {
 	    	System.out.println("ClientProtocolException");
 	    } catch (IOException e) {
@@ -68,5 +56,3 @@ public class SetHomeThread extends Thread{
 	}
 
 }
-
-

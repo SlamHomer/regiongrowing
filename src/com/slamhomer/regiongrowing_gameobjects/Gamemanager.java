@@ -1,8 +1,13 @@
 package com.slamhomer.regiongrowing_gameobjects;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Gamemanager {
 	
-	private static LocalPlayer LocalPlayer;
+	private static LocalPlayer LocalPlayer = 
+			new LocalPlayer(null, -1, -1, -1, null, false);
 	private static Player[] EnemyPlayerArray = 
 		{new Player(null, 0, 0, 0),
 		new Player(null, 0, 0, 0),
@@ -17,6 +22,9 @@ public class Gamemanager {
 		new Task(null, null, null, 0),
 		new Task(null, null, null, 0),
 		};
+	private static String winner = null;
+	private static Date serverDate = null;
+	private static Date gameEndDate = null;
 	
 	public static LocalPlayer getLocalPlayer() {
 		return LocalPlayer;
@@ -61,6 +69,24 @@ public class Gamemanager {
 		}
 	}
 	
+	public static String getWinner() {
+		return winner;
+	}
+	public static void setWinner(String winner) {
+		Gamemanager.winner = winner;
+	}
+	public static Date getServerDate() {
+		return serverDate;
+	}
+	public static void setServerDate(Date serverDate) {
+		Gamemanager.serverDate = serverDate;
+	}
+	public static Date getGameEndDate() {
+		return gameEndDate;
+	}
+	public static void setGameEndDate(Date gameEndDate) {
+		Gamemanager.gameEndDate = gameEndDate;
+	}
 	public static void printAllPlayer(){
 		System.out.println("##########################################");
 		System.out.println("LOCAL NAME: "+Gamemanager.getLocalPlayer().getName());
@@ -99,8 +125,18 @@ public class Gamemanager {
 		}
 	}
 	
+	private static void printAllGameData() {
+		System.out.println("##########################################");
+		System.out.println("SERVER Date: "+Gamemanager.getServerDate());
+		System.out.println("GAME END Date: "+Gamemanager.getGameEndDate());
+		System.out.println("WINNER: "+Gamemanager.getWinner());
+		System.out.println("##########################################");
+	}
+	
 	public static void printAll(){
 		printAllPlayer();
 		printAllTasks();
+		printAllGameData();
 	}
+
 }

@@ -1,10 +1,11 @@
 package com.slamhomer.regiongrowing_network;
 
+import com.slamhomer.regiongrowing.ErrorMsg;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_maps.UpdateMap;
 
 public class BackgroundUpdateThread extends Thread{
-	private static long WAITTIME_MS =  30000; //update alle 30 sekunden
+	private static long WAITTIME_MS =  30*1000; //update alle 30 sekunden
 	
 	private UpdateMap uMap;
 	private UpdateThread updateThread;
@@ -28,7 +29,6 @@ public class BackgroundUpdateThread extends Thread{
 					
 					updateThread = new UpdateThread(
 							Gamemanager.getLocalPlayer().getName());
-					
 					//Update Stats
 					try{
 						if (updateThread.isAlive() == false) {

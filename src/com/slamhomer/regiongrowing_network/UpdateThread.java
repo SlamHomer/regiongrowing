@@ -2,7 +2,11 @@ package com.slamhomer.regiongrowing_network;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -15,6 +19,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.content.Context;
+
+import com.slamhomer.regiongrowing.ErrorMsg;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_gameobjects.LocalPlayer;
 import com.slamhomer.regiongrowing_gameobjects.Player;
@@ -66,6 +73,7 @@ public class UpdateThread extends Thread{
 	/*
 	 * Methode um den übergebenen String in die Gamedaten umzuwandeln und zu setzen.
 	 * Gibt true zurück, wenn res != null ist und die Daten gesetzt werden können.
+	 * TODO: schlecht falls z.B. spielername "taskname" "enemy" "now" ist.
 	 */
 	private static boolean convertUpdate(String res){
 		if(res != null && res.length() > 0){
@@ -73,6 +81,7 @@ public class UpdateThread extends Thread{
 			//setzten der update indizes
 			int task_index = res.indexOf("taskname");
 			int enemy_index = res.indexOf("enemy");
+			int gameData_index = res.indexOf("now");
 			
 			//hilfs-fkt um den localen spieler auszulesen
 			convLocal(res);
@@ -86,6 +95,10 @@ public class UpdateThread extends Thread{
 						convEnemy(enemy_index, task_index, res);
 					}
 				}
+				if(gameData_index !=-1){
+					//hilfs-fkt um die Spiel-Daten auszulesen
+					convGameData(gameData_index, res);
+				}
 			}
 			return true;
 		}else{
@@ -93,6 +106,73 @@ public class UpdateThread extends Thread{
 		}
 	}
 	
+	private static void convGameData(int gameData_index, String res) {
+		//init variablen
+		int index = gameData_index;
+		int lastIndex = index;
+		int varCase = 1;
+		String tmp = "";		
+		
+		//hier werden die einzelnen attribute durchgegangen
+		while(varCase <= 3){
+			if (index != -1) {
+				index = res.indexOf(":", index + 1);
+				
+				/*
+				 * .indexOf durchläuft den string unendlich oft, deswegen muss überprüft werden ob man 
+				 * das ende schon erreicht hat
+				 */
+				
+				if (index >= lastIndex) {
+					//lesen der einzelnen zeichen, bis ein trennzeichen kommt
+					for (int i = 1; res.charAt(index + i) != ';'; i++) {
+						tmp = tmp + res.charAt(index + i);
+					}
+					//welches attr. ist es?
+					switch (varCase) {
+					case 1:
+						//server date
+						if (tmp != "") {
+							Gamemanager.setServerDate(stringToDate(tmp));
+						}else{
+							Gamemanager.setServerDate(null);
+						}
+						break;
+					case 2:
+						//game end date
+						if (tmp != "") {
+							Gamemanager.setGameEndDate(stringToDate(tmp));
+						}else{
+							Gamemanager.setGameEndDate(null);
+						}
+						break;
+					case 3:
+						//winner
+						if (tmp != "" && tmp != "null") {
+							Gamemanager.setWinner(tmp);
+						} else {
+							Gamemanager.setWinner("null");
+						}
+						break;
+					}
+				}
+			}
+			tmp = "";
+			varCase++;
+		}		
+	}
+	
+	  // Convert from String to date
+	  private static Date stringToDate(String date_string) {
+	      Date date = null;
+		  try {
+	      date = new SimpleDateFormat("yyyy-MM-dd").parse(date_string);
+	    } catch (ParseException e) {
+	      e.printStackTrace();
+	    }
+	    return date;
+	  }
+
 	private static void convLocal(String res){
 		//init variablen
 		int index = 0;
@@ -133,12 +213,24 @@ public class UpdateThread extends Thread{
 							tmp_local.setInfluence(-1);
 						}
 						break;
-					case 5:
+					case 3:
 						//ingame
 						if (tmp != "") {
 							tmp_local.setInGame(Boolean.valueOf(tmp));
 						} else {
 							tmp_local.setInGame(false);
+						}
+						break;
+					case 4:
+						//lat
+						if (tmp != "" && tmp_local.isInGame() != false) {
+							tmp_local.setpLatitude(Double.valueOf(tmp));
+						}
+						break;
+					case 5:
+						//long
+						if (tmp != "" && tmp_local.isInGame() != false) {
+							tmp_local.setpLongitude(Double.valueOf(tmp));
 						}
 						break;
 					}

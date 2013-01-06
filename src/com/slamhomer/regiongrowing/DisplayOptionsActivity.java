@@ -1,5 +1,6 @@
 package com.slamhomer.regiongrowing;
 
+import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_network.GPS;
 
 import android.location.Criteria;
@@ -89,14 +90,18 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 	  
 
 	  public void setLocation(View view){  
-		  String fehler = GPS.saveHomeLoc(this.lalo, this);
-		  
-		  if(!fehler.equals("OK")){
-			  ErrorMsg.alert("Fehler beim Speichern der GPS Koordinaten. "+fehler, this);
-		  }
-		  if(GPS.loadHomeLoc(this) == true){
-			    latituteField.setText(String.valueOf(GPS.getLatitude()));
-			    longitudeField.setText(String.valueOf(GPS.getLongitude()));
-		  }
+			String fehler = GPS.saveHomeLoc(this.lalo, this);
+			if (!fehler.equals("OK")) {
+				ErrorMsg.alert(
+						"Fehler beim Speichern der GPS Koordinaten. "
+								+ fehler, this);
+			}else{
+				ErrorMsg.alert("Home Location gespeichert. Änderung wird erst" +
+						" beim nächsten neuen Spiel angewandt", "Achtung!", "OK", this);
+			}
+			if (GPS.loadHomeLoc(this) == true) {
+				latituteField.setText(String.valueOf(GPS.getLatitude()));
+				longitudeField.setText(String.valueOf(GPS.getLongitude()));
+			}
 	  }
 }
