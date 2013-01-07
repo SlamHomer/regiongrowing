@@ -21,4 +21,13 @@
 	    android:onClick="goDailyTask"
 	    android:text="@string/game_task" />
 
+	<Button
+	    android:id="@+id/button2"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignParentLeft="true"
+	    android:onClick="goLeave"
+	    android:text="@string/button_leave" />
+
 </RelativeLayout>

@@ -5,8 +5,11 @@ import com.google.android.maps.MapView;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_maps.UpdateMap;
 import com.slamhomer.regiongrowing_network.BackgroundUpdateThread;
+import com.slamhomer.regiongrowing_network.LeaveGameThread;
 import com.slamhomer.regiongrowing_network.UpdateThread;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -80,5 +83,33 @@ public class DisplayGame extends MapActivity {
 		Intent intent = new Intent(this, DisplayDailyTask.class);
 		startActivity(intent);
 	}
-	
+    
+    /** Called when the user clicks the Verlassen button */
+    public void goLeave(View view) {
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+		alertDialogBuilder.setTitle("Achtung!");
+		alertDialogBuilder
+				.setMessage("Wollen Sie wirklich das aktuelle Spiel verlassen?")
+				.setCancelable(false)
+				.setPositiveButton("Ja",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+						    	LeaveGameThread lg = new LeaveGameThread();
+								lg.run();
+								try {
+									lg.join();
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+							}
+						})
+				.setNegativeButton("Nein",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							return;
+						}
+					});
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();	
+	}
 }

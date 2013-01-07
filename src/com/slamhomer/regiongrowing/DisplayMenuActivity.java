@@ -50,33 +50,4 @@ public class DisplayMenuActivity extends Activity {
 		Intent intent = new Intent(this, DisplayNewGameActivity.class);
 		startActivity(intent);
 	}
-    
-    /** Called when the user clicks the Verlassen button */
-    public void goLeave(View view) {
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-		alertDialogBuilder.setTitle("Achtung!");
-		alertDialogBuilder
-				.setMessage("Wollen Sie wirklich das aktuelle Spiel verlassen?")
-				.setCancelable(false)
-				.setPositiveButton("Ja",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-						    	LeaveGameThread lg = new LeaveGameThread();
-								lg.run();
-								try {
-									lg.join();
-								} catch (InterruptedException e) {
-									e.printStackTrace();
-								}
-							}
-						})
-				.setNegativeButton("Nein",
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							return;
-						}
-					});
-		AlertDialog alertDialog = alertDialogBuilder.create();
-		alertDialog.show();	
-	}
 }
