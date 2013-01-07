@@ -20,11 +20,19 @@ public class DisplayNewGameActivity extends Activity {
         setContentView(R.layout.activity_display_new_game);
     }
 	
+	@Override
+	public void onDestroy() {
+	    super.onDestroy();  // Always call the superclass
+	    
+	    // Stop method tracing that the activity started during onCreate()
+	    android.os.Debug.stopMethodTracing();
+	}
+	
 	public void goNewGame(View view){
 		EditText text = (EditText) findViewById(R.id.editText1);
 		int players = Integer.valueOf(text.getText().toString());
 		
-		if(players < 7){
+		if(players > 1 && players < 7){
 			Thread newGameThread = new NewGameThread(Gamemanager.getLocalPlayer().getName(), 
 					players);
 			newGameThread.start();

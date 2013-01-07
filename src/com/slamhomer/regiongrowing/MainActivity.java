@@ -145,5 +145,13 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
+    
+    @Override
+    public void onDestroy() {
+        super.onDestroy();  // Always call the superclass
+        
+        // Stop method tracing that the activity started during onCreate()
+        android.os.Debug.stopMethodTracing();
+    }
 
 }

@@ -20,6 +20,14 @@ public class DisplayMenuActivity extends Activity {
         setContentView(R.layout.activity_display_menu);
     }
 	
+	@Override
+	public void onDestroy() {
+	    super.onDestroy();  // Always call the superclass
+	    
+	    // Stop method tracing that the activity started during onCreate()
+	    android.os.Debug.stopMethodTracing();
+	}
+	
 	
 	/** Called when the user clicks the Exit button */
 	public void goLogout(View view) {

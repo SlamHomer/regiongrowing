@@ -88,6 +88,14 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 	    this.lalo = String.valueOf(lat) +"\n"+String.valueOf(lng);    
 	  }
 	  
+	  @Override
+	  public void onDestroy() {
+	      super.onDestroy();  // Always call the superclass
+	      
+	      // Stop method tracing that the activity started during onCreate()
+	      android.os.Debug.stopMethodTracing();
+	  }
+	  
 
 	  public void setLocation(View view){  
 			String fehler = GPS.saveHomeLoc(this.lalo, this);

@@ -2,8 +2,10 @@ package com.slamhomer.regiongrowing;
 
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
+import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_maps.UpdateMap;
 import com.slamhomer.regiongrowing_network.BackgroundUpdateThread;
+import com.slamhomer.regiongrowing_network.UpdateThread;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +31,29 @@ public class DisplayGame extends MapActivity {
 			background.start();
 		}
 	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		
+		Thread updateThread = new UpdateThread(
+				Gamemanager.getLocalPlayer().getName());
+		updateThread.start();
+		try {
+			updateThread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		BackgroundUpdateThread.setUpdate(true);
+	}
+	
+	@Override
+	public void onPause() {
+	    super.onPause();
+	    
+	    BackgroundUpdateThread.setUpdate(false);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -40,6 +65,14 @@ public class DisplayGame extends MapActivity {
 	@Override
 	protected boolean isRouteDisplayed() {
 		return false;
+	}
+	
+	@Override
+	public void onDestroy() {
+	    super.onDestroy();  // Always call the superclass
+	    
+	    // Stop method tracing that the activity started during onCreate()
+	    android.os.Debug.stopMethodTracing();
 	}
 	
 	/** Called when the user clicks the Neues Spiel button */

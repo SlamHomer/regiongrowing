@@ -25,6 +25,14 @@ public class DisplayRegActivity extends Activity {
         return true;
     }
     
+    @Override
+    public void onDestroy() {
+        super.onDestroy();  // Always call the superclass
+        
+        // Stop method tracing that the activity started during onCreate()
+        android.os.Debug.stopMethodTracing();
+    }
+    
     /** Called when the user clicks the Registrieren button */
 	public void goReg(View view) {
 
