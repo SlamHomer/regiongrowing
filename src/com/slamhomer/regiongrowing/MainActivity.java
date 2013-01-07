@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
 					}
 					String resultat = Network.getLastCode();
 					if (!(resultat.equals("OK"))) {
-						ErrorMsg.alert(resultat, this);
+						Messages.alert(resultat, this);
 					} else {
 
 						// Erstes Update
@@ -85,10 +85,10 @@ public class MainActivity extends Activity {
 						startActivity(intent);
 					}
 				} else {
-					ErrorMsg.alert("Ungueltiger Benutzername oder Passwort", this);
+					Messages.alert("Ungueltiger Benutzername oder Passwort", this);
 				}
 			} else {
-				ErrorMsg.alert("Sie haben Ihre Home Location noch nicht gesetzt", this);
+				Messages.alert("Sie haben Ihre Home Location noch nicht gesetzt", this);
 			}
 		}
 	}
@@ -126,7 +126,7 @@ public class MainActivity extends Activity {
 							}
 						});
 			AlertDialog alertDialog = alertDialogBuilder.create();
-			alertDialog.show();
+			alertDialog.show();	
 		}else{
 			Intent intent = new Intent(this, DisplayOptionsActivity.class);
 			startActivity(intent);

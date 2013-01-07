@@ -21,7 +21,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Context;
 
-import com.slamhomer.regiongrowing.ErrorMsg;
+import com.slamhomer.regiongrowing.Messages;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_gameobjects.LocalPlayer;
 import com.slamhomer.regiongrowing_gameobjects.Player;

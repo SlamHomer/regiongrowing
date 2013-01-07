@@ -46,13 +46,13 @@ public class DisplayRegActivity extends Activity {
 			}
 			String resultat = Network.getLastCode();
 			if(!(resultat.equals("OK"))){
-				ErrorMsg.alert(resultat, this);
+				Messages.alert(resultat, this);
 			}else{
 				Intent intent = new Intent(this, MainActivity.class);
 				startActivity(intent);
 			}
 		}else{
-			ErrorMsg.alert("Ungueltige Daten", this);
+			Messages.alert("Ungueltige Daten", this);
 		}
 	}
 }

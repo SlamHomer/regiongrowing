@@ -1,6 +1,6 @@
 package com.slamhomer.regiongrowing_network;
 
-import com.slamhomer.regiongrowing.ErrorMsg;
+import com.slamhomer.regiongrowing.Messages;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_maps.UpdateMap;
 

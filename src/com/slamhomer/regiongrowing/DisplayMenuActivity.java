@@ -2,9 +2,13 @@ package com.slamhomer.regiongrowing;
 
 import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
+import com.slamhomer.regiongrowing_network.LeaveGameThread;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 
@@ -29,7 +33,7 @@ public class DisplayMenuActivity extends Activity {
 			Intent intent = new Intent(this, DisplayGame.class);
 			startActivity(intent);
 		}else{
-			ErrorMsg.alert("Sie haben kein Spiel gestartet", this);
+			Messages.alert("Sie haben kein Spiel gestartet", this);
 		}
 	}
     
@@ -41,6 +45,30 @@ public class DisplayMenuActivity extends Activity {
     
     /** Called when the user clicks the Verlassen button */
     public void goLeave(View view) {
-		
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+		alertDialogBuilder.setTitle("Achtung!");
+		alertDialogBuilder
+				.setMessage("Wollen Sie wirklich das aktuelle Spiel verlassen?")
+				.setCancelable(false)
+				.setPositiveButton("Ja",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+						    	LeaveGameThread lg = new LeaveGameThread();
+								lg.run();
+								try {
+									lg.join();
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+							}
+						})
+				.setNegativeButton("Nein",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							return;
+						}
+					});
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();	
 	}
 }

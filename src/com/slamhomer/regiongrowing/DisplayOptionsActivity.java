@@ -92,11 +92,11 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 	  public void setLocation(View view){  
 			String fehler = GPS.saveHomeLoc(this.lalo, this);
 			if (!fehler.equals("OK")) {
-				ErrorMsg.alert(
+				Messages.alert(
 						"Fehler beim Speichern der GPS Koordinaten. "
 								+ fehler, this);
 			}else{
-				ErrorMsg.alert("Home Location gespeichert. Änderung wird erst" +
+				Messages.alert("Home Location gespeichert. Änderung wird erst" +
 						" beim nächsten neuen Spiel angewandt", "Achtung!", "OK", this);
 			}
 			if (GPS.loadHomeLoc(this) == true) {

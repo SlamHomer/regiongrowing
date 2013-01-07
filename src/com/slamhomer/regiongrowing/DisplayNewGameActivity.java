@@ -35,10 +35,10 @@ public class DisplayNewGameActivity extends Activity {
 			}
 			String resultat = Network.getLastCode();
 			if (!(resultat.equals("OK"))) {
-				ErrorMsg.alert(resultat, this);
+				Messages.alert(resultat, this);
 			}else{
 				//TODO: Ladebalken oder sowas mit "bitte warten"
-				ErrorMsg.alert("Spieler wurden zugeteilt", "Alles gut!", 
+				Messages.alert("Spieler wurden zugeteilt", "Alles gut!", 
 						"OK", this);
 				Thread updateThread = new UpdateThread(Gamemanager.getLocalPlayer().getName());
 				updateThread.start();
@@ -49,7 +49,7 @@ public class DisplayNewGameActivity extends Activity {
 				}
 			}
 		}else{
-			ErrorMsg.alert("Nur 2-6 Spieler möglich", this);
+			Messages.alert("Nur 2-6 Spieler möglich", this);
 		}
 		Gamemanager.printAll();
 	}

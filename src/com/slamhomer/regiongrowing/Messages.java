@@ -3,8 +3,10 @@ package com.slamhomer.regiongrowing;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.provider.Settings;
 
-public class ErrorMsg {
+public class Messages {
 	public static void alert(String msg, Context context){
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 		alertDialogBuilder.setTitle("Fehler");
@@ -38,4 +40,5 @@ public class ErrorMsg {
 		AlertDialog alertDialog = alertDialogBuilder.create();
 		alertDialog.show();
 	}
+	
 }

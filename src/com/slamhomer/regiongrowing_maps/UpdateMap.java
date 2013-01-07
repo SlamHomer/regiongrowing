@@ -9,7 +9,7 @@ import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
-import com.slamhomer.regiongrowing.ErrorMsg;
+import com.slamhomer.regiongrowing.Messages;
 import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_network.LeaveGameThread;
@@ -93,7 +93,7 @@ public class UpdateMap {
 	    //TODO: Nachdem Klick auf "Spiel beenden" wieder zurück ins Gamemenü 
 	    if(Gamemanager.getWinner() != null
 	    		&& Gamemanager.getWinner().equals("null") == false){
-	    	ErrorMsg.alert("Gewonnen hat "+Gamemanager.getWinner(), "Spiel vorbei", 
+	    	Messages.alert("Gewonnen hat "+Gamemanager.getWinner(), "Spiel vorbei", 
 	    			"Spiel beenden", context);
 	    	
 	    	LeaveGameThread lg = new LeaveGameThread();

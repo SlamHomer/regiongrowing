@@ -16,7 +16,7 @@
     <string name="button_register">Registrieren</string>
     <string name="button_continue">Weiter</string>
     <string name="button_exit">Abmelden</string>
-    <string name="button_leave">Verlassen</string>
+    <string name="button_leave">Spiel Verlassen</string>
     <string name="button_options">Optionen</string>
     <string name="textfield_login_email">E-Mail</string>
     <string name="textfield_login_name">Benutzername</string>
