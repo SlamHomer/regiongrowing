@@ -26,6 +26,7 @@
     <string name="text_enter_code">Code eingeben:</string>
     <string name="title_activity_display_options">DisplayOptionsActivity</string>
     <string name="text_homelocation">Home Location</string>
+	<string name="text_inf">Einfluss:</string>
     <string name="gps_longt">Longitude:</string>
     <string name="gps_latit">Latitute:</string>
     <string name="gps_home">Aktuelle Home Koordinaten:</string>
@@ -35,5 +36,6 @@
     <string name="title_activity_display_game">DisplayGame</string>
     <string name="game_task">Daily Tasks</string>
     <string name="title_activity_display_daily_task">DisplayDailyTask</string>
+    <string name="title_activity_display_task">DisplayTask</string>
 
 </resources>

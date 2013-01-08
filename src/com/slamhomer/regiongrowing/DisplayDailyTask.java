@@ -4,7 +4,11 @@ import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +23,8 @@ public class DisplayDailyTask extends ListActivity {
 		Gamemanager.getTask(2).getTaskName(), Gamemanager.getTask(3).getTaskName(), 
 		Gamemanager.getTask(4).getTaskName() };
 	
+	final Context context = this;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,9 +38,10 @@ public class DisplayDailyTask extends ListActivity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-			    // When clicked, show a toast with the TextView text
-			    Toast.makeText(getApplicationContext(),
-				((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(context, DisplayTask.class);
+				int task_number = position;
+				intent.putExtra("numbers", task_number);
+				startActivity(intent);
 			}
 		});
 	}

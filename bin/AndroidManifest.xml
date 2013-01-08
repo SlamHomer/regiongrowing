@@ -53,6 +53,10 @@
             android:name="com.slamhomer.regiongrowing.DisplayDailyTask"
             android:label="@string/title_activity_display_daily_task" >
         </activity>
+        <activity
+            android:name="com.slamhomer.regiongrowing.DisplayTask"
+            android:label="@string/title_activity_display_task" >
+        </activity>
     </application>
 
 </manifest>
