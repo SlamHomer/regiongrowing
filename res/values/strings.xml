@@ -20,13 +20,15 @@
     <string name="button_options">Optionen</string>
     <string name="textfield_login_email">E-Mail</string>
     <string name="textfield_login_name">Benutzername</string>
-    <string name="text_newgame">Neues Spiel</string>
     <string name="title_activity_display_new_game">Neues Spiel</string>
     <string name="title_activity_display_enter_game">DisplayEnterGame</string>
     <string name="text_enter_code">Code eingeben:</string>
     <string name="title_activity_display_options">DisplayOptionsActivity</string>
     <string name="text_homelocation">Home Location</string>
+    <string name="text_newgame">Neues Spiel</string>
 	<string name="text_inf">Einfluss:</string>
+	<string name="text_abgeben">Abgeben</string>
+	<string name="text_bild">Bild aufnehmen</string>
     <string name="gps_longt">Longitude:</string>
     <string name="gps_latit">Latitute:</string>
     <string name="gps_home">Aktuelle Home Koordinaten:</string>
