@@ -7,12 +7,15 @@ import com.slamhomer.regiongrowing_network.UpdateThread;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DisplayTask extends Activity {
+	private static final int CAMERA_PIC_REQUEST = 1987;
 	private static String titel = null;
 	private static String desc = null;
 	private static int inf;
@@ -78,9 +81,18 @@ public class DisplayTask extends Activity {
 
 	}
 	
+	
 	public void goCamera(View view){
-		Intent intent = new Intent(this, DisplayCameraActivity.class);
-		startActivity(intent);
+	    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+	    startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);  
 	}
+	
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+        if (requestCode == CAMERA_PIC_REQUEST) {  
+            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");  
+            ImageView image = (ImageView) findViewById(R.id.imageView1);  
+            image.setImageBitmap(thumbnail);  
+        }  
+    }  
 
 }
