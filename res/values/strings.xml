@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">RegionGrowing</string>
+    <string name="app_name">Region Growing</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Region Growing</string>
     <string name="debug_text">DEBUG MENU</string>
@@ -27,6 +27,7 @@
     <string name="text_homelocation">Home Location</string>
     <string name="text_newgame">Neues Spiel</string>
 	<string name="text_inf">Einfluss:</string>
+	<string name="text_erf">Erfüllt von:</string>
 	<string name="text_abgeben">Abgeben</string>
 	<string name="text_bild">Bild aufnehmen</string>
     <string name="gps_longt">Longitude:</string>
