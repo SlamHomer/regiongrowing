@@ -30,6 +30,7 @@
 	<string name="text_erf">Erfüllt von:</string>
 	<string name="text_abgeben">Abgeben</string>
 	<string name="text_bild">Bild aufnehmen</string>
+	<string name="text_desc">Bild für die Task</string>
     <string name="gps_longt">Longitude:</string>
     <string name="gps_latit">Latitute:</string>
     <string name="gps_home">Aktuelle Home Koordinaten:</string>

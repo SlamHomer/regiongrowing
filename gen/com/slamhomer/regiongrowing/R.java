@@ -72,19 +72,20 @@ public final class R {
         public static final int button_options=0x7f040010;
         public static final int button_register=0x7f04000c;
         public static final int debug_text=0x7f040003;
-        public static final int game_task=0x7f040024;
-        public static final int gps_home=0x7f04001f;
-        public static final int gps_latit=0x7f04001e;
-        public static final int gps_longt=0x7f04001d;
+        public static final int game_task=0x7f040025;
+        public static final int gps_home=0x7f040020;
+        public static final int gps_latit=0x7f04001f;
+        public static final int gps_longt=0x7f04001e;
         public static final int hello_world=0x7f040004;
         public static final int menu_settings=0x7f040001;
-        public static final int newgame_number=0x7f040020;
-        public static final int newgame_search=0x7f040022;
-        public static final int options_update=0x7f040021;
+        public static final int newgame_number=0x7f040021;
+        public static final int newgame_search=0x7f040023;
+        public static final int options_update=0x7f040022;
         public static final int register=0x7f040009;
         public static final int start_text=0x7f040008;
         public static final int text_abgeben=0x7f04001b;
         public static final int text_bild=0x7f04001c;
+        public static final int text_desc=0x7f04001d;
         public static final int text_enter_code=0x7f040015;
         public static final int text_erf=0x7f04001a;
         public static final int text_homelocation=0x7f040017;
@@ -93,14 +94,14 @@ public final class R {
         public static final int textfield_login_email=0x7f040011;
         public static final int textfield_login_name=0x7f040012;
         public static final int textfield_login_password=0x7f040007;
-        public static final int title_activity_display_daily_task=0x7f040025;
+        public static final int title_activity_display_daily_task=0x7f040026;
         public static final int title_activity_display_enter_game=0x7f040014;
-        public static final int title_activity_display_game=0x7f040023;
+        public static final int title_activity_display_game=0x7f040024;
         public static final int title_activity_display_login=0x7f040005;
         public static final int title_activity_display_new_game=0x7f040013;
         public static final int title_activity_display_options=0x7f040016;
         public static final int title_activity_display_reg=0x7f040006;
-        public static final int title_activity_display_task=0x7f040026;
+        public static final int title_activity_display_task=0x7f040027;
         public static final int title_activity_main=0x7f040002;
     }
     public static final class style {

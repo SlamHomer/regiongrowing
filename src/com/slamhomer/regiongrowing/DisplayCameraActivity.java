@@ -19,13 +19,12 @@ import android.widget.Toast;
 
 
 public class DisplayCameraActivity extends Activity{
-    private static final int CAMERA_PIC_REQUEST = 1987;  
+    private static final int CAMERA_PIC_REQUEST = 1987;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_display_camera);
-
 	}
 	
 	@Override
@@ -35,6 +34,4 @@ public class DisplayCameraActivity extends Activity{
 	    // Stop method tracing that the activity started during onCreate()
 	    android.os.Debug.stopMethodTracing();
 	}
-	
-
 }

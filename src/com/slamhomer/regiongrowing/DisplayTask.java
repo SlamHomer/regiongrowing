@@ -84,7 +84,9 @@ public class DisplayTask extends Activity {
 	
 	public void goCamera(View view){
 	    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-	    startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);  
+	    startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+	    ImageView foto = (ImageView) findViewById(R.id.imageView1);
+	    foto.setVisibility(View.VISIBLE);
 	}
 	
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {  

@@ -70,11 +70,13 @@
 
     <ImageView
         android:id="@+id/imageView1"
+        android:contentDescription="@string/text_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button1"
         android:layout_marginBottom="98dp"
         android:layout_toRightOf="@+id/textView3"
-        android:src="@drawable/ic_launcher" />
-
+        android:visibility="gone"/>
 </RelativeLayout>
+
+<!--android:src="@drawable/ic_launcher" -->
