@@ -29,7 +29,7 @@ public class TurnTaskInThread extends Thread{
 	public void run(){
 		// Create a new HttpClient and Post Header
 	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/turnin.php");
+	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/submit.php");
 	    String res = null;
 	    
 	    try {

@@ -43,7 +43,7 @@ public class DisplayTask extends Activity {
 		return true;
 	}
 	
-	public void goTurnIn(){
+	public void goTurnIn(View view){
 		Thread turnIn = new TurnTaskInThread(titel);
 		turnIn.run();
 		try {
