@@ -1,8 +1,6 @@
 package com.slamhomer.regiongrowing_network;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,10 +16,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
-import android.content.Context;
-
-import com.slamhomer.regiongrowing.Messages;
+import android.annotation.SuppressLint;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_gameobjects.LocalPlayer;
 import com.slamhomer.regiongrowing_gameobjects.Player;
@@ -52,11 +49,10 @@ public class UpdateThread extends Thread{
 				// Execute HTTP Post Request
 				HttpResponse response = httpclient.execute(httppost);
 
-				HttpEntity entity = response.getEntity();
-				InputStream is = entity.getContent();
-
-				res = Network.convertStreamToString(is);
-
+				final HttpEntity tmpEnt = response.getEntity();
+				String tmpString = new String(EntityUtils.toString(tmpEnt, "ISO-8859-1"));
+				res = tmpString;
+				
 				System.out.println("RES: " + res);
 
 			} catch (ClientProtocolException e) {
@@ -163,7 +159,8 @@ public class UpdateThread extends Thread{
 	}
 	
 	  // Convert from String to date
-	  private static Date stringToDate(String date_string) {
+	  @SuppressLint("SimpleDateFormat")
+	private static Date stringToDate(String date_string) {
 	      Date date = null;
 		  try {
 	      date = new SimpleDateFormat("yyyy-MM-dd").parse(date_string);

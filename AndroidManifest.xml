@@ -41,6 +41,8 @@
         </activity>
         <activity android:name="com.slamhomer.regiongrowing.DisplayOptionsActivity" >
         </activity>
+        <activity android:name="com.slamhomer.regiongrowing.DisplayCameraActivity" >
+        </activity>
         <activity
             android:name="com.slamhomer.regiongrowing.DisplayGame"
             android:label="@string/title_activity_display_game"

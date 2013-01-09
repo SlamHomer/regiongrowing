@@ -3,8 +3,6 @@ package com.slamhomer.regiongrowing;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.provider.Settings;
 
 public class Messages {
 	public static void alert(String msg, Context context){

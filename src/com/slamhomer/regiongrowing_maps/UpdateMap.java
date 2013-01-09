@@ -2,14 +2,15 @@ package com.slamhomer.regiongrowing_maps;
 
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
-import com.slamhomer.regiongrowing.Messages;
 import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_network.LeaveGameThread;
@@ -93,16 +94,30 @@ public class UpdateMap {
 	    //TODO: Nachdem Klick auf "Spiel beenden" wieder zurück ins Gamemenü 
 	    if(Gamemanager.getWinner() != null
 	    		&& Gamemanager.getWinner().equals("null") == false){
-	    	Messages.alert("Gewonnen hat "+Gamemanager.getWinner(), "Spiel vorbei", 
-	    			"Spiel beenden", context);
 	    	
-	    	LeaveGameThread lg = new LeaveGameThread();
-	    	lg.run();
-	    	try {
-				lg.join();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+			alertDialogBuilder.setTitle("Spiel vorbei");
+			alertDialogBuilder
+					.setMessage("Gewonnen hat "+Gamemanager.getWinner())
+					.setCancelable(false)
+					.setNeutralButton("Spiel beenden",
+							new DialogInterface.OnClickListener() {
+								public void onClick(
+										DialogInterface dialog, int id) {
+							    	Thread lg = new LeaveGameThread();
+							    	lg.run();
+							    	try {
+										lg.join();
+									} catch (InterruptedException e) {
+										e.printStackTrace();
+									}
+							    	
+							    	//TODO: Zurück zum Game Menü
+								}
+							});
+			AlertDialog alertDialog = alertDialogBuilder.create();
+			alertDialog.show();
+	    	
 	    }
 	}
 }

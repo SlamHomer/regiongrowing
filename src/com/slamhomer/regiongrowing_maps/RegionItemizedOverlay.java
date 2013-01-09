@@ -3,16 +3,13 @@ package com.slamhomer.regiongrowing_maps;
 import java.util.ArrayList;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.view.View;
 
 import com.google.android.maps.ItemizedOverlay;
-import com.google.android.maps.MapView;
 import com.google.android.maps.OverlayItem;
-import com.slamhomer.regiongrowing.R;
 
+@SuppressWarnings("rawtypes")
 public class RegionItemizedOverlay extends ItemizedOverlay{
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>(); //Array mit Map Overlays
 	private Context mContext;

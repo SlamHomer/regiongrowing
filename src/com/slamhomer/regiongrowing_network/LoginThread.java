@@ -1,7 +1,6 @@
 package com.slamhomer.regiongrowing_network;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import android.widget.EditText;
 
@@ -45,10 +45,14 @@ public class LoginThread extends Thread{
 	        // Execute HTTP Post Request
 	        HttpResponse response = httpclient.execute(httppost);
 	        
-	        HttpEntity entity = response.getEntity();
+/*	        HttpEntity entity = response.getEntity();
 	        InputStream is = entity.getContent();
 	        
-	        res = Network.convertStreamToString(is);
+	        res = Network.convertStreamToString(is);*/
+	        
+	        final HttpEntity tmpEnt = response.getEntity();
+			String tmpString = new String(EntityUtils.toString(tmpEnt, "ISO-8859-1"));
+			res = tmpString;
 	        
 	    } catch (ClientProtocolException e) {
 	    	System.out.println("ClientProtocolException");

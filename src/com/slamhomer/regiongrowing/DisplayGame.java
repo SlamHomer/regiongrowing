@@ -12,6 +12,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.View;
 
@@ -20,13 +21,23 @@ public class DisplayGame extends MapActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		/*
+		 * Nur ein Hotfix!
+		 * TODO: Richtig machen. Maybe AsyncThread?
+		 * ################################################## 
+		 */
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy); 
+		//###################################################
+		
 		setContentView(R.layout.activity_display_game);
 		MapView mapView = (MapView) findViewById(R.id.mapview);
 	    mapView.setBuiltInZoomControls(true);
 	    
 	    UpdateMap updateMap = new UpdateMap(mapView, this);
 	    updateMap.update();
-	    
+    
 	    BackgroundUpdateThread background = new BackgroundUpdateThread(
 				updateMap);
 	    
@@ -94,13 +105,15 @@ public class DisplayGame extends MapActivity {
 				.setPositiveButton("Ja",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
-						    	LeaveGameThread lg = new LeaveGameThread();
-								lg.run();
+						    	Thread lg = new LeaveGameThread();
+								lg.start();
 								try {
 									lg.join();
 								} catch (InterruptedException e) {
 									e.printStackTrace();
 								}
+								
+								//TODO: Zurück zum Game Menü
 							}
 						})
 				.setNegativeButton("Nein",

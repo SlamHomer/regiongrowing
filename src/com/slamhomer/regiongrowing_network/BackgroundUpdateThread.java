@@ -1,15 +1,14 @@
 package com.slamhomer.regiongrowing_network;
 
-import com.slamhomer.regiongrowing.Messages;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_maps.UpdateMap;
 
 public class BackgroundUpdateThread extends Thread{
-	private static long WAITTIME_MS =  20*1000; //update alle 20 sekunden
+	private static long WAITTIME_MS =  40*1000; //update alle 40 sekunden
 	private volatile static boolean update = false;
 	
 	private UpdateMap uMap;
-	private UpdateThread updateThread;
+	private Thread updateThread;
 	
 	public BackgroundUpdateThread(UpdateMap uMap){
 		this.uMap = uMap;
@@ -26,7 +25,7 @@ public class BackgroundUpdateThread extends Thread{
 	public void run(){
 		System.out.println("BACKGROUND_UPDATE_THREAD_START!!!!!");
 		
-		while (1==1) {
+		while (true) {
 			System.out.println("WHILE SCHLEIFE !!!!");
 			if(update == true) {
 				try {

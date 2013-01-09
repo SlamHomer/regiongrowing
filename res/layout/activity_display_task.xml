@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/textView3"
+        android:onClick="goTurnIn"
         android:text="@string/text_abgeben" />
 
     <Button

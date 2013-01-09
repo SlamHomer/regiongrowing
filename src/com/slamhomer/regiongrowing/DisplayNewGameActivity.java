@@ -2,7 +2,6 @@ package com.slamhomer.regiongrowing;
 
 import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
-import com.slamhomer.regiongrowing_network.LoginThread;
 import com.slamhomer.regiongrowing_network.Network;
 import com.slamhomer.regiongrowing_network.NewGameThread;
 import com.slamhomer.regiongrowing_network.UpdateThread;
@@ -45,7 +44,6 @@ public class DisplayNewGameActivity extends Activity {
 			if (!(resultat.equals("OK"))) {
 				Messages.alert(resultat, this);
 			}else{
-				//TODO: Ladebalken oder sowas mit "bitte warten"
 				Messages.alert("Spieler wurden zugeteilt", "Alles gut!", 
 						"OK", this);
 				Thread updateThread = new UpdateThread(Gamemanager.getLocalPlayer().getName());
@@ -55,6 +53,8 @@ public class DisplayNewGameActivity extends Activity {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+				
+				//TODO: Zurück zum Game Menü
 			}
 		}else{
 			Messages.alert("Nur 2-6 Spieler möglich", this);

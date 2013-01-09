@@ -1,13 +1,8 @@
 ﻿package com.slamhomer.regiongrowing_network;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import com.slamhomer.regiongrowing.Messages;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
@@ -31,9 +26,12 @@ private static String LastCode = null;
 	}
 
 
-	protected static String convertStreamToString(InputStream is) {
+/*	protected static String convertStreamToString(InputStream is) {
 
-	    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+	    BufferedReader reader = null;
+	    
+		reader = new BufferedReader(new InputStreamReader(is));
+	
 	    StringBuilder sb = new StringBuilder();
 
 	    String line = null;
@@ -51,7 +49,7 @@ private static String LastCode = null;
 	        }
 	    }
 	    return sb.toString();
-	}
+	}*/
 	
 	public static boolean gotInternet(Context context) {
 	    ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -59,23 +57,8 @@ private static String LastCode = null;
 	    if (networkInfo != null && networkInfo.isConnected()) {
 	        return true;
 	    } else {
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-					context);
-			alertDialogBuilder.setTitle("Fehler");
-			alertDialogBuilder
-					.setMessage(
-							"Keine Internet Verbindung")
-					.setCancelable(false)
-					.setNeutralButton("OK",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									return;
-								}
-							});
-			AlertDialog alertDialog = alertDialogBuilder.create();
-			alertDialog.show();
-	        return false;
+			Messages.alert("Keine Internet Verbindung", context);
+			return false;
 	    }
 	}
 }

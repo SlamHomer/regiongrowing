@@ -2,13 +2,9 @@ package com.slamhomer.regiongrowing;
 
 import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
-import com.slamhomer.regiongrowing_network.LeaveGameThread;
 
 import android.os.Bundle;
-import android.provider.Settings;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 
@@ -35,6 +31,7 @@ public class DisplayMenuActivity extends Activity {
 		startActivity(intent);
 	}
 	
+	//TODO: Entweder Weiter oder Neues Spiel button
 	/** Called when the user clicks the Weiter button */
     public void goContinue(View view) {
 		if (Gamemanager.getLocalPlayer().isInGame() == true) {

@@ -17,17 +17,19 @@ import org.apache.http.util.EntityUtils;
 
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 
-public class LeaveGameThread extends Thread{
+public class TurnTaskInThread extends Thread{
 	private String name = null;
+	private String titel = null;
 	
-	public LeaveGameThread(){
+	public TurnTaskInThread(String titel){
 		this.name = Gamemanager.getLocalPlayer().getName();	
+		this.titel = titel;
 	}
 	
 	public void run(){
 		// Create a new HttpClient and Post Header
 	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/leavegame.php");
+	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/turnin.php");
 	    String res = null;
 	    
 	    try {
@@ -35,6 +37,7 @@ public class LeaveGameThread extends Thread{
 	    	
 	    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 	    	nameValuePairs.add(new BasicNameValuePair("name", this.name));
+	    	nameValuePairs.add(new BasicNameValuePair("titel", this.titel));
 	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 
