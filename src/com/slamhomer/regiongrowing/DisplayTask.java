@@ -9,10 +9,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class DisplayTask extends Activity {
 	private static String titel = null;
+	private static String desc = null;
+	private static int inf;
+	private static String erf;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +30,19 @@ public class DisplayTask extends Activity {
 		titel = Gamemanager.getTask(position).getTaskName();
 	    textView1.setText(titel);
 	    final TextView textView2 = (TextView)findViewById(R.id.textView2);
-	    String Beschreibung = Gamemanager.getTask(position).getTaskDesc();
-	    textView2.setText(Beschreibung);
+	    desc = Gamemanager.getTask(position).getTaskDesc();
+	    textView2.setText(desc);
 	    final TextView textView4 = (TextView)findViewById(R.id.textView4);
-	    int Einfluss = Gamemanager.getTask(position).getTaskInf();
-	    textView4.setText(String.valueOf(Einfluss));
+	    inf = Gamemanager.getTask(position).getTaskInf();
+	    textView4.setText(String.valueOf(inf));
 	    
-	    //TODO: Hier muss noch ob wer das schon 
-	    //abgeben hat und falls ja darf es keine buttons für abgeben und aufnehmen geben
+	    erf = Gamemanager.getTask(position).getTaskErf();
+	    if(erf.equals("Nicht abgeschlossen!")){
+		    Button abgeben = (Button) findViewById(R.id.button1);
+		    Button bild = (Button) findViewById(R.id.button2);
+		    abgeben.setVisibility(View.GONE);
+		    bild.setVisibility(View.GONE);
+	    }
 	}
 
 	@Override
