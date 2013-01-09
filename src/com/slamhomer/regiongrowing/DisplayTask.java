@@ -37,7 +37,7 @@ public class DisplayTask extends Activity {
 	    textView4.setText(String.valueOf(inf));
 	    
 	    erf = Gamemanager.getTask(position).getTaskErf();
-	    if(erf.equals("Nicht abgeschlossen!")){
+	    if(!erf.equals("Nicht abgeschlossen!")){
 		    Button abgeben = (Button) findViewById(R.id.button1);
 		    Button bild = (Button) findViewById(R.id.button2);
 		    abgeben.setVisibility(View.GONE);

@@ -14,16 +14,18 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class DisplayDailyTask extends ListActivity {
-	static final String[] Task_name = new String[] { Gamemanager.getTask(0).getTaskName(), Gamemanager.getTask(1).getTaskName(), 
-		Gamemanager.getTask(2).getTaskName(), Gamemanager.getTask(3).getTaskName(), 
-		Gamemanager.getTask(4).getTaskName() };
-	
-	final Context context = this;
+	private final Context context = this;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_display_daily_task);
+		
+		int length = Gamemanager.getDailyTasks().length;
+		String[] Task_name; 
+		Task_name = new String[length];
+		for (int pos = 0; pos < length; pos++) {
+			Task_name[pos] = Gamemanager.getTask(pos).getTaskName();
+		}
 		
 		setListAdapter(new ArrayAdapter<String>(this, R.layout.activity_display_daily_task,R.id.textView1,Task_name));
 		 
