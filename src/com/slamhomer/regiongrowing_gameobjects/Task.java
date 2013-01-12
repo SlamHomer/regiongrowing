@@ -5,6 +5,7 @@ public class Task {
 	private String taskDesc = null;
 	private String taskErf = null;
 	private int taskInf = 0;
+	private String img = null;
 	
 	public Task(String name, String desc, String erf, int inf){
 		this.taskDesc = desc;
@@ -43,5 +44,13 @@ public class Task {
 
 	public void setTaskInf(int taskInf) {
 		this.taskInf = taskInf;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 }

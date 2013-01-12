@@ -1,5 +1,9 @@
 package com.slamhomer.regiongrowing;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_network.TurnTaskInThread;
 import com.slamhomer.regiongrowing_network.UpdateThread;
@@ -8,6 +12,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -93,8 +98,32 @@ public class DisplayTask extends Activity {
         if (requestCode == CAMERA_PIC_REQUEST) {  
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");  
             ImageView image = (ImageView) findViewById(R.id.imageView1);  
-            image.setImageBitmap(thumbnail);  
+            //image.setImageBitmap(thumbnail); //direkt das bild anzeigen
+            
+            System.out.println("#########################");
+            System.out.println("IMAGE BYTE CODE: "+getImageByte(thumbnail));
+            System.out.println("#########################");
+            
+            //bild zu byte-> byte zu bild und anzeigen
+            byte[] b = getImageByte(thumbnail);
+            Bitmap bit = getByteImage(b);
+            image.setImageBitmap(bit);
         }  
     }  
+    
+    private byte[] getImageByte(Bitmap bmp){
+    	ByteArrayOutputStream stream = new ByteArrayOutputStream();
+    	bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+    	byte[] byteArray = stream.toByteArray();
+    	
+    	return byteArray;
+    }
+    
+    private Bitmap getByteImage(byte[] b){
+    	InputStream is = new ByteArrayInputStream(b);
+    	Bitmap bmp = BitmapFactory.decodeStream(is);
+    	
+    	return bmp;
+    }
 
 }

@@ -51,6 +51,14 @@ public class Gamemanager {
 	public static Task getTask(int pos){
 		return DailyTasks[pos];
 	}
+	public static int getPosFromTask(String taskname){
+		for(int i= 0; i < DailyTasks.length; i++){
+			if(DailyTasks[i].getTaskName().equals(taskname)){
+				return i;
+			}
+		}
+		return -1;
+	}
 	
 	public static void setDailyTasks(Task[] dailyTasks) {
 		Gamemanager.DailyTasks = dailyTasks;
