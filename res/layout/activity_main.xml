@@ -37,26 +37,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText2"
+        android:layout_centerHorizontal="true"
         android:onClick="goLogin"
-        android:text="@string/button_login" />
+        android:text="@string/button_login"
+        android:width="120dp" />
 
     <Button
         android:id="@+id/button_reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
-        android:layout_toRightOf="@id/button_login"
+        android:layout_below="@+@id/button_login"
+        android:layout_centerHorizontal="true"
         android:onClick="goReg"
-        android:text="@string/button_register" />
+        android:text="@string/button_register"
+        android:width="120dp" />
 
     <Button
         android:id="@+id/button_opt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/button_reg"
         android:layout_below="@+id/button_reg"
-        android:layout_marginRight="19dp"
+        android:layout_centerHorizontal="true"
         android:onClick="goOptions"
-        android:text="@string/button_options" />
+        android:text="@string/button_options"
+        android:width="120dp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_opt"
+        android:layout_centerHorizontal="true"
+        android:onClick="goQuit"
+        android:text="@string/button_quit"
+        android:width="120dp" />
 
 </RelativeLayout>
