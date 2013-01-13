@@ -14,6 +14,7 @@ import com.google.android.maps.OverlayItem;
 import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_network.LeaveGameThread;
+import com.slamhomer.regiongrowing_network.UpdateThread;
 
 public class UpdateMap {
 	private List<Overlay> mapOverlays;
@@ -43,7 +44,17 @@ public class UpdateMap {
 	public void update(){
 	    
 		// Local Player	    
-	    if (Gamemanager.getLocalPlayer().getName() != null) {    	
+	    if (Gamemanager.getLocalPlayer().getName() != null) {
+	    	
+			Thread updateThread = new UpdateThread(
+					Gamemanager.getLocalPlayer().getName());
+			updateThread.start();
+			try {
+				updateThread.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+	    	
 			mapOverlays = mapView.getOverlays();
 			drawable = context.getResources().getDrawable(R.drawable.local);
 			itemizedoverlay = new RegionItemizedOverlay(drawable, context);
@@ -91,7 +102,7 @@ public class UpdateMap {
 			}
 	    }
 	}
-	    //TODO: Nachdem Klick auf "Spiel beenden" wieder zurück ins Gamemenü 
+
 	    if(Gamemanager.getWinner() != null
 	    		&& Gamemanager.getWinner().equals("null") == false){
 	    	

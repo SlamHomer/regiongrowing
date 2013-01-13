@@ -15,9 +15,12 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
 public class DisplayGame extends MapActivity {
-
+	
+	private MapView mapView;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,41 +35,35 @@ public class DisplayGame extends MapActivity {
 		//###################################################
 		
 		setContentView(R.layout.activity_display_game);
-		MapView mapView = (MapView) findViewById(R.id.mapview);
+		mapView = (MapView) findViewById(R.id.mapview);
 	    mapView.setBuiltInZoomControls(true);
 	    
 	    UpdateMap updateMap = new UpdateMap(mapView, this);
 	    updateMap.update();
     
-	    BackgroundUpdateThread background = new BackgroundUpdateThread(
+/*	    BackgroundUpdateThread background = new BackgroundUpdateThread(
 				updateMap);
 	    
 	    if (background.isAlive() == false) {
 			background.start();
-		}
+		}*/
 	}
 	
 	@Override
 	public void onResume(){
 		super.onResume();
 		
-		Thread updateThread = new UpdateThread(
-				Gamemanager.getLocalPlayer().getName());
-		updateThread.start();
-		try {
-			updateThread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		UpdateMap updateMap = new UpdateMap(mapView, this);
+	    updateMap.update();
 		
-		BackgroundUpdateThread.setUpdate(true);
+		//BackgroundUpdateThread.setUpdate(true);
 	}
 	
 	@Override
 	public void onPause() {
 	    super.onPause();
-	    
-	    BackgroundUpdateThread.setUpdate(false);
+
+	    //BackgroundUpdateThread.setUpdate(false);
 	}
 
 	@Override
@@ -125,4 +122,10 @@ public class DisplayGame extends MapActivity {
 		AlertDialog alertDialog = alertDialogBuilder.create();
 		alertDialog.show();	
 	}
+    
+    public void goUpdate(View view){
+    	UpdateMap updateMap = new UpdateMap(mapView, this);
+	    updateMap.update();
+	    Toast.makeText(this, "Update durchgeführt", Toast.LENGTH_SHORT);
+    }
 }

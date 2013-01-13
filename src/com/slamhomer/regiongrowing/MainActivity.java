@@ -133,6 +133,10 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	public void goQuit(View view){
+		this.finish();
+	}
+	
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
