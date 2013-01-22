@@ -4,7 +4,7 @@ import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_maps.UpdateMap;
-import com.slamhomer.regiongrowing_network.BackgroundUpdateThread;
+import com.slamhomer.regiongrowing_network.__OLD_BackgroundUpdateThread;
 import com.slamhomer.regiongrowing_network.LeaveGameThread;
 import com.slamhomer.regiongrowing_network.UpdateThread;
 

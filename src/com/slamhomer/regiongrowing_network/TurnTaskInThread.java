@@ -1,6 +1,12 @@
 package com.slamhomer.regiongrowing_network;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +26,12 @@ import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 public class TurnTaskInThread extends Thread{
 	private String name = null;
 	private String titel = null;
+	private String img = null;
 	
-	public TurnTaskInThread(String titel){
+	public TurnTaskInThread(String titel, String img){
 		this.name = Gamemanager.getLocalPlayer().getName();	
 		this.titel = titel;
+		this.img = img;
 	}
 	
 	public void run(){
@@ -38,16 +46,16 @@ public class TurnTaskInThread extends Thread{
 	    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 	    	nameValuePairs.add(new BasicNameValuePair("name", this.name));
 	    	nameValuePairs.add(new BasicNameValuePair("titel", this.titel));
+	    	
+	    	if(this.img != null){
+	    		nameValuePairs.add(new BasicNameValuePair("bytecode", this.img));
+	    	}
+	    	
 	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 
 	        // Execute HTTP Post Request
 	        HttpResponse response = httpclient.execute(httppost);
-	        
-/*	        HttpEntity entity = response.getEntity();
-	        InputStream is = entity.getContent();
-	        
-	        res = Network.convertStreamToString(is);*/
 	        
 	        final HttpEntity tmpEnt = response.getEntity();
 			String tmpString = new String(EntityUtils.toString(tmpEnt, "ISO-8859-1"));
@@ -61,5 +69,6 @@ public class TurnTaskInThread extends Thread{
 	    
 	    Network.setLastCode(res);
 	}
+	
 
 }

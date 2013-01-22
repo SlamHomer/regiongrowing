@@ -15,12 +15,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-public class SubmitImgThread extends Thread{
+public class ___OLD_SubmitImgThread extends Thread{
 	private String name = null;
 	private String taskname = null;
 	private String bytecode = null;
 
-	public SubmitImgThread(final String name, 
+	public ___OLD_SubmitImgThread(final String name, 
 			final String taskname, final String bytecode){
 		this.taskname = taskname;
 		this.bytecode = bytecode;
