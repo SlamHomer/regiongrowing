@@ -14,7 +14,6 @@
         android:layout_marginTop="97dp"
         android:ems="10"
         android:onClick="goNewGame"
-        android:text="@string/button_New_Game"
         android:width="120dp" />
 
     <Button
@@ -22,16 +21,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button1"
-        android:layout_centerHorizontal="true"
-        android:onClick="goContinue"
-        android:text="@string/button_continue"
-        android:width="120dp" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true"
         android:onClick="goLogout"
         android:text="@string/button_exit"

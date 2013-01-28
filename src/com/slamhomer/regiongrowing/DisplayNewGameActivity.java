@@ -2,6 +2,7 @@ package com.slamhomer.regiongrowing;
 
 import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
+import com.slamhomer.regiongrowing_network.LeaveGameThread;
 import com.slamhomer.regiongrowing_network.Network;
 import com.slamhomer.regiongrowing_network.NewGameThread;
 import com.slamhomer.regiongrowing_network.UpdateThread;
@@ -10,6 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 public class DisplayNewGameActivity extends Activity {
 
@@ -44,8 +47,8 @@ public class DisplayNewGameActivity extends Activity {
 			if (!(resultat.equals("OK"))) {
 				Messages.alert(resultat, this);
 			}else{
-				Messages.alert("Spieler wurden zugeteilt", "Alles gut!", 
-						"OK", this);
+				/*Messages.alert("Spieler wurden zugeteilt", "Alles gut!", 
+						"OK", this);*/
 				Thread updateThread = new UpdateThread(Gamemanager.getLocalPlayer().getName());
 				updateThread.start();
 				try {
@@ -53,11 +56,29 @@ public class DisplayNewGameActivity extends Activity {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				
-				//TODO: Zurück zum Game Menü
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+				alertDialogBuilder.setTitle("Spieler wurden zugeteilt");
+				alertDialogBuilder
+						.setMessage("Alles gut!")
+						.setCancelable(false)
+						.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int id) {
+								    	Thread lg = new LeaveGameThread();
+										lg.start();
+										try {
+											lg.join();
+											finish();
+										} catch (InterruptedException e) {
+											e.printStackTrace();
+										}
+									}
+								});
+				AlertDialog alertDialog = alertDialogBuilder.create();
+				alertDialog.show();	
 			}
 		}else{
-			Messages.alert("Nur 2-6 Spieler möglich", this);
+			Messages.alert("Nur 2-6 Spieler mÃ¶glich", this);
 		}
 		Gamemanager.printAll();
 	}

@@ -1,15 +1,6 @@
 package com.slamhomer.regiongrowing;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_network.GetImgThread;
@@ -20,9 +11,7 @@ import com.slamhomer.regiongrowing_network.UpdateThread;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.Menu;
@@ -70,8 +59,10 @@ public class DisplayTask extends Activity {
 	    if(!erf.equals("Nicht abgeschlossen!")){
 		    Button abgeben = (Button) findViewById(R.id.button1);
 		    Button bild = (Button) findViewById(R.id.button2);
+		    Button anzeigen = (Button) findViewById(R.id.button3);
 		    abgeben.setVisibility(View.GONE);
 		    bild.setVisibility(View.GONE);
+		    anzeigen.setVisibility(View.VISIBLE);
 	    }
 	    
 	    tookPic = false;
@@ -118,6 +109,13 @@ public class DisplayTask extends Activity {
 		//TODO: auf fehler überprüfen
 		Messages.alert("Tasks wurde abgegeben.", "Erfolg!", "OK", this);
 		tookPic = false;
+		
+		Button abgeben = (Button) findViewById(R.id.button1);
+	    Button bild = (Button) findViewById(R.id.button2);
+	    Button anzeigen = (Button) findViewById(R.id.button3);
+	    abgeben.setVisibility(View.GONE);
+	    bild.setVisibility(View.GONE);
+	    anzeigen.setVisibility(View.VISIBLE);
 	}
 	
 	

@@ -35,8 +35,6 @@ public class DisplayRegActivity extends Activity {
     
     /** Called when the user clicks the Registrieren button */
 	public void goReg(View view) {
-
-		
 		EditText name = (EditText)findViewById(R.id.loginname);
 		EditText password = (EditText)findViewById(R.id.password);
 		EditText email = (EditText)findViewById(R.id.email);

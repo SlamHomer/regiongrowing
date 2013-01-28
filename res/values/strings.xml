@@ -34,6 +34,7 @@
 	<string name="text_inf">Einfluss:</string>
 	<string name="text_erf">Erfüllt von:</string>
 	<string name="text_abgeben">Abgeben</string>
+	<string name="text_anzeigen">Bild anzeigen</string>
 	<string name="text_bild">Bild aufnehmen</string>
 	<string name="text_desc">Bild für die Task</string>
     <string name="gps_longt">Longitude:</string>
