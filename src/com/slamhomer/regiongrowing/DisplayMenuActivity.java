@@ -25,9 +25,8 @@ public class DisplayMenuActivity extends Activity {
         if (Gamemanager.getLocalPlayer().isInGame() == true) {
         	OnClickListener l=new OnClickListener() {
         		public void onClick(View v) {
-        			final int REQUEST_CODE = 0;
         			if (Gamemanager.getLocalPlayer().isInGame() == true) {
-        				startActivityForResult(new Intent(context, DisplayGame.class), REQUEST_CODE);
+        				startActivity(new Intent(context, DisplayGame.class));
         			}else{
         				Messages.alert("Sie haben kein Spiel gestartet", context);
         			}
@@ -39,8 +38,7 @@ public class DisplayMenuActivity extends Activity {
         }else{
         	OnClickListener l=new OnClickListener() {
         		public void onClick(View v) {
-        			final int REQUEST_CODE = 0;
-        			startActivityForResult(new Intent(context, DisplayNewGameActivity.class), REQUEST_CODE);
+        			startActivity(new Intent(context, DisplayNewGameActivity.class));
         	    }
         	};
         	button1.setText("Neues Spiel");
@@ -57,35 +55,32 @@ public class DisplayMenuActivity extends Activity {
 	}
 	
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-	    super.onActivityResult(requestCode, resultCode, intent);
+	protected void onResume() {
+	    super.onResume();
 	    final Button button1 = (Button)findViewById(R.id.button1);
-	    if (requestCode == 0) {
-	    	if (Gamemanager.getLocalPlayer().isInGame() == true) {
-	        	OnClickListener l=new OnClickListener() {
-	        		public void onClick(View v) {
-	        			final int REQUEST_CODE = 0;
-	        			if (Gamemanager.getLocalPlayer().isInGame() == true) {
-	        				startActivityForResult(new Intent(context, DisplayGame.class), REQUEST_CODE);
-	        			}else{
-	        				Messages.alert("Sie haben kein Spiel gestartet", context);
-	        			}
-	        	    }
-	        	};
-	        	
-	        	button1.setText("Weiter");
-	            button1.setOnClickListener(l);
-	        }else{
-	        	OnClickListener l=new OnClickListener() {
-	        		public void onClick(View v) {
-	        			final int REQUEST_CODE = 0;
-	        			startActivityForResult(new Intent(context, DisplayNewGameActivity.class), REQUEST_CODE);
-	        	    }
-	        	};
-	        	button1.setText("Neues Spiel");
-	        	button1.setOnClickListener(l);
-	        }
-	    }
+	    
+    	if (Gamemanager.getLocalPlayer().isInGame() == true) {
+        	OnClickListener l=new OnClickListener() {
+        		public void onClick(View v) {
+        			if (Gamemanager.getLocalPlayer().isInGame() == true) {
+        				startActivity(new Intent(context, DisplayGame.class));
+        			}else{
+        				Messages.alert("Sie haben kein Spiel gestartet", context);
+        			}
+        	    }
+        	};
+        	
+        	button1.setText("Weiter");
+            button1.setOnClickListener(l);
+        }else{
+        	OnClickListener l=new OnClickListener() {
+        		public void onClick(View v) {
+        			startActivity(new Intent(context, DisplayNewGameActivity.class));
+        	    }
+        	};
+        	button1.setText("Neues Spiel");
+        	button1.setOnClickListener(l);
+        }
 	}
 	
 	/** Called when the user clicks the Exit button */
