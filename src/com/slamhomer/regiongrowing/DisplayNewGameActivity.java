@@ -2,7 +2,6 @@ package com.slamhomer.regiongrowing;
 
 import com.slamhomer.regiongrowing.R;
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
-import com.slamhomer.regiongrowing_network.LeaveGameThread;
 import com.slamhomer.regiongrowing_network.Network;
 import com.slamhomer.regiongrowing_network.NewGameThread;
 import com.slamhomer.regiongrowing_network.UpdateThread;
@@ -64,14 +63,7 @@ public class DisplayNewGameActivity extends Activity {
 						.setPositiveButton("OK",
 								new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog, int id) {
-								    	Thread lg = new LeaveGameThread();
-										lg.start();
-										try {
-											lg.join();
-											finish();
-										} catch (InterruptedException e) {
-											e.printStackTrace();
-										}
+										finish();
 									}
 								});
 				AlertDialog alertDialog = alertDialogBuilder.create();
