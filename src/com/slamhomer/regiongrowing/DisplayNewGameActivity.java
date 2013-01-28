@@ -30,8 +30,14 @@ public class DisplayNewGameActivity extends Activity {
 	}
 	
 	public void goNewGame(View view){
-		EditText text = (EditText) findViewById(R.id.editText1);
-		int players = Integer.valueOf(text.getText().toString());
+		EditText edittext = (EditText) findViewById(R.id.editText1);
+		String text = edittext.getText().toString();
+		int players;
+		if ( text != null && !text.isEmpty()) {
+			players = Integer.valueOf(text.toString());
+		}else{
+			return;
+		}
 		
 		if(players > 1 && players < 7){
 			Thread newGameThread = new NewGameThread(Gamemanager.getLocalPlayer().getName(), 
