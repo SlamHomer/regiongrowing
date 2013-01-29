@@ -2,8 +2,10 @@ package com.slamhomer.regiongrowing;
 
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
+import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 import com.slamhomer.regiongrowing_maps.UpdateMap;
 import com.slamhomer.regiongrowing_network.LeaveGameThread;
+import com.slamhomer.regiongrowing_network.UpdateThread;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -107,6 +109,13 @@ public class DisplayGame extends MapActivity {
 								} catch (InterruptedException e) {
 									e.printStackTrace();
 								}
+								Thread updateThread = new UpdateThread(Gamemanager.getLocalPlayer().getName());
+								updateThread.start();
+								try {
+									updateThread.join();
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
 							}
 						})
 				.setNegativeButton("Nein",
@@ -122,6 +131,5 @@ public class DisplayGame extends MapActivity {
     public void goUpdate(View view){
     	UpdateMap updateMap = new UpdateMap(mapView, this);
 	    updateMap.update();
-	    Toast.makeText(this, "Update durchgef�rt", Toast.LENGTH_SHORT);
     }
 }
