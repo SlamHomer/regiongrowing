@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
 
 public class DisplayGame extends MapActivity {
 	
