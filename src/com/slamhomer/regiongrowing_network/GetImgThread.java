@@ -19,9 +19,11 @@ import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
 
 public class GetImgThread extends Thread{
 	private String taskname = null;
+	private String lokal = null;
 	
 	public GetImgThread(final String taskname){
 		this.taskname = taskname;
+		this.lokal = Gamemanager.getLocalPlayer().getName();
 	}
 	
 	public void run(){
@@ -37,6 +39,7 @@ public class GetImgThread extends Thread{
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
 					2);
 			nameValuePairs.add(new BasicNameValuePair("titel", this.taskname));
+			nameValuePairs.add(new BasicNameValuePair("name", this.lokal));
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 			// Execute HTTP Post Request
@@ -44,6 +47,7 @@ public class GetImgThread extends Thread{
 
 			final HttpEntity tmpEnt = response.getEntity();
 			String tmpString = new String(EntityUtils.toString(tmpEnt, "ISO-8859-1"));
+			//tmpString.replaceAll("\\s","");
 			res = tmpString;
 			
 			System.out.println("RES: " + res);

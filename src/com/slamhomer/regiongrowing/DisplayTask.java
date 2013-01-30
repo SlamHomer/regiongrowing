@@ -97,15 +97,6 @@ public class DisplayTask extends Activity {
 		}
 
 		
-		Thread update = new UpdateThread(
-				Gamemanager.getLocalPlayer().getName());
-		update.run();
-		try {
-			update.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
 		//TODO: auf fehler überprüfen
 		Messages.alert("Tasks wurde abgegeben.", "Erfolg!", "OK", this);
 		tookPic = false;
@@ -116,6 +107,15 @@ public class DisplayTask extends Activity {
 	    abgeben.setVisibility(View.GONE);
 	    bild.setVisibility(View.GONE);
 	    anzeigen.setVisibility(View.VISIBLE);
+	    
+		Thread update = new UpdateThread(
+				Gamemanager.getLocalPlayer().getName());
+		update.run();
+		try {
+			update.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -136,16 +136,15 @@ public class DisplayTask extends Activity {
 		try {
 			getImg.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		String tmp = Gamemanager.getTask(pos).getImg();
 		System.out.println("TASK IMG: "+tmp);
-		//Bitmap bm = stringToBitmap(tmp);
+		Bitmap bm = stringToBitmap(tmp);
 		
 		//DEBUG
-		Bitmap bm = stringToBitmap(debugString);
+		//Bitmap bm = stringToBitmap(debugString);
 		
 		image.setImageBitmap(bm);
 		image.setVisibility(View.VISIBLE);
@@ -154,19 +153,7 @@ public class DisplayTask extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
         if (requestCode == CAMERA_PIC_REQUEST) {  
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");  
-            
-/*            ImageView image = (ImageView) findViewById(R.id.imageView1);  
-            //image.setImageBitmap(thumbnail); //direkt das bild anzeigen
-            
-            System.out.println("#########################");
-            System.out.println("IMAGE BYTE CODE: "+getImageByte(thumbnail));
-            System.out.println("#########################");
-            
-            //bild zu byte-> byte zu bild und anzeigen
-            byte[] b = getImageByte(thumbnail);
-            Bitmap bit = getByteImage(b);
-            image.setImageBitmap(bit);*/
-            
+
             String s = bitmapToString(thumbnail);
             imgCode = s;
             tookPic = true;
@@ -181,13 +168,10 @@ public class DisplayTask extends Activity {
     
     
     private String bitmapToString(Bitmap bm){
-/*    	Resources r = this.getResources();
-        Bitmap bm = BitmapFactory.decodeResource(r, R.drawable.logo);
-        */
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object   
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);    
         byte[] b = baos.toByteArray();
-        //String encodedImage = Base64.encode(b, Base64.DEFAULT);
+
         String encodedImage = Base64.encodeToString(b,Base64.DEFAULT);
         
         return encodedImage;

@@ -20,12 +20,10 @@ import android.widget.EditText;
 public class RegThread extends Thread{
 	private EditText name = null;
 	private EditText password = null;
-	private EditText email = null;
-	//private Context context = null;
+	//private EditText email = null;
 	
-	public RegThread(final EditText name,final EditText password, final EditText email){
-		//this.context = context;
-		this.email = email;
+	public RegThread(final EditText name,final EditText password){
+		//this.email = email;
 		this.name = name;
 		this.password = password;
 	}
@@ -42,17 +40,12 @@ public class RegThread extends Thread{
 	    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 	        nameValuePairs.add(new BasicNameValuePair("name", this.name.getText().toString()));
 	        nameValuePairs.add(new BasicNameValuePair("pw", this.password.getText().toString()));
-	        nameValuePairs.add(new BasicNameValuePair("email", this.email.getText().toString())); 
+	        nameValuePairs.add(new BasicNameValuePair("email", "no@email.now")); 
 	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 
 	        // Execute HTTP Post Request
 	        HttpResponse response = httpclient.execute(httppost);
-	        
-/*	        HttpEntity entity = response.getEntity();
-	        InputStream is = entity.getContent();
-	        
-	        res = Network.convertStreamToString(is);*/
 	        
 	        final HttpEntity tmpEnt = response.getEntity();
 			String tmpString = new String(EntityUtils.toString(tmpEnt, "ISO-8859-1"));

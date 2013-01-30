@@ -38,17 +38,6 @@ public class RegionItemizedOverlay extends ItemizedOverlay{
 	    mOverlays.add(overlay);
 	    populate();
 	}
-/*	
-	//Remove single item
-	public void rmOverlay(OverlayItem overlay){
-		int index = mOverlays.indexOf(overlay);
-		mOverlays.remove(index);
-	}
-	
-	//Remove all items
-	public void rmAllOverlay(){
-		mOverlays.clear();
-	}*/
 	
 	//handle the event when an item is tapped by the use
 	@Override

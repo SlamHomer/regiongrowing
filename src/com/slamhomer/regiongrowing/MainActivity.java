@@ -85,7 +85,7 @@ public class MainActivity extends Activity {
 						startActivity(intent);
 					}
 				} else {
-					Messages.alert("Ungueltiger Benutzername oder Passwort", this);
+					Messages.alert("Ungültiger Benutzername oder Passwort", this);
 				}
 			} else {
 				Messages.alert("Sie haben Ihre Home Location noch nicht gesetzt", this);

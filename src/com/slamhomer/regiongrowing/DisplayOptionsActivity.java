@@ -65,7 +65,6 @@ public class DisplayOptionsActivity extends Activity implements LocationListener
 	  }
 
 	  public void onStatusChanged(String provider, int status, Bundle extras) {
-	    // TODO Auto-generated method stub
 	  }
 
 	  public void onProviderEnabled(String provider) {

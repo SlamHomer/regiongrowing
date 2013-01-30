@@ -38,13 +38,6 @@ public class DisplayGame extends MapActivity {
 	    
 	    UpdateMap updateMap = new UpdateMap(mapView, this);
 	    updateMap.update();
-    
-/*	    BackgroundUpdateThread background = new BackgroundUpdateThread(
-				updateMap);
-	    
-	    if (background.isAlive() == false) {
-			background.start();
-		}*/
 	}
 	
 	@Override
@@ -53,15 +46,11 @@ public class DisplayGame extends MapActivity {
 		
 		UpdateMap updateMap = new UpdateMap(mapView, this);
 	    updateMap.update();
-		
-		//BackgroundUpdateThread.setUpdate(true);
 	}
 	
 	@Override
 	public void onPause() {
 	    super.onPause();
-
-	    //BackgroundUpdateThread.setUpdate(false);
 	}
 
 	@Override
@@ -95,7 +84,7 @@ public class DisplayGame extends MapActivity {
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 		alertDialogBuilder.setTitle("Achtung!");
 		alertDialogBuilder
-				.setMessage("Wollen Sie wirklich das aktuelle Spiel verlassen?")
+				.setMessage("Sie verlieren und verlassen das aktuelle Spiel. Ist das okay?")
 				.setCancelable(false)
 				.setPositiveButton("Ja",
 						new DialogInterface.OnClickListener() {
@@ -126,9 +115,5 @@ public class DisplayGame extends MapActivity {
 		AlertDialog alertDialog = alertDialogBuilder.create();
 		alertDialog.show();	
 	}
-    
-    public void goUpdate(View view){
-    	UpdateMap updateMap = new UpdateMap(mapView, this);
-	    updateMap.update();
-    }
+
 }

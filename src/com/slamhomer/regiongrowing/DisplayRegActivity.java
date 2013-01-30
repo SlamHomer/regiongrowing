@@ -39,11 +39,14 @@ public class DisplayRegActivity extends Activity {
 		EditText password = (EditText)findViewById(R.id.editText2);
 		//EditText email = (EditText)findViewById(R.id.email);
 		
-		if (FormValidation.isEmailValid(email) == true &&
+/*		if (FormValidation.isEmailValid(email) == true &&
 				FormValidation.isLoginDataValid(name) == true &&
-				FormValidation.isLoginDataValid(password) == true) {
-			
-			Thread regthread = new RegThread(name, password, email);
+				FormValidation.isLoginDataValid(password) == true) {*/
+		if (FormValidation.isLoginDataValid(name) == true &&
+				FormValidation.isLoginDataValid(password) == true){
+		
+		
+			Thread regthread = new RegThread(name, password);
 			regthread.start();
 			try {
 				regthread.join();

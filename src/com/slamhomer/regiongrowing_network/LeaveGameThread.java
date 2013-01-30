@@ -41,11 +41,6 @@ public class LeaveGameThread extends Thread{
 	        // Execute HTTP Post Request
 	        HttpResponse response = httpclient.execute(httppost);
 	        
-/*	        HttpEntity entity = response.getEntity();
-	        InputStream is = entity.getContent();
-	        
-	        res = Network.convertStreamToString(is);*/
-	        
 	        final HttpEntity tmpEnt = response.getEntity();
 			String tmpString = new String(EntityUtils.toString(tmpEnt, "ISO-8859-1"));
 			res = tmpString;
