@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true"
         android:ems="6"
         android:text="@string/text_homelocation"
-        android:textSize="20sp" />
+        android:textSize="22sp" />
 
     <EditText
         android:id="@+id/editText1"

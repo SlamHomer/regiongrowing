@@ -13,4 +13,14 @@
 
     </TextView>
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="22sp"
+        android:text="@string/text_dailytasks" />
+
 </RelativeLayout>

@@ -13,7 +13,6 @@
     <string name="title_activity_display_task">DisplayTask</string>
     <string name="textfield_login_password">Passwort</string>
     <string name="start_text">Region Growing</string>
-    <string name="register">Login-Daten:</string>
     <string name="button_New_Game">Neues Spiel</string>
     <string name="button_login">Login</string>
     <string name="button_register">Registrieren</string>
@@ -37,6 +36,10 @@
 	<string name="text_anzeigen">Bild anzeigen</string>
 	<string name="text_bild">Bild aufnehmen</string>
 	<string name="text_desc">Bild für die Task</string>
+    <string name="text_menu">Hauptmenü</string>
+    <string name="text_dailytasks">Daily Tasks</string>
+    <string name="text_register">Registrieren</string>
+    <string name="text_register_data">Login-Daten:</string>
     <string name="gps_longt">Longitude:</string>
     <string name="gps_latit">Latitute:</string>
     <string name="gps_home">Aktuelle Home Koordinaten:</string>

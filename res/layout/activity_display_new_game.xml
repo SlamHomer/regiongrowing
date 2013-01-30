@@ -12,7 +12,7 @@
 	    android:ems="5"
 	    android:gravity="center"
 	    android:text="@string/text_newgame"
-	    android:textSize="25sp" />
+	    android:textSize="22sp" />
 
 	<TextView
 	    android:id="@+id/textView1"
@@ -20,7 +20,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_below="@+id/plain"
 	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="92dp"
+	    android:layout_marginTop="80dp"
 	    android:text="@string/newgame_number" />
 
 	<EditText
