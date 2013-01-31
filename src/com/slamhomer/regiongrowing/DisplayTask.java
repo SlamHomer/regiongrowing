@@ -3,7 +3,6 @@ package com.slamhomer.regiongrowing;
 import java.io.ByteArrayOutputStream;
 
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
-import com.slamhomer.regiongrowing_maps.RotateImage;
 import com.slamhomer.regiongrowing_network.GetImgThread;
 import com.slamhomer.regiongrowing_network.TurnTaskInThread;
 import com.slamhomer.regiongrowing_network.UpdateThread;
@@ -11,10 +10,11 @@ import com.slamhomer.regiongrowing_network.UpdateThread;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.View;
@@ -22,7 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-//TODO: Unschön alles, warte auf Skript fix
+//TODO: Unschön
 public class DisplayTask extends Activity {
 	private static String titel = null;
 	private static String desc = null;
@@ -80,7 +80,7 @@ public class DisplayTask extends Activity {
 	public void goTurnIn(View view){
 		
 		if(tookPic == true){
-			System.out.println("Mit imgCode!");
+			//System.out.println("Mit imgCode!");
 			Thread turnIn = new TurnTaskInThread(titel,imgCode);
 			turnIn.run();
 			try {
@@ -100,8 +100,9 @@ public class DisplayTask extends Activity {
 
 		
 		//TODO: auf fehler überprüfen
-		Messages.alert("Tasks wurde abgegeben.", "Erfolg!", "OK", this);
+		//Messages.alert("Tasks wurde abgegeben.", "Erfolg!", "OK", this);
 		tookPic = false;
+		
 		
 		Button abgeben = (Button) findViewById(R.id.button1);
 	    Button bild = (Button) findViewById(R.id.button2);
@@ -118,6 +119,20 @@ public class DisplayTask extends Activity {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+		alertDialogBuilder.setTitle("Tasks wurde abgegeben.");
+		alertDialogBuilder
+				.setMessage("Erfolg!")
+				.setCancelable(false)
+				.setPositiveButton("OK",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								finish();
+							}
+						});
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();	
 	}
 	
 	
@@ -140,7 +155,7 @@ public class DisplayTask extends Activity {
 		}
 		
 		String tmp = Gamemanager.getTask(pos).getImg();
-		System.out.println("TASK IMG: "+tmp);
+		//System.out.println("TASK IMG: "+tmp);
 		Bitmap bm = stringToBitmap(tmp);
 		
 		/*
@@ -157,19 +172,25 @@ public class DisplayTask extends Activity {
 		image.setVisibility(View.VISIBLE);
 	}
 	
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
-        if (requestCode == CAMERA_PIC_REQUEST) {  
-            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");  
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {    
+    	super.onActivityResult(requestCode, resultCode, data);
+    	
+    	try {
+			if (requestCode == CAMERA_PIC_REQUEST) {
+					Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
 
-            String s = bitmapToString(thumbnail);
-            imgCode = s;
-            tookPic = true;
-            
-            System.out.println("#########################");
-            System.out.println("IMAGE STRING CODE: "+s);
-            System.out.println("#########################");
-            
-        }  
+					String s = bitmapToString(thumbnail);
+					imgCode = s;
+					tookPic = true;
+
+/*					System.out.println("#########################");
+					System.out.println("IMAGE STRING CODE: " + s);
+					System.out.println("#########################");*/
+
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
     
     

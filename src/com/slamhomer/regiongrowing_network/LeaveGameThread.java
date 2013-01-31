@@ -46,9 +46,9 @@ public class LeaveGameThread extends Thread{
 			res = tmpString;
 
 	    } catch (ClientProtocolException e) {
-	    	System.out.println("ClientProtocolException");
+	    	//System.out.println("ClientProtocolException");
 	    } catch (IOException e) {
-	        System.out.println("IOException");
+	    	//System.out.println("IOException");
 	    }
 	    
 	    Network.setLastCode(res);

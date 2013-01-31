@@ -27,7 +27,7 @@ public class GetImgThread extends Thread{
 	}
 	
 	public void run(){
-		System.out.println("GET IMG THREAD!!!!!");
+		//System.out.println("GET IMG THREAD!!!!!");
 		// Create a new HttpClient and Post Header
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpPost httppost = new HttpPost(
@@ -50,12 +50,12 @@ public class GetImgThread extends Thread{
 			//tmpString.replaceAll("\\s","");
 			res = tmpString;
 			
-			System.out.println("RES: " + res);
+			//System.out.println("RES: " + res);
 
 		} catch (ClientProtocolException e) {
-			System.out.println("ClientProtocolException");
+			//System.out.println("ClientProtocolException");
 		} catch (IOException e) {
-			System.out.println("IOException");
+			//System.out.println("IOException");
 		}
 		
 		//TODO: richtiger error code

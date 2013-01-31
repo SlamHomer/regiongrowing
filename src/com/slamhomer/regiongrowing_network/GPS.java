@@ -76,13 +76,13 @@ public class GPS{
 		        
 		    instream.close();
 		  } catch (java.io.FileNotFoundException e) {
-			  System.out.println("FileNotFoundException");
+			  //System.out.println("FileNotFoundException");
 			  return false;
 		  } catch (IOException e) {
-			System.out.println("IOException");
+			  //System.out.println("IOException");
 			return false;
 		} catch (NullPointerException e){
-			System.out.println("NullPointerException");
+			//System.out.println("NullPointerException");
 			return false;
 		}
 		  return true;

@@ -52,8 +52,6 @@ public class DisplayNewGameActivity extends Activity {
 			if (!(resultat.equals("OK"))) {
 				Messages.alert(resultat, this);
 			}else{
-				/*Messages.alert("Spieler wurden zugeteilt", "Alles gut!", 
-						"OK", this);*/
 				Thread updateThread = new UpdateThread(Gamemanager.getLocalPlayer().getName());
 				updateThread.start();
 				try {
@@ -78,6 +76,6 @@ public class DisplayNewGameActivity extends Activity {
 		}else{
 			Messages.alert("Nur 2-6 Spieler möglich", this);
 		}
-		Gamemanager.printAll();
+		//Gamemanager.printAll();
 	}
 }

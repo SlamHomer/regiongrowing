@@ -58,9 +58,9 @@ public class Player {
 		Double latE6 = this.getpLatitude() * 1E6;
 		int lat = latE6.intValue();
 		
-		System.out.println("########################");
+/*		System.out.println("########################");
 		System.out.println("GEO LAT: "+lat);
-		System.out.println("########################");
+		System.out.println("########################");*/
 		return lat;
 	}
 	
@@ -69,9 +69,9 @@ public class Player {
 		int lng = lngE6.intValue();
 	    
 		
-		System.out.println("########################");
+/*		System.out.println("########################");
 		System.out.println("GEO LONG: "+lng);
-		System.out.println("########################");
+		System.out.println("########################");*/
 		return lng;
 	}
 }

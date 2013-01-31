@@ -32,7 +32,7 @@ public class UpdateThread extends Thread{
 	}
 	
 	public void run(){
-			System.out.println("THREAD!!!!!");
+		//System.out.println("THREAD!!!!!");
 			// Create a new HttpClient and Post Header
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(
@@ -53,12 +53,12 @@ public class UpdateThread extends Thread{
 				String tmpString = new String(EntityUtils.toString(tmpEnt, "ISO-8859-1"));
 				res = tmpString;
 				
-				System.out.println("RES: " + res);
+				//System.out.println("RES: " + res);
 
 			} catch (ClientProtocolException e) {
-				System.out.println("ClientProtocolException");
+				//System.out.println("ClientProtocolException");
 			} catch (IOException e) {
-				System.out.println("IOException");
+				//System.out.println("IOException");
 			}
 			//wenn update erfolglos dann setzte fehler code
 			if (convertUpdate(res) == false) {

@@ -78,7 +78,7 @@ public class MainActivity extends Activity {
 
 						// ##############################
 
-						Gamemanager.printAll();
+						//Gamemanager.printAll();
 
 						Intent intent = new Intent(this,
 								DisplayMenuActivity.class);

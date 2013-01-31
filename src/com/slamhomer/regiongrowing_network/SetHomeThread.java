@@ -29,7 +29,7 @@ public class SetHomeThread extends Thread{
 	}
 	
 	public void run(){
-		System.out.println("SETHOME THREAD!!!!");
+		//System.out.println("SETHOME THREAD!!!!");
 		// Create a new HttpClient and Post Header
 	    HttpClient httpclient = new DefaultHttpClient();
 	    HttpPost httppost = new HttpPost("http://www.slamhomer.com/region/standort.php");
@@ -59,9 +59,9 @@ public class SetHomeThread extends Thread{
 	        System.out.println("LONG: "+this.lon);*/
 	        
 	    } catch (ClientProtocolException e) {
-	    	System.out.println("ClientProtocolException");
+	    	//System.out.println("ClientProtocolException");
 	    } catch (IOException e) {
-	        System.out.println("IOException");
+	    	// System.out.println("IOException");
 	    }
 	    
 	    Network.setLastCode(res);
