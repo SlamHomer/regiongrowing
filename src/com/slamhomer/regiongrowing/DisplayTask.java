@@ -3,6 +3,7 @@ package com.slamhomer.regiongrowing;
 import java.io.ByteArrayOutputStream;
 
 import com.slamhomer.regiongrowing_gameobjects.Gamemanager;
+import com.slamhomer.regiongrowing_maps.RotateImage;
 import com.slamhomer.regiongrowing_network.GetImgThread;
 import com.slamhomer.regiongrowing_network.TurnTaskInThread;
 import com.slamhomer.regiongrowing_network.UpdateThread;
@@ -13,6 +14,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.View;
@@ -122,8 +124,6 @@ public class DisplayTask extends Activity {
 	public void goCamera(View view){
 	    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 	    startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
-/*	    ImageView foto = (ImageView) findViewById(R.id.imageView1);
-	    foto.setVisibility(View.VISIBLE);*/
 	}
 	
 	public void goShowImg(View view){
@@ -142,6 +142,13 @@ public class DisplayTask extends Activity {
 		String tmp = Gamemanager.getTask(pos).getImg();
 		System.out.println("TASK IMG: "+tmp);
 		Bitmap bm = stringToBitmap(tmp);
+		
+		/*
+		 * Turn Bitmap 180 
+		 */
+		//BitmapDrawable bmd = RotateImage.rotate180(bm);
+		//image.setImageDrawable(bmd);
+		//image.setVisibility(View.VISIBLE);
 		
 		//DEBUG
 		//Bitmap bm = stringToBitmap(debugString);

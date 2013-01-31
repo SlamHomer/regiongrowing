@@ -115,5 +115,10 @@ public class DisplayGame extends MapActivity {
 		AlertDialog alertDialog = alertDialogBuilder.create();
 		alertDialog.show();	
 	}
+    
+    public void goUpdate(View view){
+		UpdateMap updateMap = new UpdateMap(mapView, this);
+	    updateMap.update();
+    }
 
 }
